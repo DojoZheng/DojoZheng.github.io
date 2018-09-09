@@ -16,14 +16,14 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="2018年秋招面经1. 腾讯TEG机器学习岗位1.1 电话面试2018年9月7日星期五  天气晴最近找了一些小伙伴帮忙内推腾讯，秋招的校园招聘也投了简历。之前因为在香港，手机没有开通国际漫游，所以大陆打来的面试电话都没接到，直到昨天收到了面试官发来的邮件说电话没打通，我也一下子警觉了起来，赶紧开了国际漫游，约了今天早上10点的面试。面试官是安全大数据组员，心想我投的机器学习岗位，他会问什么问题呢？">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2018/09/07/2018秋招面经/media/sql_group_by.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/07/2018秋招面经/media/sql_count.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/07/2018秋招面经/media/sql_not_in.jpg">
-<meta property="og:updated_time" content="2018-09-09T07:55:47.463Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/07/2018秋招面经/sql_group_by.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/09/07/2018秋招面经/sql_count.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/09/07/2018秋招面经/sql_not_in.jpg">
+<meta property="og:updated_time" content="2018-09-09T08:21:46.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dojo">
 <meta name="twitter:description" content="2018年秋招面经1. 腾讯TEG机器学习岗位1.1 电话面试2018年9月7日星期五  天气晴最近找了一些小伙伴帮忙内推腾讯，秋招的校园招聘也投了简历。之前因为在香港，手机没有开通国际漫游，所以大陆打来的面试电话都没接到，直到昨天收到了面试官发来的邮件说电话没打通，我也一下子警觉了起来，赶紧开了国际漫游，约了今天早上10点的面试。面试官是安全大数据组员，心想我投的机器学习岗位，他会问什么问题呢？">
-<meta name="twitter:image" content="http://yoursite.com/2018/09/07/2018秋招面经/media/sql_group_by.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/07/2018秋招面经/sql_group_by.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
   
@@ -225,11 +225,11 @@
 <pre><code>问题5: 接下来让我解释一下KMeans均值聚类
 </code></pre><p>这个不是我拿手菜吗，解释了一同，结果自己讲明白了，把面试官给讲糊涂了，或许这就是我才有的境界了，嗯~</p>
 <pre><code>问题6：有使用过MySQL吗？如果要把一张表格分成两个部分，怎么实现？
-</code></pre><p>当时也没搞清楚考官问什么，觉得问题不是很清晰。事后仔细想了想，可能是想问题SQL的分组操作，可能是考操作符 ‘Group By’ 的使用吧，下面是从W3school找到的示例：<br><img src="./media/sql_group_by.jpg" alt="-w833"></p>
+</code></pre><p>当时也没搞清楚考官问什么，觉得问题不是很清晰。事后仔细想了想，可能是想问题SQL的分组操作，可能是考操作符 ‘Group By’ 的使用吧，下面是从W3school找到的示例：<br><img src="sql_group_by.jpg" alt="SQL Group By"></p>
 <pre><code>问题7：如果要对表格的某个字段进行统计，怎么做？答: 使用count进行计数。
-</code></pre><p>我回答的是使用’count()’函数进行计数，W3School案例如下：<br><img src="./media/sql_count.jpg" alt="-w838"></p>
+</code></pre><p>我回答的是使用’count()’函数进行计数，W3School案例如下：<br><img src="sql_count.jpg" alt="SQL Count()"></p>
 <pre><code>问题8：如果要将B表格中没有在A表格中出现过的数据段筛选出来，要怎么做？
-</code></pre><p>我回答的很模糊，就说SQL里面有取交集的操作符，然后对结果进行取非就可以了~<br>尴尬~懵逼~冷场~痛苦~满脑空白~不知道怎么描述~<br>下图是我面试之后自己用数据库写的一个案例，感觉贼简单。。。：<br><img src="./media/sql_not_in.jpg" alt="-w1002"></p>
+</code></pre><p>我回答的很模糊，就说SQL里面有取交集的操作符，然后对结果进行取非就可以了~<br>尴尬~懵逼~冷场~痛苦~满脑空白~不知道怎么描述~<br>下图是我面试之后自己用数据库写的一个案例，感觉贼简单。。。：<br><img src="sql_not_in.jpg" alt="SQL Not In"></p>
 <pre><code>问题9：现在假设你是运营商，要如何过滤垃圾短信？请你思考3-5分钟后，给出方案。这是一道开放性的题目，请打开你的思维，并且提示一下，你是“运营商”，这是一个很重要的提示。
 </code></pre><p>我首先当然想到的是提取关键词，然后使用朴素贝叶斯进行垃圾短信的过滤了~<br>然后考官说很多短信是没有打标签的，在这里不适合使用监督学习~<br>然后我就说那可以尝试使用无监督学习，对短信内容进行分类，最后判断哪些类是属于垃圾短信就可以了~<br>然后考官就提示我说，我现在是”运营商“，这是一道开放性的题目，你再仔细想一想，然后想清楚了再答复我吧~<br>这个时候考官似乎有点不耐烦了，我也觉得应该是梅西了，过了一会直接说没有idea~</p>
 <pre><code>问题10: 嗯，最后的最后，考官问了一下我有什么问题吗？
