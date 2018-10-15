@@ -11,13 +11,13 @@
   
   
   
-  <meta name="description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.  &amp;gt;| Index | 0 | 1 | 2 | 3 | 4">
+  <meta name="description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.      Index 0 1 2 3 4     x1 0 0">
 <meta name="keywords" content="Machine_Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MSBD-5012 MLHomework1">
 <meta property="og:url" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/index.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.  &amp;gt;| Index | 0 | 1 | 2 | 3 | 4">
+<meta property="og:description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.      Index 0 1 2 3 4     x1 0 0">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework2.jpg">
@@ -29,10 +29,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/cutaway_view.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework8.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/question5.jpg">
-<meta property="og:updated_time" content="2018-10-15T18:59:17.674Z">
+<meta property="og:updated_time" content="2018-10-15T19:03:36.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MSBD-5012 MLHomework1">
-<meta name="twitter:description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.  &amp;gt;| Index | 0 | 1 | 2 | 3 | 4">
+<meta name="twitter:description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.      Index 0 1 2 3 4     x1 0 0">
 <meta name="twitter:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
@@ -205,7 +205,46 @@
         <h1 id="MSBD-5012-Machine-Learning"><a href="#MSBD-5012-Machine-Learning" class="headerlink" title="MSBD 5012: Machine Learning"></a><center>MSBD 5012: Machine Learning</center></h1><h2 id="Homework-1"><a href="#Homework-1" class="headerlink" title="Homework 1"></a><center>Homework 1</center></h2><h2 id="Question-1"><a href="#Question-1" class="headerlink" title="Question 1"></a>Question 1</h2><blockquote>
 <p>Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.</p>
 </blockquote>
-<p>&gt;<br>| Index | 0 | 1 | 2 | 3 | 4 |<br>| —- | :-: | :-: | :-: | :-: | :-: |<br>| x1 | 0 | 0 | 1 | 1 | 1 |<br>| x2 | 1 | 1 | 1 | 0 | 0 |<br>| y | 0 | 1 | 2 | 3 | 4 |</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>x2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td>y</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p><strong>Answer:</strong></p>
 <p>The ordinary least squares formula is listed as follow:</p>
 <script type="math/tex; mode=display">\hat{w}_{OLS} = (X^TX)^{-1}X^Ty</script><p>Since the matrix of X and y is:</p>
@@ -498,7 +537,7 @@ w_0 + w_1 * x_{1,1} + w_2 * x_{1,2}=-2.016+1.023 \times 1 + 1.023 \times 1 = 0.0
 <li>This is the 3D view of the result. The orange plane separate the blue line and red line exactly.</li>
 </ul>
 <p><img src="homework8.jpg" alt="3D View of the Seperate Plane"></p>
-<h2 id="Question-5"><a href="#Question-5" class="headerlink" title="Question 5"></a>Question 5</h2><p>&gt;<br><img src="question5.jpg" alt=""></p>
+<h2 id="Question-5"><a href="#Question-5" class="headerlink" title="Question 5"></a>Question 5</h2><p><img src="question5.jpg" alt=""></p>
 <ol>
 <li><p>If the feature $x_1$ is binary and it takes value 1 only in a small number of training examples with class label 1, then we can get the following information:</p>
 <ul>
