@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/cutaway_view.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework8.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/question5.jpg">
-<meta property="og:updated_time" content="2018-10-15T18:19:22.229Z">
+<meta property="og:updated_time" content="2018-10-15T18:59:17.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MSBD-5012 MLHomework1">
 <meta name="twitter:description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.  &amp;gt;| Index | 0 | 1 | 2 | 3 | 4">
@@ -311,10 +311,10 @@ X^Ty =
 <p><img src="homework1.jpg" alt="Question 2"></p>
 <p>The results were obtained using following regularization schemes:</p>
 <ol>
-<li>$\frac{1}{3}\sum<em>{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda w</em>{1}^{2}　where 　\lambda = 1$</li>
-<li>$\frac{1}{3}\sum<em>{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda w</em>{1}^{2}　where 　\lambda = 10$</li>
-<li>$\frac{1}{3}\sum<em>{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda(w</em>{0}^{2}+w_{1}^{2})　where 　\lambda = 1$</li>
-<li>$\frac{1}{3}\sum<em>{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda(w</em>{0}^{2}+w_{1}^{2})　where 　\lambda = 10$<br>Match the regularization schemes with the regress results. Briefly explain your answers.</li>
+<li>$\frac{1}{3}\sum_{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda w_{1}^{2}　where 　\lambda = 1$</li>
+<li>$\frac{1}{3}\sum_{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda w_{1}^{2}　where 　\lambda = 10$</li>
+<li>$\frac{1}{3}\sum_{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda(w_{0}^{2}+w_{1}^{2})　where 　\lambda = 1$</li>
+<li>$\frac{1}{3}\sum_{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda(w_{0}^{2}+w_{1}^{2})　where 　\lambda = 10$<br>Match the regularization schemes with the regress results. Briefly explain your answers.</li>
 </ol>
 </blockquote>
 <p><strong>Answer:</strong><br>This is my answer in table:</p>
@@ -402,8 +402,8 @@ X^Ty =
 </div>
 <p>The target is to learn a model of the form p(y=1|<strong>x</strong>,<strong>w</strong>)=$\sigma(w_0+w_1x_1+w_2x_2).$<br>Suppose $w_0=-2, w_1=1, w_2=1$ initially and $\alpha = 0.1$. Manually run the batch gradient descent algorithm for one iteration. Give the weights and training error after the iteration.</p>
 </blockquote>
-<p><strong>Answer</strong><br>The update rule with L2 regularization is listed as follow:<br>$w<em>j \leftarrow w_j+\alpha \sum</em>{i = 1}^{N}[\mathbf{y}<em>i - \sigma(\mathbf{w}^T \mathbf{x}_i )]x</em>{i,j}$</p>
-<p>$\Rightarrow$<br>$w<em>0 \leftarrow w_0 + \alpha \times \sum</em>{i = 1}^{4}[y<em>i - \sigma(w^T x_i )]x</em>{i, 0}$<br>$w<em>1 \leftarrow w_1 + \alpha \times \sum</em>{i = 1}^{4}[y<em>i - \sigma(w^T x_i )]x</em>{i, 1}$<br>$w<em>2 \leftarrow w_2 + \alpha \times \sum</em>{i = 1}^{4}[y<em>i - \sigma(w^T x_i )]x</em>{i, 2}$<br>$x<em>{i, 0} = [1, 1, 1, 1], x</em>{i, 1} = [0, 0, 1, 1], x_{i, 2} = [0, 1, 0, 1]$</p>
+<p><strong>Answer</strong><br>The update rule with L2 regularization is listed as follow:<br>$w_j \leftarrow w_j+\alpha \sum_{i = 1}^{N}[\mathbf{y}_i - \sigma(\mathbf{w}^T \mathbf{x}_i )]x_{i,j}$</p>
+<p>$\Rightarrow$<br>$w_0 \leftarrow w_0 + \alpha \times \sum_{i = 1}^{4}[y_i - \sigma(w^T x_i )]x_{i, 0}$<br>$w_1 \leftarrow w_1 + \alpha \times \sum_{i = 1}^{4}[y_i - \sigma(w^T x_i )]x_{i, 1}$<br>$w_2 \leftarrow w_2 + \alpha \times \sum_{i = 1}^{4}[y_i - \sigma(w^T x_i )]x_{i, 2}$<br>$x_{i, 0} = [1, 1, 1, 1], x_{i, 1} = [0, 0, 1, 1], x_{i, 2} = [0, 1, 0, 1]$</p>
 <p>$\Rightarrow$<br>$w_0 \leftarrow -2 + 0.1 \times [(0-\sigma(-2)) \times 1+(0-\sigma(-1)) \times 1+(0-\sigma(-1)) \times 1+(1-\sigma(0)) \times 1]$<br>$w_1 \leftarrow 1+0.1 \times [(0-\sigma(-2)) \times 0+(0-\sigma(-1)) \times 0+(0-\sigma(-1)) \times 1+(1-\sigma(0)) \times 1]$<br>$w_2 \leftarrow 1+0.1 \times [(0-\sigma(-2)) \times 0+(0-\sigma(-1)) \times 1+(0-\sigma(-1)) \times 0+(1-\sigma(0)) \times 1]$</p>
 <p>$\Rightarrow$<br>$w_0 \leftarrow -2 + 0.1 \times (-0.157085764762) \approx -2.0157$<br>$w_1 \leftarrow 1 + 0.1 \times 0.2310585786 \approx 1.023$<br>$w_2 \leftarrow 1 + 0.1 \times 0.2310585786 \approx 1.023$<br>$\Rightarrow$ Thus, we get the weights:</p>
 <script type="math/tex; mode=display">
@@ -491,7 +491,7 @@ w_0 + w_1 * x_{1,1} + w_2 * x_{1,2}=-2.016+1.023 \times 1 + 1.023 \times 1 = 0.0
 <li>The dot $O(\frac{5}{12}, \frac{5}{12}, \frac{1}{6})$ is the dot inside the decision boundary.</li>
 <li>After we get the normal vector and one of the inner dot of the Decision Boundary, then we can calculate its function as：<ul>
 <li>$2x_1 + 2x_2 - 4x_1x_2 - 1 = 0$</li>
-<li>$W=\begin{bmatrix} -1 \ 2 \ 2 \ -4 \end{bmatrix}$</li>
+<li>$W=\begin{bmatrix} -1 \\ 2 \\ 2 \\ -4 \end{bmatrix}$</li>
 <li>The <strong>minimum training error</strong> is <strong>0</strong>.</li>
 </ul>
 </li>
@@ -504,18 +504,18 @@ w_0 + w_1 * x_{1,1} + w_2 * x_{1,2}=-2.016+1.023 \times 1 + 1.023 \times 1 = 0.0
 <ul>
 <li>$x_1$ is 1 only when the class label is 1</li>
 <li><p>There are very few training examples with class label 1 </p>
-<p>With the information, we can thereby analyse the following rule:<br>$w<em>1 \leftarrow w_1 + \alpha \sum</em>{i=1}^{N}[y<em>i - \sigma(\mathbf{w^T x_i})]x</em>{i, 1}$</p>
+<p>With the information, we can thereby analyse the following rule:<br>$w_1 \leftarrow w_1 + \alpha \sum_{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$</p>
 </li>
 <li>It is quite obvious that $x_{i, 1}$ is 0 for most of the time. Thus, $w_1$ cannot be updated and so the convergence will be very slow. </li>
-<li>If $x<em>{i, 1}$ suddenly get a value 1, then $y_i$ should be 1 which is bigger than $\sigma(\mathbf{w^T x_i})$. Thus, the total value of $[y_i - \sigma(\mathbf{w^T x_i})]x</em>{i, 1}$ will be positive.</li>
-<li><p>There is no chance the value of $\alpha \sum<em>{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x</em>{i, 1}$ will be negative because when $[y<em>i - \sigma(\mathbf{w^T x_i})] &lt; 0 $, $y_i$ must be 0 and thus $x_i$ is 0. Thus the total value of $\alpha \sum</em>{i=1}^{N}[y<em>i - \sigma(\mathbf{w^T x_i})]x</em>{i, 1}$ should not smaller than 0.</p>
+<li>If $x_{i, 1}$ suddenly get a value 1, then $y_i$ should be 1 which is bigger than $\sigma(\mathbf{w^T x_i})$. Thus, the total value of $[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$ will be positive.</li>
+<li><p>There is no chance the value of $\alpha \sum_{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$ will be negative because when $[y_i - \sigma(\mathbf{w^T x_i})] &lt; 0 $, $y_i$ must be 0 and thus $x_i$ is 0. Thus the total value of $\alpha \sum_{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$ should not smaller than 0.</p>
 <p><strong>To draw a conclusion, $w_1$ will increase slowly until it is converged.</strong></p>
 </li>
 </ul>
 </li>
 <li><p>If we add the regularization rule to the formula, then the regularization rule will force the weight to be smaller. The formula can be updated as:</p>
 <ul>
-<li>$w<em>1 \leftarrow (1-\alpha \lambda)w_1 + \alpha \sum</em>{i=1}^{N}[y<em>i - \sigma(\mathbf{w^T x_i})]x</em>{i, 1}$<br>As $0 &lt; \alpha \lambda &lt; 1$, we can infer that $|(1- \alpha \lambda)w_1| &lt; |w_1|$. Thus, regularizations force the weight to be smaller so as to avoid overfitting.</li>
+<li>$w_1 \leftarrow (1-\alpha \lambda)w_1 + \alpha \sum_{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$<br>As $0 &lt; \alpha \lambda &lt; 1$, we can infer that $|(1- \alpha \lambda)w_1| &lt; |w_1|$. Thus, regularizations force the weight to be smaller so as to avoid overfitting.</li>
 </ul>
 </li>
 </ol>
