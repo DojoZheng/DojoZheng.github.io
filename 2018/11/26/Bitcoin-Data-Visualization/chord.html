@@ -1,0 +1,166 @@
+
+<!-- saved from url=(0031)http://127.0.0.1:5500/test.html -->
+<html class="gr__127_0_0_1"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+                  
+                <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Bitcoin Chord Diagram</title>  
+          <style>
+        
+        .chord path {
+          fill-opacity: 0.67;
+          stroke: #000;
+          stroke-width: 0.5px;
+        }
+        
+        body{
+            text-align:center;
+            zoom:2;
+        }
+        .main{
+            width:1024px;
+            height:1024px;
+            background:#FF0000;
+            margin:0px auto 0px auto;
+        }
+  </style><!-- hexo-inject:begin --><!-- hexo-inject:end --></head> 
+        
+        
+        
+            <body data-gr-c-s-loaded="true">
+                <!-- hexo-inject:begin --><!-- hexo-inject:end --><p>Bitcoin Chord Diagram</p>  
+                <script src="./Bitcoin Chord Diagram_files/d3.v3.min.js"></script>
+                <script>
+                
+                //1.定义数据
+                // 城市名
+                var city_name = [ "Asia" , "Africa" , "Europe" , "America" , "Australia"  ];
+                
+                var population = [
+                  [ 1000,  3045　 , 4567　, 1234 , 3714 ],
+                  [ 3214,  2000　 , 2060　, 124  , 3234 ],
+                  [ 8761,  6545　 , 3000　, 8045 , 647  ],
+                  [ 3211,  1067  , 3214 , 4000  , 1006 ],
+                  [ 2146,  1034　 , 6745 , 4764  , 5000 ]
+                ];
+        
+                //2.转换数据，并输出转换后的数据
+                var chord_layout = d3.layout.chord()
+                                     .padding(0.03)
+                                     .sortSubgroups(d3.descending)
+                                     .matrix(population);
+        
+                console.log(chord_layout.groups());
+                console.log(chord_layout.chords());
+                
+                //3.SVG，弦图，颜色函数的定义
+                var width  = 600;
+                var height = 600;
+                var innerRadius = width/2 * 0.7;
+                var outerRadius = innerRadius * 1.1;
+        
+                var color20 = d3.scale.category20();
+        
+                var svg = d3.select("body").append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
+        
+                //4.绘制外部弦（即分组，有多少个城市画多少个弦），及绘制城市名称
+                var outer_arc =  d3.svg.arc()
+                             .innerRadius(innerRadius)
+                             .outerRadius(outerRadius);
+                
+                var g_outer = svg.append("g");
+                
+                g_outer.selectAll("path")
+                        .data(chord_layout.groups)
+                        .enter()
+                        .append("path")
+                        .style("fill", function(d) { return color20(d.index); })
+                        .style("stroke", function(d) { return color20(d.index); })
+                        .attr("d", outer_arc );
+                    
+                g_outer.selectAll("text")
+                        .data(chord_layout.groups)
+                        .enter()
+                        .append("text")
+                        .each( function(d,i) { 
+                            d.angle = (d.startAngle + d.endAngle) / 2; 
+                            d.name = city_name[i];
+                        })
+                        .attr("dy",".35em")
+                        .attr("transform", function(d){
+                            return "rotate(" + ( d.angle * 180 / Math.PI ) + ")" +
+                                   "translate(0,"+ -1.0*(outerRadius+10) +")" +
+                                    ( ( d.angle > Math.PI*3/4 && d.angle < Math.PI*5/4 ) ? "rotate(180)" : "");
+                        })
+                        .text(function(d){
+                            return d.name;
+                        });
+                        
+        
+                //5.绘制内部弦（即所有城市人口的来源，即有5*5=25条弧）
+                var inner_chord =  d3.svg.chord()
+                                .radius(innerRadius);
+                
+                svg.append("g")
+                    .attr("class", "chord")
+                    .selectAll("path")
+                    .data(chord_layout.chords)
+                    .enter()
+                    .append("path")
+                    .attr("d", inner_chord )
+                    .style("fill", function(d) { return color20(d.source.index); })
+                    .style("opacity", 1)
+                    .on("mouseover",function(d,i){
+                        d3.select(this)
+                            .style("fill","yellow");
+                    })
+                    .on("mouseout",function(d,i) { 
+                        d3.select(this)
+                            .transition()
+                            .duration(1000)
+                            .style("fill",color20(d.source.index));
+                    });
+        
+            </script><svg width="600" height="600"><g transform="translate(300,300)"><g><path d="M1.4144670530151932e-14,-231.00000000000003A231.00000000000003,231.00000000000003 0 0,1 194.06331153205196,-125.30136119457669L176.42119230186537,-113.91032835870605A210,210 0 0,0 1.2858791391047208e-14,-210Z" style="fill: rgb(31, 119, 180); stroke: rgb(31, 119, 180);"></path><path d="M197.7344665963877,-119.42395371047655A231.00000000000003,231.00000000000003 0 0,1 224.44701925690808,54.63090285442067L204.0427447790073,49.66445714038242A210,210 0 0,0 179.75860599671606,-108.56723064588776Z" style="fill: rgb(174, 199, 232); stroke: rgb(174, 199, 232);"></path><path d="M222.70734441546983,61.33872140344398A231.00000000000003,231.00000000000003 0 0,1 -145.95548266825202,179.0474715796836L-132.68680242568362,162.77042870880325A210,210 0 0,0 202.46122219588165,55.762474003130876Z" style="fill: rgb(255, 127, 14); stroke: rgb(255, 127, 14);"></path><path d="M-151.26042609692576,174.58889855021275A231.00000000000003,231.00000000000003 0 0,1 -230.5492661056867,-14.423449591871757L-209.59024191426062,-13.112226901701597A210,210 0 0,0 -137.5094782699325,158.71718050019336Z" style="fill: rgb(255, 187, 120); stroke: rgb(255, 187, 120);"></path><path d="M-230.0128881315898,-21.332400084490644A231.00000000000003,231.00000000000003 0 0,1 -6.928960546776598,-230.89605779601615L-6.29905504252418,-209.9055070872874A210,210 0 0,0 -209.10262557417252,-19.39309098590058Z" style="fill: rgb(44, 160, 44); stroke: rgb(44, 160, 44);"></path><text dy=".35em" transform="rotate(28.57538880308952)translate(0,-241.00000000000003)">Asia</text><text dy=".35em" transform="rotate(81.27477884956913)translate(0,-241.00000000000003)">Africa</text><text dy=".35em" transform="rotate(162.29246349309278)translate(0,-241.00000000000003)rotate(180)">Europe</text><text dy=".35em" transform="rotate(247.24242509137784)translate(0,-241.00000000000003)">America</text><text dy=".35em" transform="rotate(316.7899149520685)translate(0,-241.00000000000003)">Australia</text></g><g class="chord"><path d="M167.5724451549884,-126.5680671606326A210,210 0 0,1 176.42119230186537,-113.91032835870605Q 0,0 167.5724451549884,-126.5680671606326Z" style="fill: rgb(31, 119, 180); opacity: 1;"></path><path d="M200.28040378145693,-63.14871226823693A210,210 0 0,1 209.5000865158676,-14.481496809515198Q 0,0 120.15541935804129,-172.22855512049458A210,210 0 0,1 155.40940099837013,-141.23709881375996Q 0,0 200.28040378145693,-63.14871226823693Z" style="fill: rgb(174, 199, 232); opacity: 1;"></path><path d="M202.46122219588165,55.762474003130876A210,210 0 0,1 128.35278310628252,166.2093952484985Q 0,0 1.2858791391047208e-14,-210A210,210 0 0,1 69.22931973989027,-198.26069022464347Q 0,0 202.46122219588165,55.762474003130876Z" style="fill: rgb(255, 127, 14); opacity: 1;"></path><path d="M-198.9254026717624,67.29549889760224A210,210 0 0,1 -209.14989659995192,18.876460267471234Q 0,0 155.40940099837013,-141.23709881375996A210,210 0 0,1 167.5724451549884,-126.5680671606326Q 0,0 -198.9254026717624,67.29549889760224Z" style="fill: rgb(255, 187, 120); opacity: 1;"></path><path d="M69.22931973989027,-198.26069022464347A210,210 0 0,1 120.15541935804129,-172.22855512049458Q 0,0 -54.781986162405225,-202.7287201954919A210,210 0 0,1 -22.231014828259433,-208.8199750495764Q 0,0 69.22931973989027,-198.26069022464347Z" style="fill: rgb(31, 119, 180); opacity: 1;"></path><path d="M209.28542610908113,17.30925816840059A210,210 0 0,1 204.48725976956564,47.80126140526192Q 0,0 209.28542610908113,17.30925816840059Z" style="fill: rgb(174, 199, 232); opacity: 1;"></path><path d="M13.806555365859758,209.54564903364005A210,210 0 0,1 -84.79576783294506,192.1189156684507Q 0,0 209.5000865158676,-14.481496809515198A210,210 0 0,1 209.28542610908113,17.30925816840059Q 0,0 13.806555365859758,209.54564903364005Z" style="fill: rgb(255, 127, 14); opacity: 1;"></path><path d="M-209.14989659995192,18.876460267471234A210,210 0 0,1 -209.98606261543677,2.419402253836428Q 0,0 204.48725976956564,47.80126140526192A210,210 0 0,1 204.0427447790073,49.66445714038242Q 0,0 -209.14989659995192,18.876460267471234Z" style="fill: rgb(255, 187, 120); opacity: 1;"></path><path d="M179.75860599671606,-108.56723064588776A210,210 0 0,1 200.28040378145693,-63.14871226823693Q 0,0 -22.231014828259433,-208.8199750495764A210,210 0 0,1 -6.29905504252418,-209.9055070872874Q 0,0 179.75860599671606,-108.56723064588776Z" style="fill: rgb(174, 199, 232); opacity: 1;"></path><path d="M-84.79576783294506,192.1189156684507A210,210 0 0,1 -124.79272903452873,168.89871159992512Q 0,0 -84.79576783294506,192.1189156684507Z" style="fill: rgb(255, 127, 14); opacity: 1;"></path><path d="M128.35278310628252,166.2093952484985A210,210 0 0,1 13.806555365859758,209.54564903364005Q 0,0 -177.62954735692097,112.01671261814178A210,210 0 0,1 -198.9254026717624,67.29549889760224Q 0,0 128.35278310628252,166.2093952484985Z" style="fill: rgb(255, 127, 14); opacity: 1;"></path><path d="M-209.10262557417252,-19.39309098590058A210,210 0 0,1 -174.65629545513784,-116.59836387311614Q 0,0 -124.79272903452873,168.89871159992512A210,210 0 0,1 -132.68680242568362,162.77042870880325Q 0,0 -209.10262557417252,-19.39309098590058Z" style="fill: rgb(44, 160, 44); opacity: 1;"></path><path d="M-137.5094782699325,158.71718050019336A210,210 0 0,1 -177.62954735692097,112.01671261814178Q 0,0 -137.5094782699325,158.71718050019336Z" style="fill: rgb(255, 187, 120); opacity: 1;"></path><path d="M-121.05116196420066,-171.60016371529738A210,210 0 0,1 -54.781986162405225,-202.7287201954919Q 0,0 -209.98606261543677,2.419402253836428A210,210 0 0,1 -209.59024191426062,-13.112226901701597Q 0,0 -121.05116196420066,-171.60016371529738Z" style="fill: rgb(44, 160, 44); opacity: 1;"></path><path d="M-174.65629545513784,-116.59836387311614A210,210 0 0,1 -121.05116196420066,-171.60016371529738Q 0,0 -174.65629545513784,-116.59836387311614Z" style="fill: rgb(44, 160, 44); opacity: 1;"></path></g></g></svg>
+                
+        <!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					head.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					head.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->  
+  
+        </body></html>
