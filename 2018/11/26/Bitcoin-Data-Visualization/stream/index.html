@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta charset="utf-8">
   
   <title>Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -9,17 +9,17 @@
   
   
   
-  <meta name="description" content="Bitcoin Stream River                               .chord path {           fill-opacity: 0.67;           stroke: #000;           stroke-width: 0.5px;         }">
+  <meta name="description" content="Bitcoin Stream River                                                  .chord path {           fill-opacity: 0.67;           stroke: #000;           stro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dojo">
 <meta property="og:url" content="http://yoursite.com/2018/11/26/Bitcoin-Data-Visualization/stream/index.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="Bitcoin Stream River                               .chord path {           fill-opacity: 0.67;           stroke: #000;           stroke-width: 0.5px;         }">
+<meta property="og:description" content="Bitcoin Stream River                                                  .chord path {           fill-opacity: 0.67;           stroke: #000;           stro">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-26T03:03:00.616Z">
+<meta property="og:updated_time" content="2018-11-26T08:44:04.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dojo">
-<meta name="twitter:description" content="Bitcoin Stream River                               .chord path {           fill-opacity: 0.67;           stroke: #000;           stroke-width: 0.5px;         }">
+<meta name="twitter:description" content="Bitcoin Stream River                                                  .chord path {           fill-opacity: 0.67;           stroke: #000;           stro">
   
     <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
   
@@ -60,7 +60,7 @@
   
   
   
-    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <link rel="stylesheet" href="/css/vdonate.css" >
   
 
 </head>
@@ -71,7 +71,7 @@
 
 
   
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+  <div id="container">
     <div id="wrap">
       
         <header>
@@ -157,7 +157,378 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;">[object Promise]</section>
+          <section id="main" style="float:none;"><article id="post-Bitcoin-Data-Visualization/stream" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/26/Bitcoin-Data-Visualization/stream/" class="article-date">
+	  <time datetime="2018-11-26T02:51:06.690Z" itemprop="datePublished">2018-11-26</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<html>
+        <head>  
+                <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">  
+                <title>Bitcoin Stream River</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->  
+          </head> 
+        
+        <style>
+        
+        .chord path {
+          fill-opacity: 0.67;
+          stroke: #000;
+          stroke-width: 0.5px;
+        }
+        
+        body{
+            text-align:center;
+            zoom:2;
+        }
+        .main{
+            width:1024px;
+            height:1024px;
+            background:#FF0000;
+            margin:0px auto 0px auto;
+        }
+  </style>
+        
+            <body>
+                <!-- hexo-inject:begin --><!-- hexo-inject:end --><p>Bitcoin Chord Diagram</p>  
+                <script src="http://d3js.org/d3.v3.min.js"></script>
+                
+                <!DOCTYPE html>
+                <meta charset="utf-8">
+                <style>
+
+                body {
+                font: 10px sans-serif;
+                }
+
+                .chart { 
+                background: #fff;
+                }
+
+                p {
+                font: 12px helvetica;
+                }
+
+
+                .axis path, .axis line {
+                fill: none;
+                stroke: #000;
+                stroke-width: 2px;
+                shape-rendering: crispEdges;
+                }
+
+                button {
+                position: absolute;
+                right: 50px;
+                top: 10px;
+                }
+
+                </style>
+                <body>
+                <script src="http://d3js.org/d3.v2.js"></script>
+
+
+                <div class="chart">
+                </div>
+
+                <script>
+
+
+                chart("./data.csv", "orange");
+
+                var datearray = [];
+                var colorrange = [];
+
+
+                function chart(csvpath, color) {
+
+                if (color == "blue") {
+                colorrange = ["#045A8D", "#2B8CBE", "#74A9CF", "#A6BDDB", "#D0D1E6", "#F1EEF6"];
+                }
+                else if (color == "pink") {
+                colorrange = ["#980043", "#DD1C77", "#DF65B0", "#C994C7", "#D4B9DA", "#F1EEF6"];
+                }
+                else if (color == "orange") {
+                colorrange = ["#B30000", "#E34A33", "#FC8D59", "#FDBB84", "#FDD49E", "#FEF0D9"];
+                }
+                strokecolor = colorrange[0];
+
+                var format = d3.time.format("%m/%d/%y");
+
+                var margin = {top: 20, right: 40, bottom: 30, left: 30};
+                var width = document.body.clientWidth - margin.left - margin.right;
+                var height = 400 - margin.top - margin.bottom;
+
+                var tooltip = d3.select("body")
+                    .append("div")
+                    .attr("class", "remove")
+                    .style("position", "absolute")
+                    .style("z-index", "20")
+                    .style("visibility", "hidden")
+                    .style("top", "30px")
+                    .style("left", "55px");
+
+                var x = d3.time.scale()
+                    .range([0, width]);
+
+                var y = d3.scale.linear()
+                    .range([height-10, 0]);
+
+                var z = d3.scale.ordinal()
+                    .range(colorrange);
+
+                var xAxis = d3.svg.axis()
+                    .scale(x)
+                    .orient("bottom")
+                    .ticks(d3.time.weeks);
+
+                var yAxis = d3.svg.axis()
+                    .scale(y);
+
+                var yAxisr = d3.svg.axis()
+                    .scale(y);
+
+                var stack = d3.layout.stack()
+                    .offset("silhouette")
+                    .values(function(d) { return d.values; })
+                    .x(function(d) { return d.date; })
+                    .y(function(d) { return d.value; });
+
+                var nest = d3.nest()
+                    .key(function(d) { return d.key; });
+
+                var area = d3.svg.area()
+                    .interpolate("cardinal")
+                    .x(function(d) { return x(d.date); })
+                    .y0(function(d) { return y(d.y0); })
+                    .y1(function(d) { return y(d.y0 + d.y); });
+
+                var svg = d3.select(".chart").append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                var graph = d3.csv(csvpath, function(data) {
+                data.forEach(function(d) {
+                    d.date = format.parse(d.date);
+                    d.value = +d.value;
+                });
+
+                var layers = stack(nest.entries(data));
+
+                x.domain(d3.extent(data, function(d) { return d.date; }));
+                y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
+
+                svg.selectAll(".layer")
+                    .data(layers)
+                    .enter().append("path")
+                    .attr("class", "layer")
+                    .attr("d", function(d) { return area(d.values); })
+                    .style("fill", function(d, i) { return z(i); });
+
+
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .attr("transform", "translate(" + width + ", 0)")
+                    .call(yAxis.orient("right"));
+
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis.orient("left"));
+
+                svg.selectAll(".layer")
+                    .attr("opacity", 1)
+                    .on("mouseover", function(d, i) {
+                    svg.selectAll(".layer").transition()
+                    .duration(250)
+                    .attr("opacity", function(d, j) {
+                        return j != i ? 0.6 : 1;
+                    })})
+
+                    .on("mousemove", function(d, i) {
+                    mousex = d3.mouse(this);
+                    mousex = mousex[0];
+                    var invertedx = x.invert(mousex);
+                    invertedx = invertedx.getMonth() + invertedx.getDate();
+                    var selected = (d.values);
+                    for (var k = 0; k < selected.length; k++) {
+                        datearray[k] = selected[k].date
+                        datearray[k] = datearray[k].getMonth() + datearray[k].getDate();
+                    }
+
+                    mousedate = datearray.indexOf(invertedx);
+                    pro = d.values[mousedate].value;
+
+                    d3.select(this)
+                    .classed("hover", true)
+                    .attr("stroke", strokecolor)
+                    .attr("stroke-width", "0.5px"), 
+                    tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "visible");
+                    
+                    })
+                    .on("mouseout", function(d, i) {
+                    svg.selectAll(".layer")
+                    .transition()
+                    .duration(250)
+                    .attr("opacity", "1");
+                    d3.select(this)
+                    .classed("hover", false)
+                    .attr("stroke-width", "0px"), tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "hidden");
+                })
+                    
+                var vertical = d3.select(".chart")
+                        .append("div")
+                        .attr("class", "remove")
+                        .style("position", "absolute")
+                        .style("z-index", "19")
+                        .style("width", "1px")
+                        .style("height", "380px")
+                        .style("top", "10px")
+                        .style("bottom", "30px")
+                        .style("left", "0px")
+                        .style("background", "#fff");
+
+                d3.select(".chart")
+                    .on("mousemove", function(){  
+                        mousex = d3.mouse(this);
+                        mousex = mousex[0] + 5;
+                        vertical.style("left", mousex + "px" )})
+                    .on("mouseover", function(){  
+                        mousex = d3.mouse(this);
+                        mousex = mousex[0] + 5;
+                        vertical.style("left", mousex + "px")});
+                });
+                }
+                </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+        </body>  
+</body></html>  
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/wechat_pay.png?raw=true',
+  alipayImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/alipay.png?raw=true'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/11/26/Bitcoin-Data-Visualization/stream/" target="_blank" title="">http://yoursite.com/2018/11/26/Bitcoin-Data-Visualization/stream/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/26/MSBD-5012-MLHomework2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MSBD-5012-MLHomework2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/26/Bitcoin-Data-Visualization/network/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+
+</section>
         
       </div>
       
@@ -337,24 +708,7 @@
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
   
-    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>
