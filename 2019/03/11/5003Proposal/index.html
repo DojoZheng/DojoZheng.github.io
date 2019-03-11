@@ -19,12 +19,15 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Proposal第一次例会 topic（股票：预测，聚类；图片：自动大标题，分类过滤；新闻：NLP；视频：查找，e.g. 人，车） 框架（低耦合；实时性；性能效率） 资源（服务器租用；搭建集群）  分工：  Topic: 东佳-&amp;gt;图片视频；昊阳-&amp;gt;股票；希琛-&amp;gt;NLP；雨贤-&amp;gt;语音     (数据量；实时性) MongoDB 东佳；Stream 希琛；MLLib 昊阳；雨贤">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/03/11/5003Proposal/api.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/11/5003Proposal/api_test.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/11/5003Proposal/CNN_LSTM.png">
-<meta property="og:updated_time" content="2019-03-11T11:56:10.517Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/11/5003Proposal/mongodb.png">
+<meta property="og:updated_time" content="2019-03-11T12:21:20.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5003Proposal">
 <meta name="twitter:description" content="Proposal第一次例会 topic（股票：预测，聚类；图片：自动大标题，分类过滤；新闻：NLP；视频：查找，e.g. 人，车） 框架（低耦合；实时性；性能效率） 资源（服务器租用；搭建集群）  分工：  Topic: 东佳-&amp;gt;图片视频；昊阳-&amp;gt;股票；希琛-&amp;gt;NLP；雨贤-&amp;gt;语音     (数据量；实时性) MongoDB 东佳；Stream 希琛；MLLib 昊阳；雨贤">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/11/5003Proposal/CNN_LSTM.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/11/5003Proposal/api.png">
   
     <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
   
@@ -204,12 +207,31 @@
 <li>MongoDB 东佳；Stream 希琛；MLLib 昊阳；雨贤：Hive，Hbase</li>
 </ol>
 <p>下次开会目标：1. 确定topic    2. 初步搭建框架   3. 资源获取途径</p>
-<h2 id="图片视频"><a href="#图片视频" class="headerlink" title="图片视频"></a>图片视频</h2><ol>
-<li>数据集：<ol>
-<li>Common Objects in Context: <a href="http://cocodataset.org/#home" target="_blank" rel="noopener">COCO</a></li>
-<li>Image Captioning 实现原理<br><img src="/2019/03/11/5003Proposal/CNN_LSTM.png" alt="实现原理"></li>
-</ol>
+<h2 id="Big-Data-of-Image-Captioning"><a href="#Big-Data-of-Image-Captioning" class="headerlink" title="Big Data of Image Captioning"></a>Big Data of Image Captioning</h2><ol>
+<li><p>数据集：</p>
+<ul>
+<li><p>Common Objects in Context: <a href="http://cocodataset.org/#home" target="_blank" rel="noopener">COCO</a></p>
+<ul>
+<li>Python API<ul>
+<li><img src="/2019/03/11/5003Proposal/api.png" alt="COCO: Python API"></li>
+</ul>
 </li>
+<li>Demo<ul>
+<li><img src="/2019/03/11/5003Proposal/api_test.png" alt="COCO: API TEST"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Image Captioning 实现原理<br><img src="/2019/03/11/5003Proposal/CNN_LSTM.png" alt="实现原理"></p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li>MLlib on LSTM</li>
+</ol>
+<ol>
+<li>MongoDB:<br> <img src="/2019/03/11/5003Proposal/mongodb.png" alt="MongoDB"></li>
 </ol>
 
       
@@ -300,7 +322,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Proposal"><span class="nav-number">1.</span> <span class="nav-text">Proposal</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次例会"><span class="nav-number">1.1.</span> <span class="nav-text">第一次例会</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片视频"><span class="nav-number">1.2.</span> <span class="nav-text">图片视频</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Proposal"><span class="nav-number">1.</span> <span class="nav-text">Proposal</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次例会"><span class="nav-number">1.1.</span> <span class="nav-text">第一次例会</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Big-Data-of-Image-Captioning"><span class="nav-number">1.2.</span> <span class="nav-text">Big Data of Image Captioning</span></a></li></ol></li></ol>
     
     </div>
   </aside>
