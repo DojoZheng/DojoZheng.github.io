@@ -3,7 +3,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>fptree | Dojo</title>
+  <title>关联规则介绍 &amp; fp-tree算法实现 | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="Career" />
@@ -14,17 +14,19 @@
   <meta name="description" content="A brief introduction and implementation about FP-Tree.">
 <meta name="keywords" content="Career">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FPTree">
+<meta property="og:title" content="关联规则介绍 &amp; FP-Tree算法实现">
 <meta property="og:url" content="http://yoursite.com/2019/09/09/FPTree/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="A brief introduction and implementation about FP-Tree.">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/candidates.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/rules.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
-<meta property="og:updated_time" content="2019-09-09T11:22:02.271Z">
+<meta property="og:updated_time" content="2019-09-11T03:33:27.199Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FPTree">
+<meta name="twitter:title" content="关联规则介绍 &amp; FP-Tree算法实现">
 <meta name="twitter:description" content="A brief introduction and implementation about FP-Tree.">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/09/FPTree/candidates.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
   
@@ -170,7 +172,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      FPTree
+      关联规则介绍 &amp; FP-Tree算法实现
     </h1>
   
 
@@ -193,14 +195,187 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="FP-Tree"><a href="#FP-Tree" class="headerlink" title="FP-Tree"></a>FP-Tree</h1><ul>
+        <h1 id="1-FP-Tree"><a href="#1-FP-Tree" class="headerlink" title="1. FP-Tree"></a>1. FP-Tree</h1><ul>
 <li><p>介绍<br>  <strong>Frequent Pattern Tree(FP-Tree频繁模式树)</strong>算法主要用于关联规则分析，查找出频繁项集。例如在‘啤酒’和‘尿布’这个经典的案例中，<code>{&#39;啤酒&#39;, &#39;尿布&#39;}</code>就可以被称为一个频繁项集，因为这两件毫无关系的商品共同被客户购买的频率非常高。而FP-Tree就可以挖掘出它们的潜在关系，它是一种紧缩的数据结构，用于存储或者查找<strong>频繁项集</strong>所需要的全部信息。</p>
 </li>
-<li><p><a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q2_code" target="_blank" rel="noopener">个人源码地址</a></p>
+<li><p>背景<br>  传统的<strong>Apriori</strong>频繁项集算法需要多次扫描数据库才能计算出最终结果，I/O会是性能优化的瓶颈。为了解决这个问题，<strong>韩家炜</strong>教授在2000年左右提出了FP-Tree这个算法，只需要扫描<code>2次</code>数据库就能够挖掘出所有的频繁项集！这大大提高了计算性能并且节约了计算资源！感兴趣的朋友可以阅读论文原著: <a href="https://www.cs.sfu.ca/~jpei/publications/sigmod00.pdf" target="_blank" rel="noopener">“Mining Frequent Patterns without Candidate Generation”</a></p>
+</li>
+<li><p>主要内容<br>  这篇博客主要介绍算法的原理和实现过程，并且通过一个简单的测试数据集来测试一下算法的准确性。其实这是我在香港科技大学读研的时候，MSBD5002-DataMining这门课的第一份作业，博客中所用到的图片和材料都来自于业界非常权威的教科书: </p>
+<ul>
+<li><a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining Concepts and Techniques by Han”</a></li>
+<li><a href="https://www.pearson.com/us/higher-education/product/Tan-Introduction-to-Data-Mining/9780321321367.html?tab=resources" target="_blank" rel="noopener">“Introduction to Data Mining by TSK”</a></li>
+</ul>
+</li>
+<li><p>源码 &amp; 数据集<br>  <a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q2_code" target="_blank" rel="noopener">个人源码地址</a></p>
 </li>
 </ul>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>传统的<strong>Apriori</strong>频繁项集算法需要多次扫描数据库才能计算出最终结果，I/O会是性能优化的瓶颈。为了解决这个问题，<strong>韩家炜</strong>教授在2000年左右提出了FP-Tree这个算法，只需要扫描<code>2次</code>数据库就能够挖掘出所有的频繁项集！这大大提高了计算性能并且节约了计算资源！感兴趣的朋友可以阅读论文原著: <a href="https://www.cs.sfu.ca/~jpei/publications/sigmod00.pdf" target="_blank" rel="noopener">“Mining Frequent Patterns without Candidate Generation”</a></p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>参考伪代码自: <a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining: Concepts and Techniques 3rd Edition by Han”</a> P260 Figure 6.9<br><img src="/2019/09/09/FPTree/fptree.jpg" alt="FPTree伪代码"></p>
+<h1 id="2-原理介绍"><a href="#2-原理介绍" class="headerlink" title="2. 原理介绍"></a>2. 原理介绍</h1><p>在介绍FP-Tree之前，有必要介绍一下关联规则的定义以及Apriori的原理，下面的这张表格会围绕着‘啤酒’和‘尿布’作为例子，对一些专业术语做生动的解释。</p>
+<h2 id="2-1-关联规则定义"><a href="#2-1-关联规则定义" class="headerlink" title="2.1 关联规则定义"></a>2.1 关联规则定义</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>啤酒，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>啤酒，尿布，面包，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>啤酒，尿布，面包，鸡蛋</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>啤酒，尿布，牛奶，可乐</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>牛奶，面包</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>Association Rule 关联规则</p>
+<ul>
+<li>$X \rightarrow Y $   （X、Y都是itemsets）</li>
+<li>假设 $X = \{啤酒\}, Y = \{尿布\}$，那么关联规则可以是$\{啤酒\} \rightarrow \{尿布\}$；也就是说买了啤酒的客户很有可能买尿布</li>
+</ul>
+</li>
+<li><p>目标: 找出所有满足以下两个条件的关联规则</p>
+<ul>
+<li>support $\geq$ minsup</li>
+<li>confidence $\geq$ minconf</li>
+</ul>
+</li>
+<li><p>Support Count ($\sigma$) 支持度计数</p>
+<ul>
+<li>itemset(项集)出现的频次</li>
+<li>E.g. $\sigma(\{啤酒，尿布\})=3$</li>
+</ul>
+</li>
+<li><p>Support 支持度</p>
+<ul>
+<li>包含X和Y的交易，在总交易数量中的占比：$s=\frac{\sigma(X+Y)}{|T|}$</li>
+<li>E.g. $s(X+Y)=s(\{啤酒，尿布\})=\frac{3}{5}$</li>
+</ul>
+</li>
+<li><p>Confidence 置信度</p>
+<ul>
+<li>所有包含X的交易记录中，包含Y的比例：$c=\frac{\sigma(X+Y)}{\sigma(X)}$</li>
+<li>E.g. $c=\frac{\sigma(\{啤酒，尿布\})}{\sigma({啤酒})}=\frac{3}{4}$</li>
+</ul>
+</li>
+<li><p>Frequent Itemset 频繁项集</p>
+<ul>
+<li>定义：当一个itemset的<strong>Support</strong>大于或者等于<strong>Minsup</strong>，可以认为该itemset是<strong>频繁项集</strong>；<strong>Minsup</strong>就像一个参数一样，需要工程师自己去设置；</li>
+<li>E.g. 假设 Minsup $=\frac{1}{2}$，$s(\{啤酒，尿布\})=\frac{3}{4} &gt;$ Minsup，所以{啤酒，尿布}可以认为是频繁项集。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2-挖掘关联规则"><a href="#2-2-挖掘关联规则" class="headerlink" title="2.2 挖掘关联规则"></a>2.2 挖掘关联规则</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><blockquote>
+<ol>
+<li>生成频繁项集(Frequent Itemset Generation)<br> 找出所有<strong>Support $\geq$ MinSup</strong>的频繁项集</li>
+<li>生成关联规则(Rule Generation)<br> 根据频繁项集罗列出所有可能的关联规则(Binary Partitions)，再计算出每一个关联规则的置信度，筛选出所有<strong>Confidence $\geq$ MinConf</strong>的关联规则。 </li>
+</ol>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>啤酒，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>啤酒，尿布，面包，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>啤酒，尿布，面包，鸡蛋</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>啤酒，尿布，牛奶，可乐</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>牛奶，面包</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例如有一个频繁项集<code>{啤酒，尿布，面包}</code>, 那么它的所有可能的关联规则（Binary Partitions）是：<br>$\{啤酒，尿布\} \rightarrow \{面包\} (s=\frac{2}{5}, c=\frac{\sigma(啤酒，尿布，面包)}{\sigma(啤酒，尿布)}=\frac{2}{3})$<br>$\{啤酒，面包\} \rightarrow \{尿布\} (s=\frac{2}{5}, c=\frac{\sigma(啤酒，尿布，面包)}{\sigma(啤酒，面包)}=\frac{2}{2})$<br>$\{尿布，面包\} \rightarrow \{啤酒\} (s=\frac{2}{5}, c=\frac{\sigma(啤酒，尿布，面包)}{\sigma(尿布，面包)}=\frac{2}{2})$<br>$\{啤酒\} \rightarrow \{尿布，面包\} (s=\frac{2}{5}, c=\frac{\sigma(啤酒，尿布，面包)}{\sigma(啤酒)}=\frac{2}{4})$<br>$\{尿布\} \rightarrow \{啤酒，面包\} (s=\frac{2}{5}, c=\frac{\sigma(啤酒，尿布，面包)}{\sigma(尿布)}=\frac{2}{3})$<br>$\{面包\} \rightarrow \{啤酒，尿布\} (s=\frac{2}{5}, c=\frac{\sigma(啤酒，尿布，面包)}{\sigma(面包)}=\frac{2}{3})$</p>
+<p>仔细的研究会发现，同一个频繁项集的所有关联规则支持度都相同，但是置信度却可以有多个值(因为分母可能不同)，这也是为何先满足支持度要求、再满足置信度要求，两步走。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>暴力破解法 Brute-Force Approach</li>
+<li>Apriori</li>
+<li>FP-Tree</li>
+</ul>
+<h4 id="暴力破解法"><a href="#暴力破解法" class="headerlink" title="暴力破解法"></a>暴力破解法</h4><h5 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h5><ul>
+<li>罗列出所有可能的候选集Candidate Itemsets，根据<strong>Minsup</strong>进行筛选；</li>
+<li>根据每一个频繁项集，罗列出所有的关联规则，根据<strong>MinConf</strong>进行筛选。</li>
+</ul>
+<h5 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><p>暴利破解法的时间复杂度非常高，但是时间复杂度和空间复杂度高的惊人！如果有<code>d</code>个item：</p>
+<ul>
+<li>候选集总数量: <strong>$2^d$</strong></li>
+<li>关联规则总数量: $R=\sum_{k=1}^{d-1} \left[\begin{pmatrix}<br>d \\<br>k<br>\end{pmatrix} \times \sum_{j=1}^{d-k}\begin{pmatrix}<br>d-k\\<br>j<br>\end{pmatrix}\right]=3^d-2^{d+1}+1$<br>那么就会有个候选集，这个指数级数量的爆炸性💥是相当惊人的！<br><img src="/2019/09/09/FPTree/candidates.jpg" alt="Total Candidates"><br><img src="/2019/09/09/FPTree/rules.jpg" alt="Total Rules"></li>
+</ul>
+<p>幸运的是，我们有更优的选择，下面我会着重讲解一下<code>Apriori</code>和<code>FP-Tree</code>。</p>
+<h4 id="Apriori"><a href="#Apriori" class="headerlink" title="Apriori"></a>Apriori</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>啤酒，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>啤酒，尿布，面包，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>啤酒，尿布，面包，鸡蛋</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>啤酒，尿布，牛奶，可乐</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>牛奶，面包</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Apriori原理：<ul>
+<li>如果一个项集是频繁项集，那么它的所有子集也都是频繁项集；</li>
+<li>$\forall X, Y: (X \subseteq Y) \Rightarrow s(X) \geq s(Y) $</li>
+<li>例子：还是利用上述的表格数据，如果<code>{啤酒，尿布}</code>是频繁项集，那么它的子集<code>{啤酒}</code>和<code>{尿布}</code>也都是频繁项集，因为<code>sup({啤酒}) = 4 &gt; sup({啤酒，尿布}) = 3</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="FP-Tree"><a href="#FP-Tree" class="headerlink" title="FP-Tree"></a>FP-Tree</h4><h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>参考伪代码自: <a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining: Concepts and Techniques 3rd Edition by Han”</a> P260 Figure 6.9<br><img src="/2019/09/09/FPTree/fptree.jpg" alt="FPTree伪代码"></p>
 <h2 id="关键代码分析"><a href="#关键代码分析" class="headerlink" title="关键代码分析"></a>关键代码分析</h2><h2 id="数据集-amp-运行结果"><a href="#数据集-amp-运行结果" class="headerlink" title="数据集 &amp; 运行结果"></a>数据集 &amp; 运行结果</h2>
       
     </div>
@@ -227,7 +402,7 @@ var a = new Donate({
           </li>
           <li class="post-copyright-link">
           <strong>Post link:  </strong>
-          <a href="/2019/09/09/FPTree/" target="_blank" title="FPTree">http://yoursite.com/2019/09/09/FPTree/</a>
+          <a href="/2019/09/09/FPTree/" target="_blank" title="关联规则介绍 &amp; FP-Tree算法实现">http://yoursite.com/2019/09/09/FPTree/</a>
           </li>
           <li class="post-copyright-license">
             <strong>Copyright Notice:   </strong>
@@ -290,7 +465,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FP-Tree"><span class="nav-number">1.</span> <span class="nav-text">FP-Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪代码"><span class="nav-number">1.3.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键代码分析"><span class="nav-number">1.4.</span> <span class="nav-text">关键代码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集-amp-运行结果"><span class="nav-number">1.5.</span> <span class="nav-text">数据集 &amp; 运行结果</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-FP-Tree"><span class="nav-number">1.</span> <span class="nav-text">1. FP-Tree</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-原理介绍"><span class="nav-number">2.</span> <span class="nav-text">2. 原理介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-关联规则定义"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 关联规则定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-挖掘关联规则"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 挖掘关联规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">2.2.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力破解法"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">暴力破解法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#步骤："><span class="nav-number">2.2.2.1.1.</span> <span class="nav-text">步骤：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复杂度分析："><span class="nav-number">2.2.2.1.2.</span> <span class="nav-text">复杂度分析：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apriori"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">Apriori</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FP-Tree"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">FP-Tree</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪代码"><span class="nav-number">2.3.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键代码分析"><span class="nav-number">2.4.</span> <span class="nav-text">关键代码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集-amp-运行结果"><span class="nav-number">2.5.</span> <span class="nav-text">数据集 &amp; 运行结果</span></a></li></ol></li></ol>
     
     </div>
   </aside>
