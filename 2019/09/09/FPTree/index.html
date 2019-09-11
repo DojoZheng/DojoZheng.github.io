@@ -27,8 +27,19 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/candidates_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/transactions_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/apriori_comparisons.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/100_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/200_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/300_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/400_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/500_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/g_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/f_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/e_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/d_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/b_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/a_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
-<meta property="og:updated_time" content="2019-09-11T08:26:28.327Z">
+<meta property="og:updated_time" content="2019-09-11T10:58:46.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联规则介绍 &amp; FP-Tree算法实现">
 <meta name="twitter:description" content="A brief introduction and implementation about FP-Tree.">
@@ -201,8 +212,12 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h1><p><a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q1_code" target="_blank" rel="noopener">Apriori哈希树源码地址</a><br><a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q2_code" target="_blank" rel="noopener">FP-Tree算法实现源码地址</a></p>
-<h1 id="FP-Tree介绍"><a href="#FP-Tree介绍" class="headerlink" title="FP-Tree介绍"></a>FP-Tree介绍</h1><ul>
+        <h1 id="FP-Tree介绍"><a href="#FP-Tree介绍" class="headerlink" title="FP-Tree介绍"></a>FP-Tree介绍</h1><ul>
+<li>源码地址  <ol>
+<li><a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q1_code" target="_blank" rel="noopener">Apriori哈希树源码地址</a>  </li>
+<li><a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q2_code" target="_blank" rel="noopener">FP-Tree算法实现源码地址</a></li>
+</ol>
+</li>
 <li><p>介绍<br>  <strong>Frequent Pattern Tree(FP-Tree频繁模式树)</strong>算法主要用于关联规则分析，查找出频繁项集。例如在‘啤酒’和‘尿布’这个经典的案例中，<code>{&#39;啤酒&#39;, &#39;尿布&#39;}</code>就可以被称为一个频繁项集，因为这两件毫无关系的商品共同被客户购买的频率非常高。而FP-Tree就可以挖掘出它们的潜在关系，它是一种紧缩的数据结构，用于存储或者查找<strong>频繁项集</strong>所需要的全部信息。</p>
 </li>
 <li><p>背景<br>  传统的<strong>Apriori</strong>频繁项集算法需要多次扫描数据库才能计算出最终结果，I/O会是性能优化的瓶颈。为了解决这个问题，<strong>韩家炜</strong>教授在2000年左右提出了FP-Tree这个算法，只需要扫描<code>2次</code>数据库就能够挖掘出所有的频繁项集！这大大提高了计算性能并且节约了计算资源！感兴趣的朋友可以阅读论文原著: <a href="https://www.cs.sfu.ca/~jpei/publications/sigmod00.pdf" target="_blank" rel="noopener">“Mining Frequent Patterns without Candidate Generation”</a></p>
@@ -383,7 +398,31 @@
 </ul>
 </li>
 </ul>
-<h1 id="FP-Tree"><a href="#FP-Tree" class="headerlink" title="FP-Tree"></a>FP-Tree</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>参考伪代码自: <a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining: Concepts and Techniques 3rd Edition by Han”</a> P260 Figure 6.9<br><img src="/2019/09/09/FPTree/fptree.jpg" alt="FPTree伪代码"></p>
+<h1 id="FP-Tree"><a href="#FP-Tree" class="headerlink" title="FP-Tree"></a>FP-Tree</h1><p>根据前面的介绍，我们知道Apriori需要通过扫描数据库来生成候选集，而且需要的候选集有多长，就需要扫描多少次，例如前面案例生成3维的候选集，就需要扫描3次数据库；而我们知道扫描一次数据库需要耗费很长的时间、消耗很多的计算资源和性能，因为扫描数据库不像从内存里面直接读取数据，它需要去硬盘、甚至需要通过网络连接到数据库服务器来获取数据，而且需要获取的数据量往往大的惊人，可以是上G甚至上T的数据量。那有没有更好的算法，可以解决这个问题呢？FP-Tree在这里就派上用场了，因为不管你想要的候选集有多长，它只需要扫描2次数据库，而且是生成所有的候选集！</p>
+<h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>扫描数据库<strong>第1次</strong>，对所有1维频繁项进行排序，记排序序列为L；非频繁项剔除；如果有一些频繁项的支持度计数Support Count相同，那就再根据字母进行排序；</li>
+<li>扫描数据库<strong>第2次</strong>，将每一条记录按照序列L进行排序，剔除非频繁项集后，将预处理好的记录T插入到FP-Tree当中；</li>
+<li>根据FP-Tree为每一个1维item频繁项构建FP-Conditional-Tree(条件状态树)，生成频繁项集。</li>
+</ol>
+<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><ol>
+<li><p>扫描数据库<strong>第一次</strong>，得到1维频繁项及其降序序列L;</p>
+<pre><code> ![1st扫描数据库](./1_scan.jpg)
+</code></pre></li>
+<li><p>扫描数据库<strong>第二次</strong>，生成FP-Tree<br> 2.1 扫描$1^{st}$记录TID=100<br> <img src="/2019/09/09/FPTree/100_scan.jpg" alt="TID=100"></p>
+<p> 2.2 扫描$2^{nd}$记录TID=200<br> <img src="/2019/09/09/FPTree/200_scan.jpg" alt="TID=200"></p>
+<p> 2.3 扫描$3^{rd}$记录TID=300<br> <img src="/2019/09/09/FPTree/300_scan.jpg" alt="TID=300"></p>
+<p> 2.4 扫描$4^{th}$记录TID=400<br> <img src="/2019/09/09/FPTree/400_scan.jpg" alt="TID=300"></p>
+<p> 2.5 扫描$5^{th}$记录TID=500<br> <img src="/2019/09/09/FPTree/500_scan.jpg" alt="TID=400"></p>
+</li>
+<li><p>构建条件状态树，生成频繁项集<br> 3.1 条件状态基(Conditional Pattern Base): <code>g</code><br> <img src="/2019/09/09/FPTree/g_tree.jpg" alt="&#39;g&#39;条件状态树"></p>
+<p> 3.2 条件状态基础: <code>f</code><br> <img src="/2019/09/09/FPTree/f_tree.jpg" alt="&#39;f&#39;条件状态树"></p>
+<p> 3.3 条件状态基础: <code>e</code><br> <img src="/2019/09/09/FPTree/e_tree.jpg" alt="&#39;e&#39;条件状态树"></p>
+<p> 3.4 条件状态基础: <code>d</code><br> <img src="/2019/09/09/FPTree/d_tree.jpg" alt="&#39;d&#39;条件状态树"></p>
+<p> 3.5 条件状态基础: <code>b</code><br> <img src="/2019/09/09/FPTree/b_tree.jpg" alt="&#39;b&#39;条件状态树"></p>
+<p> 3.6 条件状态基础: <code>a</code><br> <img src="/2019/09/09/FPTree/a_tree.jpg" alt="&#39;a&#39;条件状态树"></p>
+</li>
+</ol>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>参考伪代码自: <a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining: Concepts and Techniques 3rd Edition by Han”</a> P260 Figure 6.9<br><img src="/2019/09/09/FPTree/fptree.jpg" alt="FPTree伪代码"></p>
 <h2 id="关键代码分析"><a href="#关键代码分析" class="headerlink" title="关键代码分析"></a>关键代码分析</h2><h2 id="数据集-amp-运行结果"><a href="#数据集-amp-运行结果" class="headerlink" title="数据集 &amp; 运行结果"></a>数据集 &amp; 运行结果</h2>
       
     </div>
@@ -473,7 +512,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#源码地址"><span class="nav-number">1.</span> <span class="nav-text">源码地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FP-Tree介绍"><span class="nav-number">2.</span> <span class="nav-text">FP-Tree介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关联规则"><span class="nav-number">3.</span> <span class="nav-text">关联规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关联规则定义"><span class="nav-number">3.1.</span> <span class="nav-text">关联规则定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挖掘关联规则"><span class="nav-number">3.2.</span> <span class="nav-text">挖掘关联规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">3.2.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">3.2.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴力破解法"><span class="nav-number">3.3.</span> <span class="nav-text">暴力破解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">3.3.2.</span> <span class="nav-text">复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apriori"><span class="nav-number">3.4.</span> <span class="nav-text">Apriori</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori-Principle-法则"><span class="nav-number">3.4.1.</span> <span class="nav-text">Apriori Principle 法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori案例分析"><span class="nav-number">3.4.2.</span> <span class="nav-text">Apriori案例分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori-哈希树"><span class="nav-number">3.4.3.</span> <span class="nav-text">Apriori 哈希树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FP-Tree"><span class="nav-number">4.</span> <span class="nav-text">FP-Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">4.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪代码"><span class="nav-number">4.2.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键代码分析"><span class="nav-number">4.3.</span> <span class="nav-text">关键代码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集-amp-运行结果"><span class="nav-number">4.4.</span> <span class="nav-text">数据集 &amp; 运行结果</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FP-Tree介绍"><span class="nav-number">1.</span> <span class="nav-text">FP-Tree介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关联规则"><span class="nav-number">2.</span> <span class="nav-text">关联规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关联规则定义"><span class="nav-number">2.1.</span> <span class="nav-text">关联规则定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挖掘关联规则"><span class="nav-number">2.2.</span> <span class="nav-text">挖掘关联规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">2.2.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴力破解法"><span class="nav-number">2.3.</span> <span class="nav-text">暴力破解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">2.3.2.</span> <span class="nav-text">复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apriori"><span class="nav-number">2.4.</span> <span class="nav-text">Apriori</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori-Principle-法则"><span class="nav-number">2.4.1.</span> <span class="nav-text">Apriori Principle 法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori案例分析"><span class="nav-number">2.4.2.</span> <span class="nav-text">Apriori案例分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori-哈希树"><span class="nav-number">2.4.3.</span> <span class="nav-text">Apriori 哈希树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FP-Tree"><span class="nav-number">3.</span> <span class="nav-text">FP-Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤-2"><span class="nav-number">3.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图解"><span class="nav-number">3.2.</span> <span class="nav-text">图解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪代码"><span class="nav-number">3.3.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键代码分析"><span class="nav-number">3.4.</span> <span class="nav-text">关键代码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集-amp-运行结果"><span class="nav-number">3.5.</span> <span class="nav-text">数据集 &amp; 运行结果</span></a></li></ol></li></ol>
     
     </div>
   </aside>
