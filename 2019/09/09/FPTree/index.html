@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/transactions_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/apriori_comparisons.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
-<meta property="og:updated_time" content="2019-09-11T08:16:59.373Z">
+<meta property="og:updated_time" content="2019-09-11T08:22:15.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联规则介绍 &amp; FP-Tree算法实现">
 <meta name="twitter:description" content="A brief introduction and implementation about FP-Tree.">
@@ -365,8 +365,8 @@
 <li><p>比对次数PK<br>  <strong>交易记录的所有3维子集</strong>：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T = [&#123;1 2 3&#125;, &#123;1 2 5&#125;, &#123;1 2 6&#125;, &#123;1 3 5&#125;, &#123;1 3 6&#125;, &#123;1 5 6&#125;, &#123;2 3 5&#125;, &#123;2 3 6&#125;, &#123;2 5 6&#125;, &#123;3 5 6&#125;]</span><br></pre></td></tr></table></figure>
 <p>  <strong>候选集的所有3维子集</strong>：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C = [&#123;1 4 5&#125;, &#123;1 2 4&#125;, &#123;4 5 7&#125;, &#123;1 2 5&#125;, &#123;4 5 8&#125;, &#123;1 5 9&#125;, &#123;1 3 6&#125;, &#123;2 3 4&#125;, &#123;5 6 7&#125;, &#123;3 4 5&#125;, &#123;3 5 6&#125;, &#123;3 5 7&#125;, &#123;6 8 9&#125;, &#123;3 6 7&#125;, &#123;3 6 8&#125;]</span><br></pre></td></tr></table></figure>
-</li>
+<pre><code>  C = [{1 4 5}, {1 2 4}, {4 5 7}, {1 2 5}, {4 5 8}, {1 5 9}, {1 3 6}, {2 3 4}, {5 6 7}, {3 4 5}, {3 5 6}, {3 5 7}, {6 8 9}, {3 6 7}, {3 6 8}]
+</code></pre></li>
 </ul>
 <pre><code>- 常规方法：$|T| \times |C| = 10 \times 15 = 150 次$
 - 哈希树方法(叶子节点被称为一个桶Bucket)：
