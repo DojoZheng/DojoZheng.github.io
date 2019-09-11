@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/transactions_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/apriori_comparisons.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
-<meta property="og:updated_time" content="2019-09-11T08:22:15.278Z">
+<meta property="og:updated_time" content="2019-09-11T08:26:28.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联规则介绍 &amp; FP-Tree算法实现">
 <meta name="twitter:description" content="A brief introduction and implementation about FP-Tree.">
@@ -362,31 +362,28 @@
 <li><p>交易记录哈希树<br>  假设数据库中有一条交易记录<code>t = {1 2 3 5 6}</code>,交易记录t的所有子集在哈希树中的映射关系如下图所示，总共有$C_{5}^{3}=10$个长度为3的子集：<br>T = []<br><img src="/2019/09/09/FPTree/transactions_tree.jpg" alt="交易记录子集"></p>
 <p>  交易记录中长度为3的所有子集<code>T</code>在候选集哈希树中的映射情况如下图所示，所有匹配的子集都别映射到红色的方框节点当中，与节点当中所有的候选集进行比对，从而对候选集的支持度计数进行更新，下面对常规方法和哈希树方法的比对次数进行比较。<br><img src="/2019/09/09/FPTree/apriori_comparisons.jpg" alt="哈希树比对次数"></p>
 </li>
-<li><p>比对次数PK<br>  <strong>交易记录的所有3维子集</strong>：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T = [&#123;1 2 3&#125;, &#123;1 2 5&#125;, &#123;1 2 6&#125;, &#123;1 3 5&#125;, &#123;1 3 6&#125;, &#123;1 5 6&#125;, &#123;2 3 5&#125;, &#123;2 3 6&#125;, &#123;2 5 6&#125;, &#123;3 5 6&#125;]</span><br></pre></td></tr></table></figure>
-<p>  <strong>候选集的所有3维子集</strong>：</p>
-<pre><code>  C = [{1 4 5}, {1 2 4}, {4 5 7}, {1 2 5}, {4 5 8}, {1 5 9}, {1 3 6}, {2 3 4}, {5 6 7}, {3 4 5}, {3 5 6}, {3 5 7}, {6 8 9}, {3 6 7}, {3 6 8}]
-</code></pre></li>
+<li><p>比对次数PK       </p>
+<ul>
+<li>常规方法：$|T| \times |C| = 10 \times 15 = 150 次$</li>
+<li><p>哈希树方法(叶子节点被称为一个桶Bucket)：</p>
+<ul>
+<li>Bucket({1 2 5}, {4 5 8}):<br>  <code>{1 2 5}</code>        </li>
+<li>Bucket({1 5 9}):<br>  <code>{1 2 3}</code> <code>{1 2 6}</code> <code>{1 5 6}</code></li>
+<li>Bucket({1 3 6}):<br>  <code>{1 3 5}</code> <code>{1 3 6}</code></li>
+<li>Bucket({2 3 4} {5 6 7}):<br>  <code>{2 3 5}</code> <code>{2 3 6}</code> <code>{2 5 6}</code></li>
+<li>Bucket({3 5 6} {3 5 7} {6 8 9}):<br>  <code>{3 5 6}</code></li>
+<li>统计<ul>
+<li>比对用到的候选集个数：9个</li>
+<li>比对总次数：2+3+2+3*2+3=16次</li>
 </ul>
-<pre><code>- 常规方法：$|T| \times |C| = 10 \times 15 = 150 次$
-- 哈希树方法(叶子节点被称为一个桶Bucket)：
-    - Bucket({1 2 5}, {4 5 8}):   
-        `{1 2 5}`        
-    - Bucket({1 5 9}):  
-        `{1 2 3}` `{1 2 6}` `{1 5 6}`
-    - Bucket({1 3 6}):   
-        `{1 3 5}` `{1 3 6}`
-    - Bucket({2 3 4} {5 6 7}):  
-        `{2 3 5}` `{2 3 6}` `{2 5 6}`
-    - Bucket({3 5 6} {3 5 7} {6 8 9}):   
-        `{3 5 6}`
-    - 统计
-        - 比对用到的候选集个数：9个
-        - 比对总次数：2+3+2+3*2+3=16次
-
-通过这个案例可以很直观的感受到哈希树优化了多少，从常规方法15个候选集降到9个候选集，150次比对减少到16次比对！当数据规模非常大的时候，优化提升的效果会更加显著！
-需要提示的是，我们会更加关注候选集比对减少的个数，因为在实际应用情况中，候选集个数往往非常大，而一条数据库记录的子集个数往往比较小。
-</code></pre><h1 id="FP-Tree"><a href="#FP-Tree" class="headerlink" title="FP-Tree"></a>FP-Tree</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>参考伪代码自: <a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining: Concepts and Techniques 3rd Edition by Han”</a> P260 Figure 6.9<br><img src="/2019/09/09/FPTree/fptree.jpg" alt="FPTree伪代码"></p>
+</li>
+</ul>
+<p>通过这个案例可以很直观的感受到哈希树优化了多少，从常规方法15个候选集降到9个候选集，150次比对减少到16次比对！当数据规模非常大的时候，优化提升的效果会更加显著！<br>需要提示的是，我们会更加关注候选集比对减少的个数，因为在实际应用情况中，候选集个数往往非常大，而一条数据库记录的子集个数往往比较小。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="FP-Tree"><a href="#FP-Tree" class="headerlink" title="FP-Tree"></a>FP-Tree</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>参考伪代码自: <a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining: Concepts and Techniques 3rd Edition by Han”</a> P260 Figure 6.9<br><img src="/2019/09/09/FPTree/fptree.jpg" alt="FPTree伪代码"></p>
 <h2 id="关键代码分析"><a href="#关键代码分析" class="headerlink" title="关键代码分析"></a>关键代码分析</h2><h2 id="数据集-amp-运行结果"><a href="#数据集-amp-运行结果" class="headerlink" title="数据集 &amp; 运行结果"></a>数据集 &amp; 运行结果</h2>
       
     </div>
