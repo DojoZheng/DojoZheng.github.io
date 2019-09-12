@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/b_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/a_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
-<meta property="og:updated_time" content="2019-09-12T02:24:18.979Z">
+<meta property="og:updated_time" content="2019-09-12T02:26:32.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联规则介绍 &amp; FP-Tree算法实现">
 <meta name="twitter:description" content="A brief introduction and implementation about FP-Tree.">
@@ -339,7 +339,7 @@
 </table>
 </div>
 <p>例如有一个频繁项集<code>{啤酒，尿布，面包}</code>, 那么它的所有可能的关联规则（Binary Partitions）是：</p>
-<script type="math/tex; mode=display">\{啤酒，尿布\} \rightarrow \{面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer, diaper)}=frac{2}{3})</script><script type="math/tex; mode=display">\{啤酒，面包\} \rightarrow \{尿布\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer, bread)}=\frac{2}{2})</script><script type="math/tex; mode=display">\{尿布，面包\} \rightarrow \{啤酒\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(diaper, bread)}=\frac{2}{2})</script><script type="math/tex; mode=display">\{啤酒\} \rightarrow \{尿布, 面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer)}=\frac{2}{4})</script><script type="math/tex; mode=display">\{尿布\} \rightarrow \{啤酒，面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(diaper)}=\frac{2}{3})</script><script type="math/tex; mode=display">\{面包\} \rightarrow \{啤酒, 尿布\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(bread)}=\frac{2}{3})</script><p>仔细的研究会发现，同一个频繁项集的所有关联规则支持度都相同，但是置信度却可以有多个值(因为分母可能不同)，这也是为何先满足支持度要求、再满足置信度要求，两步走。</p>
+<script type="math/tex; mode=display">\{啤酒，尿布\} \rightarrow \{面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer, diaper)}=\frac{2}{3})</script><script type="math/tex; mode=display">\{啤酒，面包\} \rightarrow \{尿布\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer, bread)}=\frac{2}{2})</script><script type="math/tex; mode=display">\{尿布，面包\} \rightarrow \{啤酒\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(diaper, bread)}=\frac{2}{2})</script><script type="math/tex; mode=display">\{啤酒\} \rightarrow \{尿布, 面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer)}=\frac{2}{4})</script><script type="math/tex; mode=display">\{尿布\} \rightarrow \{啤酒，面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(diaper)}=\frac{2}{3})</script><script type="math/tex; mode=display">\{面包\} \rightarrow \{啤酒, 尿布\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(bread)}=\frac{2}{3})</script><p>仔细的研究会发现，同一个频繁项集的所有关联规则支持度都相同，但是置信度却可以有多个值(因为分母可能不同)，这也是为何先满足支持度要求、再满足置信度要求，两步走。</p>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
 <li>暴力破解法 Brute-Force Approach</li>
 <li>Apriori</li>
