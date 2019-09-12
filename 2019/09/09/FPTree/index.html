@@ -27,6 +27,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/candidates_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/transactions_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/apriori_comparisons.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/1_scan.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/100_scan.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/200_scan.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/300_scan.jpg">
@@ -39,7 +40,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/b_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/a_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
-<meta property="og:updated_time" content="2019-09-12T02:26:32.570Z">
+<meta property="og:updated_time" content="2019-09-12T02:40:20.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联规则介绍 &amp; FP-Tree算法实现">
 <meta name="twitter:description" content="A brief introduction and implementation about FP-Tree.">
@@ -358,8 +359,40 @@
 <h2 id="Apriori"><a href="#Apriori" class="headerlink" title="Apriori"></a>Apriori</h2><h3 id="Apriori-Principle-法则"><a href="#Apriori-Principle-法则" class="headerlink" title="Apriori Principle 法则"></a>Apriori Principle 法则</h3><ul>
 <li>如果一个项集是频繁项集，那么它的所有子集也都是频繁项集；</li>
 <li>$\forall X, Y: (X \subseteq Y) \Rightarrow s(X) \geq s(Y) $</li>
-<li>例子：还是利用下面的表格数据，如果<code>{啤酒，尿布}</code>是频繁项集，那么它的子集<code>{啤酒}</code>和<code>{尿布}</code>也都是频繁项集，因为<code>sup({啤酒}) = 4 &gt; sup({啤酒，尿布}) = 3</code><br>| TID | Items |<br>| :—-: | —- |<br>| 1 | 啤酒，牛奶 |<br>| 2 | 啤酒，尿布，面包，牛奶 |<br>| 3 | 啤酒，尿布，面包，鸡蛋 |<br>| 4 | 啤酒，尿布，牛奶，可乐 |<br>| 5 | 牛奶，面包 |</li>
+<li>例子：还是利用下面的表格数据，如果<code>{啤酒，尿布}</code>是频繁项集，那么它的子集<code>{啤酒}</code>和<code>{尿布}</code>也都是频繁项集，因为<code>sup({啤酒}) = 4 &gt; sup({啤酒，尿布}) = 3</code></li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>啤酒，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>啤酒，尿布，面包，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>啤酒，尿布，面包，鸡蛋</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>啤酒，尿布，牛奶，可乐</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>牛奶，面包</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>现在我们再来观察一下下面这张生成了所有的候选集的图，如果候选集<code>{AB}</code>不是频繁项集，那么根据Apriori法则，我们可以把<code>{AB}</code>的所有超集都进行减枝，这将大大减少计算量！<br><img src="/2019/09/09/FPTree/apriori_pruned_supersets.jpg" alt="Apriori减枝"></p>
 <p>下图展示了Apriori减枝的具体步骤，假设当前的<code>MinSup=3</code>，那么当$\sigma(Candidate) &lt; 3$，该候选集就会被减枝。例如在计算<strong>1-itemsets</strong>的时候，<code>{Coke}</code>和<code>{Eggs}</code>的支持度计数小于3，就会被减枝，并且在计算<strong>2-itemsets</strong>的时候，我们就不会再考虑任何包含<code>Coke</code>和<code>Eggs</code>的候选集。我们也可以看到，通过减枝操作，候选集的数量从<strong>41</strong>减少到了<strong>13</strong>！当然，对于不同的数据集，减少的数量也会有所区别。<br><img src="/2019/09/09/FPTree/apriori_prune.jpg" alt="Apriori减枝步骤"></p>
 <h3 id="Apriori案例分析"><a href="#Apriori案例分析" class="headerlink" title="Apriori案例分析"></a>Apriori案例分析</h3><p>下面通过一个非常经典的教科书案例进行讲解：</p>
@@ -405,9 +438,8 @@
 <li>根据FP-Tree为每一个1维item频繁项构建FP-Conditional-Tree(条件状态树)，生成频繁项集。</li>
 </ol>
 <h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><ol>
-<li><p>扫描数据库<strong>第一次</strong>，得到1维频繁项及其降序序列L;</p>
-<pre><code> ![1st扫描数据库](./1_scan.jpg)
-</code></pre></li>
+<li><p>扫描数据库<strong>第一次</strong>，得到1维频繁项及其降序序列L;<br> <img src="/2019/09/09/FPTree/1_scan.jpg" alt="1st扫描数据库"></p>
+</li>
 <li><p>扫描数据库<strong>第二次</strong>，生成FP-Tree<br> 2.1 扫描$1^{st}$记录TID=100<br> <img src="/2019/09/09/FPTree/100_scan.jpg" alt="TID=100"></p>
 <p> 2.2 扫描$2^{nd}$记录TID=200<br> <img src="/2019/09/09/FPTree/200_scan.jpg" alt="TID=200"></p>
 <p> 2.3 扫描$3^{rd}$记录TID=300<br> <img src="/2019/09/09/FPTree/300_scan.jpg" alt="TID=300"></p>
