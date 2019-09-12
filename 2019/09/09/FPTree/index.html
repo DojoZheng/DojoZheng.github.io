@@ -41,7 +41,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/a_tree.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/generate_fp.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
-<meta property="og:updated_time" content="2019-09-12T05:42:31.900Z">
+<meta property="og:updated_time" content="2019-09-12T06:13:49.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联规则介绍 &amp; FP-Tree算法实现">
 <meta name="twitter:description" content="A brief introduction and implementation about FP-Tree.">
@@ -461,7 +461,9 @@
 <h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><blockquote>
 <p>参考伪代码自: <a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining: Concepts and Techniques 3rd Edition by Han”</a> P260 Figure 6.9<br><img src="/2019/09/09/FPTree/fptree.jpg" alt="FPTree伪代码"></p>
 </blockquote>
-<p><strong>中文翻译</strong>:<br><strong>算法</strong>：FP-Grouth 或者 FP-Tree。使用FP树，通过模式增长挖掘频繁模式。<br><strong>输入</strong>:</p>
+<p><strong>中文翻译</strong>:</p>
+<blockquote>
+<p><strong>算法</strong>：FP-Grouth 或者 FP-Tree。使用FP树，通过模式增长挖掘频繁模式。<br><strong>输入</strong>:</p>
 <ul>
 <li>D: 事务数据库；</li>
 <li>min_sup: 最小支持度阈值  </li>
@@ -471,6 +473,7 @@
 <li>按以下步骤构建FP树：<br> (a) 扫描事务数据库<code>D</code>一次，收集频繁项的集合<code>F</code>和它们的支持度计数。对<code>F</code>按支持度计数<strong>降序排序</strong>，结果为频繁项列表<code>L</code>。<br> (b) 创建FP树的根节点，以“null”标记它。对于<code>D</code>中每个事务<code>Trans</code>，执行：选择<code>Trans</code>中的频繁项，并按<code>L</code>中的次序排序。设<code>Trans</code>排序后的频繁项列表为<code>[p|P]</code>，其中<code>p</code>是第一个元素，而<code>P</code>是剩余元素的列表。调用<strong><em>insert_tree([p|P], T)</em></strong>。该过程执行情况如下：<br> 如果<code>T</code>有子女<code>N</code>使得 <strong>N.item-name=p.item-name</strong> ，则<code>N</code>的计数增加1；否则，创建一个新结点<code>N</code>，将其计数设置为1，链接到它的父节点<code>T</code>，并且通过结点链结构将其链接到具有相同 <strong>item-name</strong> 的结点。如果<code>P</code>非空，则递归地调用 <strong>insert_tree(P, N)</strong>。 </li>
 <li>FP树的挖掘通过调用 <strong>FP_growth(FP_tree, null)</strong> 实现。该过程实现如下：<br> <strong>procedure FP_growth(Tree, $\alpha$)</strong><br> (1) if <em>Tree</em> 包含单个路径 <em>P</em> <strong>then</strong><br> (2) <strong>for</strong> 路径 <em>P</em> 中结点的每个组合（记作$\beta$）<br> (3) 产生模式 $\beta \cup \alpha$，其支持度计数 <em>support_count</em> 等于 $\beta$ 中结点的最小支持度计数；<br> (4) <strong>else for</strong> <em>Tree</em> 的头表中的每个 $a_i$ {<br> (5) 产生一个模式 $\beta=a_i \cap \alpha$, 使其支持度计数 <em>support_count</em> = $a_i$;<br> (6) 构造 $\beta$ 的条件模式基，然后构造 $\beta$ 的条件<em>FP</em>树 $Tree_\beta$;<br> (7) <strong>if</strong> $Tree_\beta \neq \varnothing$ <strong>then</strong><br> (8) 调用 <strong>FP_growth($Tree_\beta, \beta$)</strong>; }</li>
 </ol>
+</blockquote>
 <h2 id="关键代码分析"><a href="#关键代码分析" class="headerlink" title="关键代码分析"></a>关键代码分析</h2><h2 id="数据集-amp-运行结果"><a href="#数据集-amp-运行结果" class="headerlink" title="数据集 &amp; 运行结果"></a>数据集 &amp; 运行结果</h2>
       
     </div>
