@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/05/强化学习之解迷宫/15703490652771.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/05/强化学习之解迷宫/15703496202653.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/05/强化学习之解迷宫/15703522708184.jpg">
-<meta property="og:updated_time" content="2019-10-06T09:54:07.843Z">
+<meta property="og:updated_time" content="2019-10-06T10:33:32.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="强化学习之解迷宫">
 <meta name="twitter:description" content="使用强化学习Q-Learning来解迷宫">
@@ -217,7 +217,7 @@
 <h3 id="行为准则"><a href="#行为准则" class="headerlink" title="行为准则"></a>行为准则</h3><p>在环境当中，我们会记录一系列的行为准则，来规范Agent的行为动作，简单的描述就是：Agent在状态<code>S</code>下执行了动作<code>A</code>，会得到不同的奖励<code>R</code>。<br>    <img src="/2019/10/05/强化学习之解迷宫/15703431917880.jpg" alt=""></p>
 <h3 id="Q-Learning-决策"><a href="#Q-Learning-决策" class="headerlink" title="Q-Learning 决策"></a>Q-Learning 决策</h3><p>在Q-Learning当中，我们会用一张表格Q-Table来记录不同状态<code>S</code>下对应不同行为<code>A</code>得到的奖励<code>R</code>的分数，随后我们就可以根据这张表格来做决策，让Agent能够在不同的状态下选择正确的行为动作。<br>    <img src="/2019/10/05/强化学习之解迷宫/15703432128329.jpg" alt=""></p>
 <h3 id="Q-Learning-更新"><a href="#Q-Learning-更新" class="headerlink" title="Q-Learning 更新"></a>Q-Learning 更新</h3><script type="math/tex; mode=display">
-Q(s, a) \leftarrow Q(s, a) + \alpha [r + \gamma max_{a'}Q(s', a') - Q(s, a)]</script><pre><code>![](media/15703432492759.jpg)
+Q(s, a) \leftarrow Q(s, a) + \alpha [r + \gamma max_{a'}Q(s', a') - Q(s, a)]</script><pre><code>![](./15703432492759.jpg)
 </code></pre><h3 id="伪代码-amp-参数"><a href="#伪代码-amp-参数" class="headerlink" title="伪代码 &amp; 参数"></a>伪代码 &amp; 参数</h3><p><img src="/2019/10/05/强化学习之解迷宫/15703434017265.jpg" alt=""></p>
 <ul>
 <li><p>学习率Alpha<br>  Alpha用来描述这次的差距有多少需要被学习，这个值是小于1的，而且一般来说，Alpha的值越大，Agent学习的速度越快，也就能够加速收敛，快速达成目标。<br>  <img src="/2019/10/05/强化学习之解迷宫/15703455247175.jpg" width="300"></p>
