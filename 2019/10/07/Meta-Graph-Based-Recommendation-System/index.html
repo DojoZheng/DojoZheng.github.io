@@ -27,7 +27,19 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413094404.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704414358208.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704415323132.jpg">
-<meta property="og:updated_time" content="2019-10-07T11:04:37.580Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991515194.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991035284.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705010410823.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705012599919.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705015524648.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705016896847.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705032373752.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705052812513.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705052999773.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705053245578.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705056173451.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705057810241.jpg">
+<meta property="og:updated_time" content="2019-10-08T04:50:50.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meta-Graph Based Recommendation System">
 <meta name="twitter:description" content="介绍 论文链接 Github源码链接  2019年中旬在华为实习阶段中，接触到了一篇有关推荐系统的论文：「Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks」，这篇论文被KDD 2017的Research Track接受并且作了口头报告(录取率8.6%)，相关视频可以在YouTube上查看。下">
@@ -260,7 +272,7 @@
 <p>  |  | 小笼包 | 串串 |<br>  | —- | —- | —- |<br>  | 姚明 | 1 | 0 |<br>  | 李易峰 | 0 | 1 |<br>  | 胡歌??? | 0 ??? | 0 ??? |</p>
 </li>
 </ul>
-<p><strong>第一步：计算用户相似度</strong> $U \leftrightarrow U $</p>
+<p><strong>第一步：根据City计算用户相似度</strong> $U \leftrightarrow U $ （UC * CU = UU）</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
     0 & 1 \\
@@ -308,7 +320,7 @@
 </tbody>
 </table>
 </div>
-<p><strong>第二步：推荐物品</strong> $U \rightarrow Food$</p>
+<p><strong>第二步：根据用户相似度推荐物品</strong> $U \rightarrow Food$ （UU * UF = UF）</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
     1 & 0 & 1 \\
@@ -354,9 +366,161 @@
 </table>
 </div>
 <h3 id="基于物品的相似度计算"><a href="#基于物品的相似度计算" class="headerlink" title="基于物品的相似度计算"></a>基于物品的相似度计算</h3><script type="math/tex; mode=display">U1 \rightarrow Food \rightarrow Category \leftarrow Food</script><ul>
-<li>Meta-Graph的相似度计算：</li>
+<li><p>$U \rightarrow Food$</p>
+<p>  |  | 小笼包 | 串串 | 大闸蟹??? |<br>  | —- | —- | —- | —- |<br>  | 姚明 | 1 | 0 | 0??? |<br>  | 李易峰 | 0 | 1 | 0??? |</p>
+</li>
+<li><p>$ Food \rightarrow Category $</p>
+<p>  |  | 沪菜 | 川菜 |<br>  | —- | —- | —- |<br>  | 小笼包 | 1 | 0 |<br>  | 串串 | 0 | 1 |<br>  | 大闸蟹 | 1| 0 |</p>
+</li>
+<li><p>$ Category \rightarrow Food $</p>
+<p>  |  | 小笼包 | 串串 | 大闸蟹 |<br>  | —- | —- | —- | —- |<br>  | 沪菜 | 1 | 0 | 1 |<br>  | 川菜 | 0 | 1 | 0 |</p>
+</li>
 </ul>
-<h1 id="3-Meta-Graph怎么用在推荐系统里面？"><a href="#3-Meta-Graph怎么用在推荐系统里面？" class="headerlink" title="3. Meta-Graph怎么用在推荐系统里面？"></a>3. Meta-Graph怎么用在推荐系统里面？</h1><h1 id="4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"><a href="#4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？" class="headerlink" title="4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"></a>4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？</h1>
+<p><strong>第一步：根据Category计算食物相似度</strong> $F \leftrightarrow F $ （FC * CF = FF）</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+    1 & 0 \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0\\
+\end{bmatrix} =
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 1 \\
+\end{bmatrix}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+<th>大闸蟹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小笼包</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>串串</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>大闸蟹</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>第二步：根据食物相似度进行推荐</strong> $U \rightarrow Food$ (UF * FF = UF)</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    1 & 0 & 1\\
+    0 & 1 & 0\\
+    1 & 0 & 1 \\
+\end{bmatrix} =
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0  \\
+\end{bmatrix}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+<th>大闸蟹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>1</td>
+<td>0</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td>0</td>
+<td>1</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Meta-Graph的相似度计算："><a href="#Meta-Graph的相似度计算：" class="headerlink" title="Meta-Graph的相似度计算："></a>Meta-Graph的相似度计算：</h3><p>上面都是Meta-Path的相似度计算，那Meta-Graph要怎么计算呢？下面我直接用论文中的Meta-Graph和计算步骤来解释：<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991515194.jpg" alt="M9"></p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991035284.jpg" width="450"></p>
+<ol>
+<li>计算矩阵： RB*BR=RR，根据对B（Business）的打分计算出R之间的相似度；</li>
+<li>计算矩阵： RA*AR=RR，根据关键词A（Aspect提到了哪些方面）计算R之间的相似度；</li>
+<li>融合两个相似矩阵：通过Hadamard Product，融合两个相似矩阵，这也吻合论文标题‘Fusion’的意思；下列公式展示了Hadamard Product的定义:<script type="math/tex; mode=display">
+   \begin{aligned}
+   C_{P_1} \odot C_{P_2} &= 
+   \begin{bmatrix}
+     a_{11} & a_{12} & ... & a_{n1} \\
+     a_{21} & a_{22} & ... & a_{n2} \\
+     ... & ... & ... & ... \\
+     a_{n1} & a_{n2} & ... & a_{nn} \\
+   \end{bmatrix}
+   \odot
+   \begin{bmatrix}
+     b_{11} & b_{12} & ... & b_{n1} \\
+     b_{21} & b_{22} & ... & b_{n2} \\
+     ... & ... & ... & ... \\
+     b_{n1} & b_{n2} & ... & b_{nn} \\
+   \end{bmatrix} \\&= 
+   \begin{bmatrix}
+     a_{11}b_{11} & a_{12}b_{12} & ... & a_{n1}b_{n1} \\
+     a_{21}b_{21} & a_{22}b_{22} & ... & a_{n2}b_{n1} \\
+     ... & ... & ... & ... \\
+     a_{n1}b_{n1} & a_{n2}b_{n2} & ... & a_{nn}b_{nn} \\
+   \end{bmatrix}
+   \end{aligned}</script></li>
+<li>最后一步其实跟Meta-Path的求解过程类似了，最终实现为用户推荐物品；</li>
+</ol>
+<h1 id="3-Meta-Graph怎么用在推荐系统里面？"><a href="#3-Meta-Graph怎么用在推荐系统里面？" class="headerlink" title="3. Meta-Graph怎么用在推荐系统里面？"></a>3. Meta-Graph怎么用在推荐系统里面？</h1><p>通过上述步骤，我们知道了一个HIN能够生成多个Meta-Path和Meta-Graph，每个Meta-Path和Meta-Graph都能够生成一个相似度矩阵，也就是说对于论文中下图Yelp数据集构建的9张Meta-Graph，我们能够构建出9个相似度矩阵，那要如何把这部分矩阵转换为有用的特征，添加到推荐系统里面做训练呢？<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705010410823.jpg" alt="-w409"></p>
+<h2 id="MF-FM"><a href="#MF-FM" class="headerlink" title="MF + FM"></a>MF + FM</h2><p>作者提出了一个大胆的框架<code>MF + FM</code>来解决这个问题。</p>
+<p>想要从矩阵中获取特征，一个很简单的办法，就是对每个相似矩阵进行矩阵分解，也就是Matrix Factorization(MF)，通过论文公式(1)将每个相似矩阵分解为<code>U</code>和<code>B</code>两个矩阵的乘积，<code>U</code>代表用户的隐性特征(Latent Features)，<code>B</code>代表物品的特征。假设一共有<code>L</code>张Meta-Graph和Meta-Path，每个特征的维度是<code>F</code>，那么最后总共的特征$x^n=2LF$，也就是论文公式(2)所表述的意思。</p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705012599919.jpg" width="400"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705015524648.jpg" width="405"></p>
+<p>通过<code>MF</code>抽取出特征之后，我们可以把特征投喂给模型<code>FM</code>(Factorization Machine)做训练和预测，这个模型的优点就是能够高效的训练出特征中的一次项特征和二次项特征（非线性交叉项）对结果的影响，我们知道传统的求解二阶交叉项系数(权重)的方法有两个很严重的缺点：</p>
+<ul>
+<li>求解的时间复杂度是$O(n^2)$，因为交叉项数量呈指数级增长；</li>
+<li>交叉项数据非常稀疏，因为我们知道如果一个特征为0的话，那么跟这个特征相关的所有交叉项也都为0，这就会导致很多交叉项系数权重也为0而无法被学习。</li>
+</ul>
+<p>而FM分解机方法能够很好的处理以上两个问题，因为在FM里面，交叉项系数通过数学的方式和矩阵分解，被转换为了两个向量的乘积，直接把复杂度降低到$O(n)$；而且可以很好的解决数据稀疏的问题，因为分解出来的两个向量的维度K是可控的（参考下列第二个公式），像一个参数一样可以由工程师自行调节，K的值越小，数据越不稀疏，不过代价就是所包含的信息会减少。<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705016896847.jpg" width="405"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705032373752.jpg" width="205"></p>
+<h2 id="FFM"><a href="#FFM" class="headerlink" title="FFM"></a>FFM</h2><p>其实现阶段有一种改进的FM模型要比以往的FM模型要好得多，虽然时间复杂度并不能得到优化，那就是<strong>FFM(Field-aware Factorization Machines)</strong>。</p>
+<p>FFM是FM的升级版模型，引入了field的概念。FFM把相同性质的特征归于同一个field。在FFM中，每一维特征$x_i$，针对每一种field $f_j$，都会学习到一个隐向量$V_{i,f_j}$，因此，隐向量不仅与特征相关，也与field相关。</p>
+<p>设样本一共有<code>n</code>个特征, <code>f</code>个field，那么FFM的二次项有<code>nf</code>个隐向量。而在FM模型中，每一维特征的隐向量只有一个。FM可以看做FFM的特例，即把所有特征都归属到同一个field中。</p>
+<p>$y = w_0 + \Sigma_{i=1}^{n}w_{i} x_{i} + \Sigma_{i=1}^{n}\Sigma_{j=i+1}^{n}<v_{i,f_{j}}, v_{j,f_{i}}="">x_{i}x_{j}$</v_{i,f_{j}},></p>
+<p>如果隐向量的长度为<code>k</code>，那么FFM的二次项参数数量为<code>nfk</code>，远多于FM模型。此外由于隐向量与field相关，FFM二次项并不能够化简，时间复杂度为$O(kn^2)$。需要注意的是由于FFM中的latent vector只需要学习特定的field，所以通常$K_{FFM} &lt;&lt; K_{FM}$。</p>
+<h2 id="Group-Lasso-amp-nmAPG"><a href="#Group-Lasso-amp-nmAPG" class="headerlink" title="Group-Lasso &amp; nmAPG"></a>Group-Lasso &amp; nmAPG</h2><p>在我们的算法框架中，我们是以 meta-graph 为单位来构造用户和商品的隐式特征的，因此，每条 meta-graph 对应一组用户和商品的隐式特征。一旦某条 meta-graph 没有用，那么它对应的一组特征都应该被去掉，这就是我们采用 group lasso 来做正则项的动机。下列公式中(6)(7)就是对于一阶特征权重和二阶特征权重引入了正则化因子，从而实现Meta-Graph的自动筛选，并且能够避免过拟合的问题。</p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705052812513.jpg" width="300"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705052999773.jpg" width="300"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705053245578.jpg" width="450"></p>
+<p>使用 group lasso 正则项之后，目标函数优化就变成了一个非凸非光滑（non-convex, non-smooth）的问题，我们使用了邻近梯度算法（proximal gradient）nmAPG算法来求解它。<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705056173451.jpg" width="450"></p>
+<h1 id="4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"><a href="#4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？" class="headerlink" title="4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"></a>4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？</h1><ol>
+<li>FMG能够通过HIN异构信息网络来构建整个推荐系统中实体变量之间的关联，通过可视化技术，大大提高了模型的解释性。</li>
+<li>FMG可以通过构建Meta-Graph，结合矩阵相乘和Hadamard乘积巧妙的融合了多个相似矩阵蕴含的信息，让原本繁琐复杂的关系融合为一个单独的矩阵，提供了一种信息融合的技术，这个是传统协同过滤技术无法做到的。</li>
+<li>FMG在兼顾传统协同过滤中基于用户、基于物品的技术的同时，通过矩阵运算能够从多个角度来计算相似度，让模型更加灵活、丰富；</li>
+<li>与矩阵分解SVD等技术相比，FMG并没有直接用MF来进行预测，而是用它来获取多个方位的隐性特征，再使用FM来进行预测，能够挖掘出更深层次的特征和特征之间的关联。</li>
+</ol>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705057810241.jpg" alt="-w414"></p>
+
       
     </div>
     <footer class="article-footer">
@@ -445,7 +609,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Meta-Graph和HIN（Heterogeneous-Information-Network）"><span class="nav-number">2.</span> <span class="nav-text">1. 什么是Meta-Graph和HIN（Heterogeneous Information Network）?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异构信息网络HIN"><span class="nav-number">2.1.</span> <span class="nav-text">异构信息网络HIN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Meta-Path-amp-Meta-Graph"><span class="nav-number">2.2.</span> <span class="nav-text">Meta-Path &amp; Meta-Graph</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Meta-Path-和-Meta-Graph有什么用？"><span class="nav-number">3.</span> <span class="nav-text">2. Meta-Path 和 Meta-Graph有什么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种类别"><span class="nav-number">3.1.</span> <span class="nav-text">两种类别:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似度计算"><span class="nav-number">3.2.</span> <span class="nav-text">相似度计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于用户的相似度计算"><span class="nav-number">3.2.1.</span> <span class="nav-text">基于用户的相似度计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于物品的相似度计算"><span class="nav-number">3.2.2.</span> <span class="nav-text">基于物品的相似度计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Meta-Graph怎么用在推荐系统里面？"><span class="nav-number">4.</span> <span class="nav-text">3. Meta-Graph怎么用在推荐系统里面？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"><span class="nav-number">5.</span> <span class="nav-text">4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Meta-Graph和HIN（Heterogeneous-Information-Network）"><span class="nav-number">2.</span> <span class="nav-text">1. 什么是Meta-Graph和HIN（Heterogeneous Information Network）?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异构信息网络HIN"><span class="nav-number">2.1.</span> <span class="nav-text">异构信息网络HIN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Meta-Path-amp-Meta-Graph"><span class="nav-number">2.2.</span> <span class="nav-text">Meta-Path &amp; Meta-Graph</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Meta-Path-和-Meta-Graph有什么用？"><span class="nav-number">3.</span> <span class="nav-text">2. Meta-Path 和 Meta-Graph有什么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种类别"><span class="nav-number">3.1.</span> <span class="nav-text">两种类别:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似度计算"><span class="nav-number">3.2.</span> <span class="nav-text">相似度计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于用户的相似度计算"><span class="nav-number">3.2.1.</span> <span class="nav-text">基于用户的相似度计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于物品的相似度计算"><span class="nav-number">3.2.2.</span> <span class="nav-text">基于物品的相似度计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meta-Graph的相似度计算："><span class="nav-number">3.2.3.</span> <span class="nav-text">Meta-Graph的相似度计算：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Meta-Graph怎么用在推荐系统里面？"><span class="nav-number">4.</span> <span class="nav-text">3. Meta-Graph怎么用在推荐系统里面？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MF-FM"><span class="nav-number">4.1.</span> <span class="nav-text">MF + FM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FFM"><span class="nav-number">4.2.</span> <span class="nav-text">FFM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Group-Lasso-amp-nmAPG"><span class="nav-number">4.3.</span> <span class="nav-text">Group-Lasso &amp; nmAPG</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"><span class="nav-number">5.</span> <span class="nav-text">4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验结果"><span class="nav-number">6.</span> <span class="nav-text">实验结果</span></a></li></ol>
     
     </div>
   </aside>
