@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705053245578.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705056173451.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705057810241.jpg">
-<meta property="og:updated_time" content="2019-10-08T05:29:30.738Z">
+<meta property="og:updated_time" content="2019-10-08T05:34:38.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meta-Graph Based Recommendation System">
 <meta name="twitter:description" content="介绍 论文链接 Github源码链接  2019年中旬在华为实习阶段中，接触到了一篇有关推荐系统的论文：「Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks」，这篇论文被KDD 2017的Research Track接受并且作了口头报告(录取率8.6%)，相关视频可以在YouTube上查看。下">
@@ -241,23 +241,21 @@
 </ol>
 <p>接下来，我就根据这几个问题，去论文里面寻找答案，剥茧抽丝、化繁为简地为大家分析一番，相信理解了这几个问题，也就基本掌握了这篇论文的核心知识。</p>
 <h1 id="1-什么是Meta-Graph和HIN（Heterogeneous-Information-Network）"><a href="#1-什么是Meta-Graph和HIN（Heterogeneous-Information-Network）" class="headerlink" title="1. 什么是Meta-Graph和HIN（Heterogeneous Information Network）?"></a>1. 什么是Meta-Graph和HIN（Heterogeneous Information Network）?</h1><h2 id="异构信息网络HIN"><a href="#异构信息网络HIN" class="headerlink" title="异构信息网络HIN"></a>异构信息网络HIN</h2><p>如下图所示，异构信息网络其实就是一张有向无环图，是计算机数据结构中的<code>Graph图</code>的一种。Heterogeneous的中文意思是纷繁复杂的、由很多种类组成的，下面这张图也很形象的解释了什么是“有很多种类组成的”，其中包含了各种各样的信息。</p>
-<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704395265618.jpg" alt="Heterogeneous Information Network"></p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704395265618.jpg" width="500"></p>
 <p>但是也正是这张图，精炼的涵盖的所有的信息和关系！这张HIN是基于下图 <em>Royal House on Yelp</em> 来构建的，类似于大众点评上面的宜家餐厅。在这个HIN中，节点<code>Vertex</code>表示一个实体例如用户、酒店、城市等等，带箭头的线段<code>Edge</code>表示实体之间的关系。譬如用户U1入住了酒店Royal House，那就可以用 <code>U1 --Check-in--&gt; Royal House</code>这样的一个简单连接来表示。</p>
-<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704399663036.jpg" alt="Royal House on Yelp"></p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704399663036.jpg" width="500"></p>
 <h2 id="Meta-Path-amp-Meta-Graph"><a href="#Meta-Path-amp-Meta-Graph" class="headerlink" title="Meta-Path &amp; Meta-Graph"></a>Meta-Path &amp; Meta-Graph</h2><p>在HIN中，我们其实可以抽取出Meta-Path或者Meta-Graph来表示更加简单的逻辑，Meta-Path和Meta-Graph可以算是HIN的一个组成部分、一个板块。而Meta-Path和Meta-Graph的区别就在于前者只有单独的一条路径，而后者可以有多条路径来表示更加复杂的关系。</p>
 <ul>
-<li>Meta-Path<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704410707765.jpg" alt=""></li>
+<li>Meta-Path<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704410707765.jpg" width="300"></li>
 </ul>
 <ul>
-<li>Meta-Graph<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704410372223.jpg" alt=""></li>
+<li>Meta-Graph<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704410372223.jpg" width="400"></li>
 </ul>
 <h1 id="2-Meta-Path-和-Meta-Graph有什么用？"><a href="#2-Meta-Path-和-Meta-Graph有什么用？" class="headerlink" title="2. Meta-Path 和 Meta-Graph有什么用？"></a>2. Meta-Path 和 Meta-Graph有什么用？</h1><p>之所以要从HIN当中抽取出Meta-Path和Meta-Graph，是因为我们想要计算出用户之间或者是物品之间的相似度，这个就有点像是我们所说的<code>协同过滤</code>，也可以根据计算的目的，将Meta-Graph和Meta-Path分成以下两种类型。</p>
 <h2 id="两种类别"><a href="#两种类别" class="headerlink" title="两种类别:"></a>两种类别:</h2><ul>
-<li><p>基于用户User-based: $U \rightarrow * \leftarrow U \rightarrow B$<br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413266449.jpg" alt=""></p>
-<p>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413094404.jpg" alt=""></p>
-<p>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704414358208.jpg" alt=""></p>
+<li><p>基于用户User-based: $U \rightarrow * \leftarrow U \rightarrow B$<br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413266449.jpg" width="300"><br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413094404.jpg" width="300"><br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704414358208.jpg" width="300"></p>
 </li>
-<li><p>基于物品Item-based: $U \rightarrow B \rightarrow * \leftarrow B$<br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704415323132.jpg" alt=""></p>
+<li><p>基于物品Item-based: $U \rightarrow B \rightarrow * \leftarrow B$<br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704415323132.jpg" width="300"></p>
 </li>
 </ul>
 <h2 id="相似度计算"><a href="#相似度计算" class="headerlink" title="相似度计算"></a>相似度计算</h2><p>既然Meta-Path和Meta-Graph可以基于用户或者物品来计算相似度，又要如何计算呢？下面通过几个例子来描述计算过程。</p>
@@ -623,8 +621,8 @@
 </tbody>
 </table>
 </div>
-<h3 id="Meta-Graph的相似度计算："><a href="#Meta-Graph的相似度计算：" class="headerlink" title="Meta-Graph的相似度计算："></a>Meta-Graph的相似度计算：</h3><p>上面都是Meta-Path的相似度计算，那Meta-Graph要怎么计算呢？下面我直接用论文中的Meta-Graph和计算步骤来解释：<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991515194.jpg" alt="M9"></p>
-<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991035284.jpg" width="450"></p>
+<h3 id="Meta-Graph的相似度计算："><a href="#Meta-Graph的相似度计算：" class="headerlink" title="Meta-Graph的相似度计算："></a>Meta-Graph的相似度计算：</h3><p>上面都是Meta-Path的相似度计算，那Meta-Graph要怎么计算呢？下面我直接用论文中的Meta-Graph和计算步骤来解释：</p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991515194.jpg" width="400">&lt;/img&gt;<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991035284.jpg" width="450"></p>
 <ol>
 <li>计算矩阵： RB*BR=RR，根据对B（Business）的打分计算出R之间的相似度；</li>
 <li>计算矩阵： RA*AR=RR，根据关键词A（Aspect提到了哪些方面）计算R之间的相似度；</li>
