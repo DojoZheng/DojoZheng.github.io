@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705053245578.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705056173451.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705057810241.jpg">
-<meta property="og:updated_time" content="2019-10-08T05:26:45.875Z">
+<meta property="og:updated_time" content="2019-10-08T05:29:30.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meta-Graph Based Recommendation System">
 <meta name="twitter:description" content="介绍 论文链接 Github源码链接  2019年中旬在华为实习阶段中，接触到了一篇有关推荐系统的论文：「Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks」，这篇论文被KDD 2017的Research Track接受并且作了口头报告(录取率8.6%)，相关视频可以在YouTube上查看。下">
@@ -262,16 +262,96 @@
 </ul>
 <h2 id="相似度计算"><a href="#相似度计算" class="headerlink" title="相似度计算"></a>相似度计算</h2><p>既然Meta-Path和Meta-Graph可以基于用户或者物品来计算相似度，又要如何计算呢？下面通过几个例子来描述计算过程。</p>
 <h3 id="基于用户的相似度计算"><a href="#基于用户的相似度计算" class="headerlink" title="基于用户的相似度计算"></a>基于用户的相似度计算</h3><script type="math/tex; mode=display">U1 \rightarrow City \leftarrow U2 \rightarrow Food</script><ul>
-<li><p>$U \rightarrow City$</p>
-<p>  |  | 成都 | 上海 |<br>  | —- | —- | —- |<br>  | 姚明 | 0 | <strong>1</strong> |<br>  | 李易峰 | <strong>1</strong> | 0 |<br>  | 胡歌 | 0 | <strong>1</strong> |</p>
-</li>
-<li><p>$City \rightarrow U$</p>
-<p>  |  | 姚明 | 李易峰 | 胡歌 |<br>  | —- | —- | —- | —- |<br>  | 成都 | 0 | 1 | 0 |<br>  | 上海 | 1 | 0 | 1 |</p>
-</li>
-<li><p>$U \rightarrow Food$</p>
-<p>  |  | 小笼包 | 串串 |<br>  | —- | —- | —- |<br>  | 姚明 | 1 | 0 |<br>  | 李易峰 | 0 | 1 |<br>  | 胡歌??? | 0 ??? | 0 ??? |</p>
-</li>
+<li>$U \rightarrow City$</li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>成都</th>
+<th>上海</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>0</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td><strong>1</strong></td>
+<td>0</td>
+</tr>
+<tr>
+<td>胡歌</td>
+<td>0</td>
+<td><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$City \rightarrow U$</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>姚明</th>
+<th>李易峰</th>
+<th>胡歌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>成都</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>上海</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$U \rightarrow Food$</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>胡歌???</td>
+<td>0 ???</td>
+<td>0 ???</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p><strong>第一步：根据City计算用户相似度</strong> $U \leftrightarrow U $ （UC * CU = UU）</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
@@ -366,16 +446,94 @@
 </table>
 </div>
 <h3 id="基于物品的相似度计算"><a href="#基于物品的相似度计算" class="headerlink" title="基于物品的相似度计算"></a>基于物品的相似度计算</h3><script type="math/tex; mode=display">U1 \rightarrow Food \rightarrow Category \leftarrow Food</script><ul>
-<li><p>$U \rightarrow Food$</p>
-<p>  |  | 小笼包 | 串串 | 大闸蟹??? |<br>  | —- | —- | —- | —- |<br>  | 姚明 | 1 | 0 | 0??? |<br>  | 李易峰 | 0 | 1 | 0??? |</p>
-</li>
-<li><p>$ Food \rightarrow Category $</p>
-<p>  |  | 沪菜 | 川菜 |<br>  | —- | —- | —- |<br>  | 小笼包 | 1 | 0 |<br>  | 串串 | 0 | 1 |<br>  | 大闸蟹 | 1| 0 |</p>
-</li>
-<li><p>$ Category \rightarrow Food $</p>
-<p>  |  | 小笼包 | 串串 | 大闸蟹 |<br>  | —- | —- | —- | —- |<br>  | 沪菜 | 1 | 0 | 1 |<br>  | 川菜 | 0 | 1 | 0 |</p>
-</li>
+<li>$U \rightarrow Food$</li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+<th>大闸蟹???</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>1</td>
+<td>0</td>
+<td>0???</td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td>0</td>
+<td>1</td>
+<td>0???</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$ Food \rightarrow Category $</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>沪菜</th>
+<th>川菜</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小笼包</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>串串</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>大闸蟹</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$ Category \rightarrow Food $</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+<th>大闸蟹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>沪菜</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>川菜</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p><strong>第一步：根据Category计算食物相似度</strong> $F \leftrightarrow F $ （FC * CF = FF）</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
@@ -495,7 +653,7 @@
    \end{aligned}</script></li>
 <li>最后一步其实跟Meta-Path的求解过程类似了，最终实现为用户推荐物品；</li>
 </ol>
-<h1 id="3-Meta-Graph怎么用在推荐系统里面？"><a href="#3-Meta-Graph怎么用在推荐系统里面？" class="headerlink" title="3. Meta-Graph怎么用在推荐系统里面？"></a>3. Meta-Graph怎么用在推荐系统里面？</h1><p>通过上述步骤，我们知道了一个HIN能够生成多个Meta-Path和Meta-Graph，每个Meta-Path和Meta-Graph都能够生成一个相似度矩阵，也就是说对于论文中下图Yelp数据集构建的9张Meta-Graph，我们能够构建出9个相似度矩阵，那要如何把这部分矩阵转换为有用的特征，添加到推荐系统里面做训练呢？<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705010410823.jpg" alt="-w409"></p>
+<h1 id="3-Meta-Graph怎么用在推荐系统里面？"><a href="#3-Meta-Graph怎么用在推荐系统里面？" class="headerlink" title="3. Meta-Graph怎么用在推荐系统里面？"></a>3. Meta-Graph怎么用在推荐系统里面？</h1><p>通过上述步骤，我们知道了一个HIN能够生成多个Meta-Path和Meta-Graph，每个Meta-Path和Meta-Graph都能够生成一个相似度矩阵，也就是说对于论文中下图Yelp数据集构建的9张Meta-Graph，我们能够构建出9个相似度矩阵，那要如何把这部分矩阵转换为有用的特征，添加到推荐系统里面做训练呢？<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705010410823.jpg" width="500"></p>
 <h2 id="MF-FM"><a href="#MF-FM" class="headerlink" title="MF + FM"></a>MF + FM</h2><p>作者提出了一个大胆的框架<code>MF + FM</code>来解决这个问题。</p>
 <p>想要从矩阵中获取特征，一个很简单的办法，就是对每个相似矩阵进行矩阵分解，也就是Matrix Factorization(MF)，通过论文公式(1)将每个相似矩阵分解为<code>U</code>和<code>B</code>两个矩阵的乘积，<code>U</code>代表用户的隐性特征(Latent Features)，<code>B</code>代表物品的特征。假设一共有<code>L</code>张Meta-Graph和Meta-Path，每个特征的维度是<code>F</code>，那么最后总共的特征$x^n=2LF$，也就是论文公式(2)所表述的意思。</p>
 <p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705012599919.jpg" width="400"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705015524648.jpg" width="405"></p>
