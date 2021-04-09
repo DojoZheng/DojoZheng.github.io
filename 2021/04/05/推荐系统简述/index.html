@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/2021/04/05/推荐系统简述/eges样本.jpg">
 <meta property="og:image" content="http://yoursite.com/2021/04/05/推荐系统简述/eges损失函数.jpg">
 <meta property="og:image" content="http://yoursite.com/2021/04/05/推荐系统简述/长期画像例子.png">
-<meta property="og:updated_time" content="2021-04-09T10:52:09.955Z">
+<meta property="og:updated_time" content="2021-04-09T11:21:50.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统简述">
 <meta name="twitter:description" content="推荐系统架构图Y=F(X_{item}, X_{user}, X_{context}) 项目一：EGES召回1. What?EGES: Enhanced Graph Embedding with Side Information  Graph Embedding:   通过图论的相关技术可以获取到Item的Embedding   Side Information  EGES引入了Side Info">
@@ -220,12 +220,14 @@
 <li>通过用户行为，和Item的特征，挖掘出Item之间更深层次的关联</li>
 <li>通过引入Side Info，缓解Item冷启动的问题</li>
 </ul>
-<h2 id="3-How-to-use"><a href="#3-How-to-use" class="headerlink" title="3. How to use?"></a>3. How to use?</h2><h3 id="3-1-TFRecords训练样本数据准备-2h"><a href="#3-1-TFRecords训练样本数据准备-2h" class="headerlink" title="3.1 TFRecords训练样本数据准备(2h)"></a>3.1 TFRecords训练样本数据准备(2h)</h3><pre><code>1. 用户行为序列获取 &amp; 切分
-2. 通过序列对Items构图
-3. 在图中随机游走生成语料库
-4. 通过语料库和Side Info，生成Item Pair，得到训练样本
-5. 生成TFRecord落入HDFS
-</code></pre><p><img src="/2021/04/05/推荐系统简述/eges样本.jpg" alt="EGES样本案例"></p>
+<h2 id="3-How-to-use"><a href="#3-How-to-use" class="headerlink" title="3. How to use?"></a>3. How to use?</h2><h3 id="3-1-TFRecords训练样本数据准备-2h"><a href="#3-1-TFRecords训练样本数据准备-2h" class="headerlink" title="3.1 TFRecords训练样本数据准备(2h)"></a>3.1 TFRecords训练样本数据准备(2h)</h3><ol>
+<li>用户行为序列获取 &amp; 切分</li>
+<li>通过序列对Items构图</li>
+<li>在图中随机游走生成语料库</li>
+<li>通过语料库和Side Info，生成Item Pair，得到训练样本</li>
+<li>生成TFRecord落入HDFS</li>
+</ol>
+<p><img src="/2021/04/05/推荐系统简述/eges样本.jpg" alt="EGES样本案例"></p>
 <div class="table-container">
 <table>
 <thead>
