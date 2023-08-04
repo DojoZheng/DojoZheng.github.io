@@ -1,932 +1,283 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>Dojo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
-  
-  
-  <meta name="description" content="Stay hungry, stay foolish!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Dojo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="Stay hungry, stay foolish!">
-<meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dojo">
-<meta name="twitter:description" content="Stay hungry, stay foolish!">
-  
-    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
-  
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Hexo</title>
+        <meta name="author" content="John Doe" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/favicon.png" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
 
-  
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-  <link rel="icon" href="/css/images/headIcon.jpg">
-  <link rel="apple-touch-icon" href="/css/images/headIcon.jpg">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-  <link rel="stylesheet" href="/css/style.css">
 
-  <script src="/js/jquery-3.1.1.min.js"></script>
-  <script src="/js/bootstrap.js"></script>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css" >
-
-  
-    <link rel="stylesheet" href="/css/home.css" >
-  
-
-  
-
-  
-
-  
-  
-  
-    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
-</head>
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
 
 
 
-  <body>
+<script src="/js/lib/preview.js"></script>
 
 
-  
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="header">
-
-	<!-- 背景图模式 -->
-	
-
-    
-      <div id="intrologo" class="intro-logo">
-    
- 
 
 
-    <canvas width="100%" height="100%"></canvas>
-    <script>
-      var c = document.getElementsByTagName('canvas')[0],
-          x = c.getContext('2d'),
-          w = window.innerWidth,
-          h = window.innerHeight,
-          pr = window.devicePixelRatio || 1,
-          f = 90,
-          q,
-          m = Math,
-          r = 0,
-          u = m.PI*2,
-          v = m.cos,
-          z = m.random
-      c.width = w*pr
-      c.height = h*pr
-      x.scale(pr, pr)
-      x.globalAlpha = 0.6
 
-      <!-- 折线Polyline背景 -->
-      
-        function i(){
-            x.clearRect(0,0,w,h)
-            q=[{x:0,y:h*.7+f},{x:0,y:h*.7-f}]
-            while(q[1].x<w+f) d(q[0], q[1])
-        }
-        function d(i,j){   
-            x.beginPath()
-            x.moveTo(i.x, i.y)
-            x.lineTo(j.x, j.y)
-            var k = j.x + (z()*2-0.25)*f,
-                n = y(j.y)
-            x.lineTo(k, n)
-            x.closePath()
-            r-=u/-50
-            x.fillStyle = '#'+(v(r)*127+128<<16 | v(r+u/3)*127+128<<8 | v(r+u/3*2)*127+128).toString(16)
-            x.fill()
-            q[0] = q[1]
-            q[1] = {x:k,y:n}
-        }
-        function y(p){
-            var t = p + (z()*2-1.1)*f
-            return (t>h||t<0) ? y(p) : t
-        }
-        document.getElementById("intrologo").onclick = i
-        document.getElementById("intrologo").ontouchstart = i
-        i()
+<script src="/js/lib/home.js"></script>
 
-      <!-- 多边形trianglify背景 -->
-      
-    </script>
-    
+<link rel="stylesheet" href="/css/main.css" />
 
-    
-      <div id="homelogo" class="homelogo"> 
-    
-
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>HEXO</span>
+        </a>
         
-          <div class="homelogoback" >
-            <h1><a href="#content" id="logo">Dojo</a></h1>
-            <h3>Stay hungry, stay foolish!</h3>
-            <h5></h5>
-            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
-          </div>
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
         
-    
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;HEXO</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/background.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Hexo</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
+        </span>
     </div>
-  </div>
+</div>
+<div id="home-posts-wrap" true ref="homePostsWrap">
+    <div id="home-posts">
+        
 
-  <!-- 自适应主页背景大图 -->
-  
-
- <!-- home_logo_image居中 -->
- 
-    <script>
-        var homelogodiv = document.getElementById("homelogo");
-        if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
-          homelogodiv.style.width = document.body.clientWidth + "px";
-          homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
-        } else {
-          homelogodiv.style.width = homelogodiv.clientWidth  + "px";
-          homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
-        }
-    </script>
-  
-
-  <div class="intro-navigate">
-      <p class="navigater-list">
+<div class="post">
+    <a href="/2023/08/04/hello-world/">
+        <h2 class="post-title">Hello World</h2>
+    </a>
+    <div class="category-and-date">
         
-          <a id="beautifont" class="main-nav-link" href="/">Home</a>
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/4
+        </span>
         
-          <a id="beautifont" class="main-nav-link" href="/archives">Archives</a>
         
-          <a id="beautifont" class="main-nav-link" href="/tags">Tags</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/about">About</a>
-        
-      </p>
-  </div>
-
-</header>
-  
-  <div id="container">
-    <div id="wrap">
-      
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
             
-      <div id="content" class="outer">
+            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
         
-          <section id="main" style="float:none;">
-  
-    <article id="post-推荐系统简述"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/04/05/推荐系统简述/">推荐系统简述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/04/05/推荐系统简述/" class="article-date">
-	  <time datetime="2021-04-05T13:34:47.000Z" itemprop="datePublished">2021-04-05</time>
-	</a>
-
-      
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          推荐系统架构图Y=F(X_{item}, X_{user}, X_{context})
-项目一：EGES召回1. What?EGES: Enhanced Graph Embedding with Side Information
-
-Graph Embedding: 
-
-通过图论的相关技术可以获取到Item的Embedding
+    <a href="/2023/08/04/hello-world/" class="go-post">阅读全文</a>
+</div>
 
 
-Side Information
-
-EGES引入了Side Information，是为了缓解冷启动问题。
-
-
-Enhanced
-
-每个Side Informat...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/04/05/推荐系统简述/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Meta-Graph-Based-Recommendation-System"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="page-current">
+    <div class="prev">
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/10/07/Meta-Graph-Based-Recommendation-System/">Meta-Graph Based Recommendation System</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/10/07/Meta-Graph-Based-Recommendation-System/" class="article-date">
-	  <time datetime="2019-10-07T07:42:58.000Z" itemprop="datePublished">2019-10-07</time>
-	</a>
-
-      
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          介绍
-论文链接
-Github源码链接
-
-2019年中旬在华为实习阶段中，接触到了一篇有关推荐系统的论文：「Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks」，这篇论文被KDD 2017的Research Track接受并且作了口头报告(录取率8.6%)，相关视频可以在YouTube上查看。下面罗列出所有的作者：
-
-
-第一作者赵欢，香港科技大学计算机系博士生，研究方向为「异构网络与推荐...
-        </p>
-        <p class="article-more-link">
-          <a href="/2019/10/07/Meta-Graph-Based-Recommendation-System/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-强化学习之解迷宫"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
+    <div class="page-index">
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/10/05/强化学习之解迷宫/">强化学习之解迷宫</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/10/05/强化学习之解迷宫/" class="article-date">
-	  <time datetime="2019-10-05T08:59:18.000Z" itemprop="datePublished">2019-10-05</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          项目介绍
-Github链接：HKUSTurkey
-
-
-在该项目当中，有一只长得像“港科大火鸡”的智能体Agent，它只能够以上下左右移动的方式在迷宫中摸爬滚打，不断地摸索“寻找港科大”，从而找到一条最优的路径到达终点，在探索的路途中它还得学会如何躲避障碍物“台风”，以免被卷走。
-我们的目标是：通过强化学习Q-Learning的方式去训练火鸡Agent，赋予它智慧，在不断地摸索中吸取经验，找到规律，最终能够以最快的方式到达终点。
-强化学习Q-Learning强化学习是是用于描述和解决智能体A...
-        </p>
-        <p class="article-more-link">
-          <a href="/2019/10/05/强化学习之解迷宫/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-收入预测"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
+        <span class="current">1</span>
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/10/03/收入预测/">收入预测</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/10/03/收入预测/" class="article-date">
-	  <time datetime="2019-10-03T05:25:33.000Z" itemprop="datePublished">2019-10-03</time>
-	</a>
-
-      
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          Income PredictionTask DescriptionThe dataset come from 1994 Census database. Prediction task is to determine whether a person makes over 50K a year.
-Data ExplorationImport Necessary Modules &amp; Files1234567891011121314# import modulesimport nump...
-        </p>
-        <p class="article-more-link">
-          <a href="/2019/10/03/收入预测/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-图片聚类"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
+    <div class="next">
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/10/02/图片聚类/">图片聚类</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/10/02/图片聚类/" class="article-date">
-	  <time datetime="2019-10-02T02:19:07.000Z" itemprop="datePublished">2019-10-02</time>
-	</a>
-
-      
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          Unsupervised learning of Images SegmentationPreparationImport Packages &amp; Files12345678910111213141516# Magic functions% matplotlib inlineimport timeimport os, os.pathimport randomimport cv2import globimport matplotlibimport matplotlib.pyplot a...
-        </p>
-        <p class="article-more-link">
-          <a href="/2019/10/02/图片聚类/#more">Read More</a>
-        </p>
-      
+</div>
+
     </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-梯度消失与爆炸"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
     
-    
-      <header class="article-header">
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">John Doe</div>
+        <div class="description">
+            <p>Description<br>…</p>
+
+        </div>
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/20/梯度消失与爆炸/">梯度消失与爆炸</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/09/20/梯度消失与爆炸/" class="article-date">
-	  <time datetime="2019-09-20T07:39:24.000Z" itemprop="datePublished">2019-09-20</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          
-梯度消失的原因：
-
-1.1 在反向传播过程中，由于链式法则的原因，梯度很容易随着层数的增加，从后往前快速的减少；所以网络的层数越大越容易造成梯度消失（或者爆炸）；
-1.2 在反向传播过程中，我们需要使用激活函数进行求导，所以和激活函数也有很大的关系；
-1.3 跟训练的Epoch数量也有关系，随着Epoch次数的增加，梯度消失的问题会越来越显著；
-1.4 另外也跟输入值x的参数w相关，因为w会直接影响到求导结果的大小，进而影响到整个反向传播梯度的消失和爆炸问题；
-
-解决办法：
-
-2.1 分...
-        </p>
-        <p class="article-more-link">
-          <a href="/2019/09/20/梯度消失与爆炸/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-FPTree"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/09/FPTree/">关联规则介绍 &amp; FP-Tree算法实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/09/09/FPTree/" class="article-date">
-	  <time datetime="2019-09-09T09:42:52.000Z" itemprop="datePublished">2019-09-09</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          FP-Tree介绍
-源码地址  
-Apriori哈希树源码地址  
-FP-Tree算法实现源码地址
-
-
-介绍  Frequent Pattern Tree(FP-Tree频繁模式树)算法主要用于关联规则分析，查找出频繁项集。例如在‘啤酒’和‘尿布’这个经典的案例中，{&#39;啤酒&#39;, &#39;尿布&#39;}就可以被称为一个频繁项集，因为这两件毫无关系的商品共同被客户购买的频率非常高。而FP-Tree就可以挖掘出它们的潜在关系，它是一种紧缩的数据结构，用于存储或者查找频繁项集所...
-        </p>
-        <p class="article-more-link">
-          <a href="/2019/09/09/FPTree/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-SparkMongoDB"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/11/SparkMongoDB/">SparkMongoDB</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/11/SparkMongoDB/" class="article-date">
-	  <time datetime="2019-04-11T08:14:25.000Z" itemprop="datePublished">2019-04-11</time>
-	</a>
-
-      
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          IntroductionThis blog will mainly introduce the method about connecting the Spark and MongoDB. After the connection, I will use the Spark Streaming module to get some streaming data from Tushare, which is a website and financial API providing stoc...
-        </p>
-        <p class="article-more-link">
-          <a href="/2019/04/11/SparkMongoDB/#more">Read More</a>
-        </p>
-      
+</div>
+
     </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-MSBD-5012-MLHomework3"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
     
-    
-      <header class="article-header">
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 Hexo
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;John Doe
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/26/MSBD-5012-MLHomework3/">MSBD-5012-MLHomework3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/26/MSBD-5012-MLHomework3/" class="article-date">
-	  <time datetime="2018-11-26T03:20:14.000Z" itemprop="datePublished">2018-11-26</time>
-	</a>
-
-      
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          MSBD 5012: Machine LearningHomework 3Question 1
-(a) Answer:
-a.1 What are the outputs of the hidden units?$\begin{bmatrix}u_{11} &amp; u_{12} \\u_{21} &amp; u_{22}\end{bmatrix}=\begin{bmatrix}0 &amp; 1 \\1 &amp; 1\end{bmatrix}$
-a.2 What is the logi...
-        </p>
-        <p class="article-more-link">
-          <a href="/2018/11/26/MSBD-5012-MLHomework3/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-MSBD-5012-MLHomework2"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/26/MSBD-5012-MLHomework2/">MSBD-5012-MLHomework2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/26/MSBD-5012-MLHomework2/" class="article-date">
-	  <time datetime="2018-11-26T03:13:32.000Z" itemprop="datePublished">2018-11-26</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          MSBD 5012: Machine LearningHomework 2Question 1
-
-
-(a) AnswerLet’s assume that $c \in (0, 1)$ represent the value of $y$. Then we can get the following Naive Bayes Model:
-
-P(\mathbf{x}|y=c) = \prod_{j=1}^{2}{P(x_j|y=c)}={P(x_1|y=c)}{P(x_2|y=c)}(b) ...
-        </p>
-        <p class="article-more-link">
-          <a href="/2018/11/26/MSBD-5012-MLHomework2/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-  </nav>
-
-</section>
-        
-      </div>
-      
-        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
-      
-      <footer id="footer">
-  
-
-  <div class="container">
-      	<div class="row">
-	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 Dojo All Rights Reserved.</p>
-	      
-	      
-    		<p class="busuanzi_uv">
-				UV : <span id="busuanzi_value_site_uv"></span> |  
-				PV : <span id="busuanzi_value_site_pv"></span>
-		    </p>
-  		   
-		</div>
-
-		
-  </div>
 </footer>
 
-
-<!-- min height -->
-
-<script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
-    var allheader = document.getElementById("allheader");
-
-    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
-    if (allheader != null) {
-      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    } else {
-      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    }
-</script>
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tags</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-</nav> -->
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/scripts.js"></script>
-
-
-  <script src="/js/home.js"></script>
-
-
-
-
-
-
-
-
-
-
-	<div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-	</script>
-
-
-
-
-
-
-  </div>
-
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel">设置</h2>
-      </div>
-      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
-      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
-
-
-      <div class="modal-body">
-          <div style="margin:6px;">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
-              正文字号大小
-            </a>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-          <div class="panel-body">
-            您已调整页面字体大小
-          </div>
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
         </div>
-      
-
-
-          <div style="margin:6px;">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
-              夜间护眼模式
-            </a>
-        </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-          <div class="panel-body">
-            夜间模式已经开启，再次单击按钮即可关闭 
-          </div>
-        </div>
-
-        <div>
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        </div>
-         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-          <div class="panel-body">
-            Dojo
-          </div>
-          <div class="panel-body">
-            Copyright © 2021 Dojo All Rights Reserved.
-          </div>
-        </div>
-      </div>
-
-
-      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
-      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
-      <div class="modal-footer">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-</body>
+        <script src="/js/main.js"></script>
+        
+    </body>
 </html>
