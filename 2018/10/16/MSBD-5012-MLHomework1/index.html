@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>msbd-5012 mlhomework1 | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Machine_Learning" />
+  
+  
+  
+  
+  <meta name="description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.      Index 0 1 2 3 4     x1 0 0">
+<meta name="keywords" content="Machine_Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MSBD-5012 MLHomework1">
+<meta property="og:url" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.      Index 0 1 2 3 4     x1 0 0">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/cutaway_view.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/question5.jpg">
+<meta property="og:updated_time" content="2018-10-16T06:28:24.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MSBD-5012 MLHomework1">
+<meta name="twitter:description" content="MSBD 5012: Machine LearningHomework 1Question 1 Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.      Index 0 1 2 3 4     x1 0 0">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/homework1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/headIcon.jpg">
+  <link rel="apple-touch-icon" href="/css/images/headIcon.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/headIcon.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-MSBD-5012-MLHomework1" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      MSBD-5012 MLHomework1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/10/16/MSBD-5012-MLHomework1/" class="article-date">
+	  <time datetime="2018-10-15T17:55:21.000Z" itemprop="datePublished">2018-10-16</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MSBD-5012-Machine-Learning"><a href="#MSBD-5012-Machine-Learning" class="headerlink" title="MSBD 5012: Machine Learning"></a><center>MSBD 5012: Machine Learning</center></h1><h2 id="Homework-1"><a href="#Homework-1" class="headerlink" title="Homework 1"></a><center>Homework 1</center></h2><h2 id="Question-1"><a href="#Question-1" class="headerlink" title="Question 1"></a>Question 1</h2><blockquote>
+<p>Consider carrying out linear regression on the following dataset. Manually compute the ordinary least squares solution.</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>x2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td>y</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Answer:</strong></p>
+<p>The ordinary least squares formula is listed as follow:</p>
+<script type="math/tex; mode=display">\hat{w}_{OLS} = (X^TX)^{-1}X^Ty</script><p>Since the matrix of X and y is:</p>
+<script type="math/tex; mode=display">
+X= 
+\begin{bmatrix}
+ 1 & 0 & 1 \\ 
+ 1 & 0 & 1\\ 
+ 1 &  1 & 1\\ 
+ 1 & 1 & 0\\ 
+ 1 & 1 & 0 
+\end{bmatrix}
+,
+ y = 
+\begin{bmatrix}
+ 0 \\ 
+ 1\\ 
+ 2\\ 
+ 3\\ 
+ 4
+\end{bmatrix}</script><p>Then, we can get the following result:</p>
+<script type="math/tex; mode=display">
+X^T X =
+\begin{bmatrix}
+ 1 & 1 & 1 & 1 & 1\\ 
+ 0 & 0 & 1 & 1 & 1\\ 
+ 1 & 1 & 1 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+ 1 & 0 & 1 \\ 
+ 1 & 0 & 1\\ 
+ 1 &  1 & 1\\ 
+ 1 & 1 & 0\\ 
+ 1 & 1 & 0 
+\end{bmatrix}=
+\begin{bmatrix}
+ 5 & 3 & 3 \\ 
+ 3 & 3 & 1\\ 
+ 3 & 1 & 3
+ \end{bmatrix}</script><p>$\Rightarrow (X^TX, E)=<br>\begin{bmatrix}<br> 5 &amp; 3 &amp; 3 &amp; 1 &amp; 0 &amp; 0\\<br> 3 &amp; 3 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\<br> 3 &amp; 1 &amp; 3 &amp; 0 &amp; 0 &amp; 1<br> \end{bmatrix}<br>\sim<br>\begin{bmatrix}<br> 1 &amp; 0 &amp; 0 &amp; 2 &amp; -\frac{3}{2} &amp; -\frac{3}{2}\\<br> 0 &amp; 1 &amp; 0 &amp; -\frac{3}{2} &amp; \frac{3}{2} &amp; 1\\<br> 0 &amp; 0 &amp; 1 &amp; -\frac{3}{2} &amp; 1 &amp; \frac{3}{2}<br> \end{bmatrix}<br> = (E, (X^TX)^{-1} )<br>$</p>
+<p>$<br>\Rightarrow<br>(X^TX)^{-1}=<br>\begin{bmatrix}<br>2 &amp; -\frac{3}{2} &amp; -\frac{3}{2}\\<br>-\frac{3}{2} &amp; \frac{3}{2} &amp; 1\\<br>-\frac{3}{2} &amp; 1 &amp; \frac{3}{2}<br> \end{bmatrix}<br>$</p>
+<script type="math/tex; mode=display">
+X^Ty = 
+\begin{bmatrix}
+ 1 & 1 & 1 & 1 & 1\\
+ 0 & 0 & 1 & 1 & 1\\ 
+ 1 & 1 & 1 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+ 0 \\
+ 1 \\ 
+ 2 \\ 
+ 3 \\ 
+ 4
+\end{bmatrix}=
+\begin{bmatrix}
+10 \\
+ 9 \\
+ 3 \\ 
+\end{bmatrix}</script><p>$<br>\Rightarrow<br>\hat{w}_{OLS} = (X^TX)^{-1}X^Ty =<br>\begin{bmatrix}<br>2 &amp; -\frac{3}{2} &amp; -\frac{3}{2}\\<br>-\frac{3}{2} &amp; \frac{3}{2} &amp; 1\\<br>-\frac{3}{2} &amp; 1 &amp; \frac{3}{2}<br> \end{bmatrix}<br>\begin{bmatrix}<br>10 \\<br> 9 \\<br> 3 \\<br>\end{bmatrix} =<br>\begin{bmatrix}<br> 2 \\<br> 1.5 \\<br> -1.5 \\<br> \end{bmatrix}<br>$<br>Thus, the result is:</p>
+<script type="math/tex; mode=display">
+\hat{w}_{OLS} = 
+\begin{bmatrix}
+ 2 \\
+ 1.5 \\ 
+ -1.5 \\ 
+ \end{bmatrix}</script><h2 id="Question-2"><a href="#Question-2" class="headerlink" title="Question 2"></a>Question 2</h2><blockquote>
+<p>The following figures show linear regression results on a dataset of only three data points (marked blue).</p>
+<p><img src="/2018/10/16/MSBD-5012-MLHomework1/homework1.jpg" alt="Question 2"></p>
+<p>The results were obtained using following regularization schemes:</p>
+<ol>
+<li>$\frac{1}{3}\sum_{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda w_{1}^{2}　where 　\lambda = 1$</li>
+<li>$\frac{1}{3}\sum_{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda w_{1}^{2}　where 　\lambda = 10$</li>
+<li>$\frac{1}{3}\sum_{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda(w_{0}^{2}+w_{1}^{2})　where 　\lambda = 1$</li>
+<li>$\frac{1}{3}\sum_{i=1}^{3}(y_i-w_0-w_1x_i)^2 + \lambda(w_{0}^{2}+w_{1}^{2})　where 　\lambda = 10$<br>Match the regularization schemes with the regress results. Briefly explain your answers.</li>
+</ol>
+</blockquote>
+<p><strong>Answer:</strong><br>This is my answer in table:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Regularization Schemes</th>
+<th>Regress Results</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>c)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>b)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>a)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>d)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>Firstly, we can see that the <strong>Scheme 3</strong> and <strong>Scheme 4</strong> contain the weight $w_0$, resulting in a smaller bias in the y axis. Thus, they should belong to the graphs <strong>a)</strong> and <strong>d)</strong>. </p>
+<ul>
+<li>After comparing <strong>Scheme 3</strong> and <strong>Scheme 4</strong> in detail, we can see that <strong>Scheme 4</strong> has a higher $\lambda=10$, resulting in a smaller weight of $w_1$ and smaller slope of the line. </li>
+<li>On contrast, <strong>Scheme 3</strong> has a smaller $\lambda=1$, resulting in a higher weight of $w_1$ and bigger slope of the line.</li>
+<li>Finally ,we can judge that <strong>Scheme 4</strong> match with the regress result of <strong>d)</strong> while <strong>Scheme 3</strong> match with the regress result of <strong>a)</strong></li>
+</ul>
+</li>
+<li><p>Secondly, we can see that the <strong>Scheme 1</strong> and <strong>Scheme 2</strong> do not contain the weight $w_0$, resulting in a bigger bias in the y axis. Thus, they should belong to the graphs <strong>b)</strong> and <strong>c)</strong>. </p>
+<ul>
+<li>To compare them in more detail, we can see that <strong>Scheme 2</strong> has a higher $\lambda=10$, resulting in a smaller weight of $w_1$ and smaller slope of the line. </li>
+<li>On contrast, <strong>Scheme 1</strong> has a smaller $\lambda=1$, resulting in a higher weight of $w_1$ and bigger slope of the line.</li>
+<li>Finally ,we can judge that <strong>Scheme 2</strong> match with the regress result of <strong>b)</strong> while <strong>Scheme 3</strong> match with the regress result of <strong>c)</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="Question-3"><a href="#Question-3" class="headerlink" title="Question 3"></a>Question 3</h2><blockquote>
+<p>Considering applying logistic regression to the following dataset:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th style="text-align:left">4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td>x2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td>y</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td style="text-align:left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The target is to learn a model of the form p(y=1|<strong>x</strong>,<strong>w</strong>)=$\sigma(w_0+w_1x_1+w_2x_2).$<br>Suppose $w_0=-2, w_1=1, w_2=1$ initially and $\alpha = 0.1$. Manually run the batch gradient descent algorithm for one iteration. Give the weights and training error after the iteration.</p>
+</blockquote>
+<p><strong>Answer</strong><br>The update rule with L2 regularization is listed as follow:<br>$w_j \leftarrow w_j+\alpha \sum_{i = 1}^{N}[\mathbf{y}_i - \sigma(\mathbf{w}^T \mathbf{x}_i )]x_{i,j}$</p>
+<p>$\Rightarrow$<br>$w_0 \leftarrow w_0 + \alpha \times \sum_{i = 1}^{4}[y_i - \sigma(w^T x_i )]x_{i, 0}$<br>$w_1 \leftarrow w_1 + \alpha \times \sum_{i = 1}^{4}[y_i - \sigma(w^T x_i )]x_{i, 1}$<br>$w_2 \leftarrow w_2 + \alpha \times \sum_{i = 1}^{4}[y_i - \sigma(w^T x_i )]x_{i, 2}$<br>$x_{i, 0} = [1, 1, 1, 1], x_{i, 1} = [0, 0, 1, 1], x_{i, 2} = [0, 1, 0, 1]$</p>
+<p>$\Rightarrow$<br>$w_0 \leftarrow -2 + 0.1 \times [(0-\sigma(-2)) \times 1+(0-\sigma(-1)) \times 1+(0-\sigma(-1)) \times 1+(1-\sigma(0)) \times 1]$<br>$w_1 \leftarrow 1+0.1 \times [(0-\sigma(-2)) \times 0+(0-\sigma(-1)) \times 0+(0-\sigma(-1)) \times 1+(1-\sigma(0)) \times 1]$<br>$w_2 \leftarrow 1+0.1 \times [(0-\sigma(-2)) \times 0+(0-\sigma(-1)) \times 1+(0-\sigma(-1)) \times 0+(1-\sigma(0)) \times 1]$</p>
+<p>$\Rightarrow$<br>$w_0 \leftarrow -2 + 0.1 \times (-0.157085764762) \approx -2.0157$<br>$w_1 \leftarrow 1 + 0.1 \times 0.2310585786 \approx 1.023$<br>$w_2 \leftarrow 1 + 0.1 \times 0.2310585786 \approx 1.023$<br>$\Rightarrow$ Thus, we get the weights:</p>
+<script type="math/tex; mode=display">
+W = 
+\begin{bmatrix}
+-2.016 \\
+1.023   \\
+1.023
+\end{bmatrix}</script><p>If the decision classification rule is:</p>
+<script type="math/tex; mode=display">
+\hat{y} = 1　iff　p(y=1|\mathbf{x,w})>0.5</script><p>Then, we can calculate the training error as:</p>
+<script type="math/tex; mode=display">
+w_0 + w_1 * x_{1,1} + w_2 * x_{1,2}=-2.016+1.023 \times 0 + 1.023 \times 0 = -2.016 \Rightarrow \hat{y_1}=y_1=0</script><script type="math/tex; mode=display">
+w_0 + w_1 * x_{1,1} + w_2 * x_{1,2}=-2.016+1.023 \times 0 + 1.023 \times 0 = -0.993 \Rightarrow \hat{y_2}=y_2=0</script><script type="math/tex; mode=display">
+w_0 + w_1 * x_{2,1} + w_2 * x_{2,2}=-2.016+1.023 \times 1 + 1.023 \times 0 = -0.993 \Rightarrow \hat{y_3}=y_3=0</script><script type="math/tex; mode=display">
+w_0 + w_1 * x_{1,1} + w_2 * x_{1,2}=-2.016+1.023 \times 1 + 1.023 \times 1 = 0.03 \Rightarrow \hat{y_4}=y_4=1</script><p><strong>Thus, the training error is 0.</strong></p>
+<h2 id="Question-4"><a href="#Question-4" class="headerlink" title="Question 4"></a>Question 4</h2><blockquote>
+<p>Consider applying logistic regression to the following dataset:<br><img src="/2018/10/16/MSBD-5012-MLHomework1/homework2.jpg" width="200" height="100" alt="" align="center/"></p>
+<ol>
+<li>If we use raw feature x1 and x2, the model is<br>$p(y=1|x,w)=\sigma(w_0+w_1x_1+w_2x_2)$<br>What is the minimum achievable training error in this case? Give weights that achieve the minimum error.</li>
+<li>Next consider using an additional feature $x_1x_2$ in addition to the raw featue x1 and x2. The model now is<br>$p(y=1|x,w)=\sigma(w_0+w_1x_1+w_2x_2+w_3x_1x_2)$<br>What is the minimum achievable training error in this case? Give weights that achieve the minimum error.</li>
+</ol>
+</blockquote>
+<h3 id="Answer-for-Question-4-1"><a href="#Answer-for-Question-4-1" class="headerlink" title="Answer for Question 4.1"></a>Answer for Question 4.1</h3><ol>
+<li><p>There are 4 kinds of situations in this case. The results are listed as follow:</p>
+<ul>
+<li><p>When we set the $w_0 = -1.5, w_1 = 1, w_2 = 1\Rightarrow x2 = -x1 + 1.5$, we can get the minimum training error $\frac{1}{4}$. The following graph shows the decision boundary $p(y=1|\mathbf{x, w})$, which is a straight line in the feature space. Those data points over the decision boundary are predicted as <strong>y=1</strong> while those data points under the decision boundary are classified as <strong>y=0</strong>. The only 1 red dot represents that the point is wrongly predicted since it has a true value of <strong>y=1</strong> but it is predicted as <strong>y=0</strong>. As for the other 3 blue points represented as ‘+’, they are all classified correctly. Thus, we can get the minimum training error $\frac{1}{4}$.</p>
+<p>   <img src="/2018/10/16/MSBD-5012-MLHomework1/homework3.jpg" width="300" height="200" alt="Answer 1" align="center/"></p>
+</li>
+<li><p>When we set the $w_0 = -0.5, w_1 = 1, w_2 = 1 \Rightarrow x2 = -x1 + 0.5$, we can also get the minimum training error $\frac{1}{4}$. But as for this decision boundary, the point under the line is predicted as <strong>y=1</strong> while the points above the line are predicted as <strong>y=0</strong>. However, the training error is $\frac{1}{4}$ as well.</p>
+<p><img src="/2018/10/16/MSBD-5012-MLHomework1/homework4.jpg" width="300" height="200" alt="Answer 2" align="center/"></p>
+</li>
+<li><p>When we set the $w_0 = 0.5, w_1 = -1, w_2 = 1 \Rightarrow x2 = x1 - 0.5$, we can also get the minimum training error $\frac{1}{4}$. But as for this decision boundary, the point under the line is predicted as <strong>y=1</strong> while the points above the line are predicted as <strong>y=0</strong>. However, the training error is $\frac{1}{4}$ as well.</p>
+<p><img src="/2018/10/16/MSBD-5012-MLHomework1/homework5.jpg" width="300" height="200" alt="Answer 3" align="center/"></p>
+</li>
+<li><p>When we set the $w_0 = -0.5, w_1 = -1, w_2 = 1 \Rightarrow x2 = x1 + 0.5$, we can also get the minimum training error $\frac{1}{4}$. But as for this decision boundary, the point under the line is predicted as <strong>y=1</strong> while the points above the line are predicted as <strong>y=0</strong>. However, the training error is $\frac{1}{4}$ as well.</p>
+<p><img src="/2018/10/16/MSBD-5012-MLHomework1/homework6.jpg" width="300" height="200" alt="Answer 4" align="center/"></p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Sample Code the Answer 4</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Draw the scatter points</span></span><br><span class="line">x = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">y = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">p1 = plt.scatter(x[<span class="number">1</span>], y[<span class="number">1</span>], marker = <span class="string">'+'</span>, color = <span class="string">'b'</span>, s = <span class="number">100</span>)</span><br><span class="line">p2 = plt.scatter(x[<span class="number">1</span>], y[<span class="number">0</span>], marker = <span class="string">'o'</span>, color = <span class="string">'r'</span>, s = <span class="number">50</span>, label=<span class="string">"Error"</span>)</span><br><span class="line">p2 = plt.scatter(x[<span class="number">0</span>], y[<span class="number">0</span>], marker = <span class="string">'+'</span>, color = <span class="string">'b'</span>, label=<span class="string">"Correct"</span>, s = <span class="number">100</span>)</span><br><span class="line">p2 = plt.scatter(x[<span class="number">0</span>], y[<span class="number">1</span>], marker = <span class="string">'+'</span>, color = <span class="string">'b'</span>, s = <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Draw the Line</span></span><br><span class="line">x = np.linspace(<span class="number">-1</span>, <span class="number">1.5</span>)</span><br><span class="line">y = x + <span class="number">0.5</span></span><br><span class="line">plt.plot(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Personalize the axis</span></span><br><span class="line">plt.xlim(<span class="number">-0.5</span>, <span class="number">1.5</span>)</span><br><span class="line">plt.ylim(<span class="number">-0.5</span>, <span class="number">1.5</span>)</span><br><span class="line">plt.xlabel(<span class="string">"x1"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"x2"</span>)</span><br><span class="line">plt.axis(<span class="string">'equal'</span>)</span><br><span class="line">plt.grid()</span><br><span class="line">plt.legend(loc = <span class="string">'upper right'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Answer-for-Question-4-2"><a href="#Answer-for-Question-4-2" class="headerlink" title="Answer for Question 4.2"></a>Answer for Question 4.2</h3><p>Using a conditional feature $x_1 x_2$ just look like a kernel in SVM. The question 1 is not a linearly separable problem because we can not find a line to separate all the points. It looks like a XOR problem. But if we project the point into another dimension,  and change it into a 3-Dimensional problem, then we can find a plane as a decision boundary to separate all the data points correctly. </p>
+<p>The table is listed as:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$x_1$</th>
+<th>0</th>
+<th>0</th>
+<th style="text-align:left">1</th>
+<th style="text-align:left">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$x_2$</td>
+<td>0</td>
+<td>1</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td>$x_1x_2$</td>
+<td>0</td>
+<td>0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td>$y$</td>
+<td>1</td>
+<td>0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Then, we can draw a 3D axis according to the value of $x_1, x_2, x_1x_2$ as follow:</p>
+<p><img src="/2018/10/16/MSBD-5012-MLHomework1/homework7.jpg" width="500" height="300" alt="3D Axis - x1, x2, x1_x2" align="center/"></p>
+<p>We have to find a plane that can separate the red dots and the blue dots. But how can we do that？ Actually we can solve this problem by finding out the plane that can separate the red line and the blue line.  We can get the cutaway view of the cube as the following graph:</p>
+<p><img src="/2018/10/16/MSBD-5012-MLHomework1/cutaway_view.png" alt="cutaway_view"></p>
+<ul>
+<li>The <strong>line AB</strong> and the <strong>red dot of J</strong> represent the <strong>blue line</strong> and <strong>red line</strong> correspondingly. </li>
+<li>The <strong>Orange Line</strong> represent the decision boundary that exactly separate the blue line and red line.</li>
+<li>$\vec{KO}=(\frac{1}{6}, \frac{1}{6}, -\frac{1}{3})$ is the normal vector of the decision boundary.</li>
+<li>The dot $O(\frac{5}{12}, \frac{5}{12}, \frac{1}{6})$ is the dot inside the decision boundary.</li>
+<li>After we get the normal vector and one of the inner dot of the Decision Boundary, then we can calculate its function as：<ul>
+<li>$2x_1 + 2x_2 - 4x_1x_2 - 1 = 0$</li>
+<li>$W=\begin{bmatrix} -1 \\ 2 \\ 2 \\ -4 \end{bmatrix}$</li>
+<li>The <strong>minimum training error</strong> is <strong>0</strong>.</li>
+</ul>
+</li>
+<li><p>This is the 3D view of the result. The orange plane separate the blue line and red line exactly.</p>
+<p><img src="/2018/10/16/MSBD-5012-MLHomework1/homework8.jpg" width="600" height="400" alt="3D View of the Seperate Plane" align="center/"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Source Code of the 3D Plane</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product, combinations</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize the data with different y value</span></span><br><span class="line"><span class="comment"># data = np.random.randint(0, 255, size=[40, 40, 40])</span></span><br><span class="line">data_0 = [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>], <span class="comment"># x axis</span></span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>], <span class="comment"># y axis</span></span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>]  <span class="comment"># z axis</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">data_1 = [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Draw the 4 scatter points</span></span><br><span class="line">ax = plt.subplot(<span class="number">111</span>, projection=<span class="string">'3d'</span>)</span><br><span class="line">ax.scatter(data_0[<span class="number">0</span>], data_0[<span class="number">1</span>], data_0[<span class="number">2</span>], c=<span class="string">'r'</span>, s=<span class="number">100</span>, marker=<span class="string">"o"</span>, label=<span class="string">'y=0'</span>)</span><br><span class="line">ax.scatter(data_1[<span class="number">0</span>], data_1[<span class="number">1</span>], data_1[<span class="number">2</span>], c=<span class="string">'b'</span>, s=<span class="number">100</span>, marker=<span class="string">"^"</span>, label=<span class="string">'y=1'</span>)</span><br><span class="line">ax.legend()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. Draw the cube</span></span><br><span class="line">r = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"><span class="keyword">for</span> s, e <span class="keyword">in</span> combinations(np.array(list(product(r,r,r))), <span class="number">2</span>):</span><br><span class="line">    <span class="keyword">if</span> np.sum(np.abs(s-e)) == r[<span class="number">1</span>]-r[<span class="number">0</span>]:</span><br><span class="line">        ax.plot3D(*zip(s,e), color=<span class="string">"black"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># X = [0, 0.5, 1]</span></span><br><span class="line"><span class="comment"># Y = [0.5, 0, 1]</span></span><br><span class="line"><span class="comment"># Z = [0, 0, 1]</span></span><br><span class="line"><span class="comment"># ax.plot_trisurf(X, Y, Z, color="g")</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Draw Lines</span></span><br><span class="line"><span class="comment"># The Blue Line</span></span><br><span class="line">z = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>)</span><br><span class="line">x = z</span><br><span class="line">y = z</span><br><span class="line">ax.plot(x, y, z)</span><br><span class="line"></span><br><span class="line"><span class="comment"># The Red Line</span></span><br><span class="line">z = <span class="number">0</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>)</span><br><span class="line">y = -x + <span class="number">1</span></span><br><span class="line">ax.plot(x, y, z, color=<span class="string">"r"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. Draw a separate plane</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x, y)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.5</span> * x + <span class="number">0.5</span> * y - <span class="number">0.25</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the range of the plane</span></span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">1.4</span>, <span class="number">0.05</span>)</span><br><span class="line">y = np.arange(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0.05</span>)</span><br><span class="line">X, Y = np.meshgrid(x, y)</span><br><span class="line">zs = np.array([fun(x,y) <span class="keyword">for</span> x,y <span class="keyword">in</span> zip(np.ravel(X), np.ravel(Y))])</span><br><span class="line">Z = zs.reshape(X.shape)</span><br><span class="line">ax.plot_surface(X, Y, Z)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. Show the axis</span></span><br><span class="line">ax.set_zlabel(<span class="string">'x1 x2'</span>)  <span class="comment"># 坐标轴</span></span><br><span class="line">ax.set_ylabel(<span class="string">'x2'</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">'x1'</span>)</span><br><span class="line">ax.axis(<span class="string">'equal'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="Question-5"><a href="#Question-5" class="headerlink" title="Question 5"></a>Question 5</h2><blockquote>
+<p><img src="/2018/10/16/MSBD-5012-MLHomework1/question5.jpg" alt=""></p>
+</blockquote>
+<ol>
+<li><p>If the feature $x_1$ is binary and it takes value 1 only in a small number of training examples with class label 1, then we can get the following information:</p>
+<ul>
+<li>$x_1$ is 1 only when the class label is 1</li>
+<li><p>There are very few training examples with class label 1 </p>
+<p>With the information, we can thereby analyse the following rule:<br>$w_1 \leftarrow w_1 + \alpha \sum_{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$</p>
+</li>
+<li>It is quite obvious that $x_{i, 1}$ is 0 for most of the time. Thus, $w_1$ cannot be updated and so the convergence will be very slow. </li>
+<li>If $x_{i, 1}$ suddenly get a value 1, then $y_i$ should be 1 which is bigger than $\sigma(\mathbf{w^T x_i})$. Thus, the total value of $[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$ will be positive.</li>
+<li><p>There is no chance the value of $\alpha \sum_{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$ will be negative because when $[y_i - \sigma(\mathbf{w^T x_i})] &lt; 0 $, $y_i$ must be 0 and thus $x_i$ is 0. Thus the total value of $\alpha \sum_{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$ should not smaller than 0.</p>
+<p><strong>To draw a conclusion, $w_1$ will increase slowly until it is converged.</strong></p>
+</li>
+</ul>
+</li>
+<li><p>If we add the regularization rule to the formula, then the regularization rule will force the weight to be smaller. The formula can be updated as:</p>
+<ul>
+<li>$w_1 \leftarrow (1-\alpha \lambda)w_1 + \alpha \sum_{i=1}^{N}[y_i - \sigma(\mathbf{w^T x_i})]x_{i, 1}$<br>As $0 &lt; \alpha \lambda &lt; 1$, we can infer that $|(1- \alpha \lambda)w_1| &lt; |w_1|$. Thus, regularizations force the weight to be smaller so as to avoid overfitting.</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/wechat_pay.png?raw=true',
+  alipayImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/alipay.png?raw=true'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/10/16/MSBD-5012-MLHomework1/" target="_blank" title="MSBD-5012 MLHomework1">http://yoursite.com/2018/10/16/MSBD-5012-MLHomework1/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/26/MSBD-5012-MLHomework2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MSBD-5012-MLHomework2
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MSBD-5012-Machine-Learning"><span class="nav-number">1.</span> <span class="nav-text">MSBD 5012: Machine Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Homework-1"><span class="nav-number">1.1.</span> <span class="nav-text">Homework 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-1"><span class="nav-number">1.2.</span> <span class="nav-text">Question 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-2"><span class="nav-number">1.3.</span> <span class="nav-text">Question 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-3"><span class="nav-number">1.4.</span> <span class="nav-text">Question 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-4"><span class="nav-number">1.5.</span> <span class="nav-text">Question 4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer-for-Question-4-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">Answer for Question 4.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer-for-Question-4-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">Answer for Question 4.2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-5"><span class="nav-number">1.6.</span> <span class="nav-text">Question 5</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 Dojo All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dojo
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 Dojo All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+</body>
+</html>

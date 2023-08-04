@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>msbd-5012-mlhomework2 | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Machine_Learning" />
+  
+  
+  
+  
+  <meta name="description" content="MSBD 5012: Machine LearningHomework 2Question 1   (a) AnswerLet’s assume that $c \in (0, 1)$ represent the value of $y$. Then we can get the following Naive Bayes Model:  P(\mathbf{x}|y=c) = \prod_{j=">
+<meta name="keywords" content="Machine_Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MSBD-5012-MLHomework2">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="MSBD 5012: Machine LearningHomework 2Question 1   (a) AnswerLet’s assume that $c \in (0, 1)$ represent the value of $y$. Then we can get the following Naive Bayes Model:  P(\mathbf{x}|y=c) = \prod_{j=">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/Q1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/Q2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/Q3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/Q4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/VC.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/capacity.png">
+<meta property="og:updated_time" content="2018-11-26T03:19:31.819Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MSBD-5012-MLHomework2">
+<meta name="twitter:description" content="MSBD 5012: Machine LearningHomework 2Question 1   (a) AnswerLet’s assume that $c \in (0, 1)$ represent the value of $y$. Then we can get the following Naive Bayes Model:  P(\mathbf{x}|y=c) = \prod_{j=">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/Q1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/headIcon.jpg">
+  <link rel="apple-touch-icon" href="/css/images/headIcon.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/headIcon.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-MSBD-5012-MLHomework2" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      MSBD-5012-MLHomework2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/26/MSBD-5012-MLHomework2/" class="article-date">
+	  <time datetime="2018-11-26T03:13:32.000Z" itemprop="datePublished">2018-11-26</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MSBD-5012-Machine-Learning"><a href="#MSBD-5012-Machine-Learning" class="headerlink" title="MSBD 5012: Machine Learning"></a><center>MSBD 5012: Machine Learning</center></h1><h2 id="Homework-2"><a href="#Homework-2" class="headerlink" title="Homework 2"></a><center>Homework 2</center></h2><h2 id="Question-1"><a href="#Question-1" class="headerlink" title="Question 1"></a>Question 1</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework2/Q1.jpg" height="200" width="450"></p>
+</blockquote>
+<h3 id="a-Answer"><a href="#a-Answer" class="headerlink" title="(a) Answer"></a>(a) Answer</h3><p>Let’s assume that $c \in (0, 1)$ represent the value of $y$. Then we can get the following Naive Bayes Model:</p>
+<script type="math/tex; mode=display">
+P(\mathbf{x}|y=c) = \prod_{j=1}^{2}{P(x_j|y=c)}={P(x_1|y=c)}{P(x_2|y=c)}</script><h3 id="b-Answer"><a href="#b-Answer" class="headerlink" title="(b) Answer"></a>(b) Answer</h3><p>Since the posterior distribution is listed as:</p>
+<script type="math/tex; mode=display">
+P(y=c|\mathbf{x}) = \frac{P(y=c)P(\mathbf{x}|y=c)}{P(\mathbf{x})}= \frac{P(y=c)\prod_{j=1}^{2}{P(x_j|y=c)}}{\sum_{c=0}^{1}\prod_{j=1}^{2}{P(x_j|y=c)}P(y=c)}</script><p>Thus,<br>For instance 1: $P(y=1|x_1=0, x_2=0)=\frac{P(y=1)P(x_1=0|y=1)P(x_2=0|y=1)}{P(x_1=0, x_2=0)}$<br>For instance 7: $P(y=1|x_1=1, x_2=1)=\frac{P(y=1)P(x_1=1|y=1)P(x_2=1|y=1)}{P(x_1=1, x_2=1)}$</p>
+<p>From the table, we can get the following result:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Given $y$</th>
+<th style="text-align:center">$x_1=0$</th>
+<th style="text-align:center">$x_1=1$</th>
+<th style="text-align:center">$x_2=0$</th>
+<th style="text-align:center">$x_2=1$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$y=0$</td>
+<td style="text-align:center">$P(x_1 \mid y)=0$</td>
+<td style="text-align:center">$P(x_1 \mid y)=1$</td>
+<td style="text-align:center">$P(x_2 \mid y)=\frac{2}{3}$</td>
+<td style="text-align:center">$P(x_2 \mid y)=\frac{1}{3}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$y=1$</td>
+<td style="text-align:center">$P(x_1 \mid y)=\frac{4}{5}$</td>
+<td style="text-align:center">$P(x_1 \mid y)=\frac{1}{5}$</td>
+<td style="text-align:center">$P(x_2 \mid y)=\frac{2}{5}$</td>
+<td style="text-align:center">$P(x_2 \mid y)=\frac{3}{5}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Use the following formula to calculate the evidence:<br>$P(\mathbf{x})=\sum_{c=0}^{1}P(\mathbf{x}|y=c)P(y=c)=\sum_{c=0}^{1}P(x_1|y=c)P(x_2|y=c)P(y=c)$</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\mathbf{x}$</th>
+<th style="text-align:center">$x_1=1, x_2=1$</th>
+<th style="text-align:center">$x_1=0, x_2=0$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$P(\mathbf{x})$</td>
+<td style="text-align:center">$\frac{1}{5}$</td>
+<td style="text-align:center">$\frac{1}{5}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Thus, we can get the following table:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Instance</th>
+<th style="text-align:center">$y$</th>
+<th style="text-align:center">Prior: $P(y)$</th>
+<th style="text-align:center">Likelihood: $P(\mathbf{x} \mid y)=P(x_1 \mid y)P(x_2 \mid y)$</th>
+<th style="text-align:center">Evidence: $P(\mathbf{x})$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Instance 1: $x_1=0, x_2=0$</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$\frac{5}{8}$</td>
+<td style="text-align:center">$\frac{4}{5}\times\frac{2}{5}$</td>
+<td style="text-align:center">$\frac{1}{5}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Instance 1: $x_1=0, x_2=0$</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$\frac{3}{8}$</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$\frac{1}{5}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Instance 7: $x_1=1, x_2=1$</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$\frac{5}{8}$</td>
+<td style="text-align:center">$\frac{1}{5} \times \frac{3}{5}$</td>
+<td style="text-align:center">$\frac{1}{5}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Instance 7: $x_1=1, x_2=1$</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$\frac{3}{8}$</td>
+<td style="text-align:center">$1 \times \frac{1}{3}$</td>
+<td style="text-align:center">$\frac{1}{5}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Thus, we can get the answer:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Instance</th>
+<th style="text-align:center">$y$</th>
+<th style="text-align:center">Posterior Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Instance 1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">Instance 1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">Instance 7</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$\frac{3}{8}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Instance 7</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$\frac{5}{8}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Question-2"><a href="#Question-2" class="headerlink" title="Question 2"></a>Question 2</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework2/Q2.jpg" alt="-w688"></p>
+</blockquote>
+<h3 id="Answer-Q2-1"><a href="#Answer-Q2-1" class="headerlink" title="Answer Q2.1"></a>Answer Q2.1</h3><p>GDA makes stronger assumptions than logistic regression. $P(\mathbf{x} | y)$ is Gaussian implies that $P(y|\mathbf{x})$ is a logistic function $\sigma(\mathbf{w^T x})$. However, the opposite is not true.</p>
+<h3 id="Answer-Q2-2"><a href="#Answer-Q2-2" class="headerlink" title="Answer Q2.2"></a>Answer Q2.2</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Parameter Estimation</th>
+<th>Traning Data</th>
+<th>Significantly weaker assumptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GDA</td>
+<td>Easier and GDA has closed-form formulae for MLE (Pros)</td>
+<td>Need less training data when the gaussian assumptions made by GDA are correct (Pros)</td>
+<td>Less robust and more sensitive to incorrect modeling assumptions (Cons)</td>
+</tr>
+<tr>
+<td>Logistic Regression</td>
+<td>Require gradient descent to compute MLE (Cons)</td>
+<td>Need more training data (Cons)</td>
+<td>More robust and less sensitive to incorrect modeling assumptions (Pros)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Question-3"><a href="#Question-3" class="headerlink" title="Question 3"></a>Question 3</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework2/Q3.jpg" alt="-w683"></p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Deal with Missing Data</th>
+<th>Semi-supervised learning</th>
+<th>Basis function expansion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generative Classifiers</td>
+<td>Easier to handle by using the EM algorithm during training and marginalization during testing (Pro)</td>
+<td>Easy to do this because generative classifiers can use unlabled data to help with the training (Pro)</td>
+<td>Hard to do this because the new feature are correlated in complex ways (Con)</td>
+</tr>
+<tr>
+<td>Discriminative Classifiers</td>
+<td>No priciple way to handle this problem (Con)</td>
+<td>Hard to do this (Con)</td>
+<td>Can do this by replacing <strong>x</strong> with some $\phi(x)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Question-4"><a href="#Question-4" class="headerlink" title="Question 4"></a>Question 4</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework2/Q4.jpg" height="300" width="600"></p>
+</blockquote>
+<h3 id="Answer-Q4-1"><a href="#Answer-Q4-1" class="headerlink" title="Answer Q4.1"></a>Answer Q4.1</h3><p>The <strong>curve (ii)</strong> represents the <strong>training error</strong>. Because it is easy for classifiers to fit for a few training data points correctly, but harder to fit for many training data points. So as the training set size is becoming bigger and bigger, the training error increases as well.</p>
+<h3 id="Answer-Q4-2"><a href="#Answer-Q4-2" class="headerlink" title="Answer Q4.2"></a>Answer Q4.2</h3><h4 id="What-does-the-gap-between-the-two-curves-represent"><a href="#What-does-the-gap-between-the-two-curves-represent" class="headerlink" title="What does the gap between the two curves represent?"></a>What does the gap between the two curves represent?</h4><p>The gap between the two curves represent the <strong>generalization gap</strong>. If the gap can not converge, it means that the classifiers can not generalize well for the test data set. Othervise, it means that the classifiers or the models have low variance and bias.</p>
+<h4 id="How-does-the-gap-depend-on-the-sample-size"><a href="#How-does-the-gap-depend-on-the-sample-size" class="headerlink" title="How does the gap depend on the sample size?"></a>How does the gap depend on the sample size?</h4><p>The following picture shows the VC Theorem:</p>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework2/VC.jpg" width="400" height="200" align="center"></p>
+<p>As we can see from the VC Therorem Part 1, the larger the sample size of <strong>m</strong>, the <strong>samller</strong> the value of the right formula. Thus, $|\epsilon(h)-\hat{\epsilon}(h)|$ will be samller which leads to a smaller gap. Othervise, if the sample size is very small, the gap will be very big. Hence, more data implies better performance of learning algorithms.</p>
+<h4 id="How-does-the-gap-depend-on-the-model-complexity"><a href="#How-does-the-gap-depend-on-the-model-complexity" class="headerlink" title="How does the gap depend on the model complexity?"></a>How does the gap depend on the model complexity?</h4><ol>
+<li>From the VC Theorem, we can see that <strong>d=VC(H)</strong> represent the model complexity and <strong>d</strong> has an opposite effect on the gap compared with <strong>m</strong>. The larger the <strong>d</strong>, the <strong>larger</strong> the generalization gap. If <strong>d</strong> is smaller, then the gap will be <strong>smaller</strong> as well.</li>
+<li>We can further use the following picture to illustrate the relationship between the <strong>generalization gap</strong> and <strong>model complexity</strong>. As we can see, the gap between the <strong>Green Full Line</strong> and <strong>Blue Dash Line</strong> is getting bigger and bigger when the model capacity is increasing.</li>
+</ol>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework2/capacity.png" height="200" width="320" align="center"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/wechat_pay.png?raw=true',
+  alipayImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/alipay.png?raw=true'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/11/26/MSBD-5012-MLHomework2/" target="_blank" title="MSBD-5012-MLHomework2">http://yoursite.com/2018/11/26/MSBD-5012-MLHomework2/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/26/MSBD-5012-MLHomework3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MSBD-5012-MLHomework3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/16/MSBD-5012-MLHomework1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MSBD-5012 MLHomework1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MSBD-5012-Machine-Learning"><span class="nav-number">1.</span> <span class="nav-text">MSBD 5012: Machine Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Homework-2"><span class="nav-number">1.1.</span> <span class="nav-text">Homework 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-1"><span class="nav-number">1.2.</span> <span class="nav-text">Question 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-Answer"><span class="nav-number">1.2.1.</span> <span class="nav-text">(a) Answer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-Answer"><span class="nav-number">1.2.2.</span> <span class="nav-text">(b) Answer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-2"><span class="nav-number">1.3.</span> <span class="nav-text">Question 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer-Q2-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Answer Q2.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer-Q2-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">Answer Q2.2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-3"><span class="nav-number">1.4.</span> <span class="nav-text">Question 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-4"><span class="nav-number">1.5.</span> <span class="nav-text">Question 4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer-Q4-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">Answer Q4.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer-Q4-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">Answer Q4.2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-does-the-gap-between-the-two-curves-represent"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">What does the gap between the two curves represent?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-does-the-gap-depend-on-the-sample-size"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">How does the gap depend on the sample size?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-does-the-gap-depend-on-the-model-complexity"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">How does the gap depend on the model complexity?</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 Dojo All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dojo
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 Dojo All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+</body>
+</html>

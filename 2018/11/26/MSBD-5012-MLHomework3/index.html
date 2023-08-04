@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>msbd-5012-mlhomework3 | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Machine_Learning" />
+  
+  
+  
+  
+  <meta name="description" content="MSBD 5012: Machine LearningHomework 3Question 1 (a) Answer: a.1 What are the outputs of the hidden units?$\begin{bmatrix}u_{11} &amp;amp; u_{12} \\u_{21} &amp;amp; u_{22}\end{bmatrix}=\begin{bmatrix}0 &amp;amp; 1">
+<meta name="keywords" content="Machine_Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MSBD-5012-MLHomework3">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="MSBD 5012: Machine LearningHomework 3Question 1 (a) Answer: a.1 What are the outputs of the hidden units?$\begin{bmatrix}u_{11} &amp;amp; u_{12} \\u_{21} &amp;amp; u_{22}\end{bmatrix}=\begin{bmatrix}0 &amp;amp; 1">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/q1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/nn.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/judge.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/q2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/cost_func.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/softplus.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/q4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/adam.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/q5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/q6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/dropout_cnn.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/dropout_rnn.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/q7.jpg">
+<meta property="og:updated_time" content="2018-11-26T03:26:45.232Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MSBD-5012-MLHomework3">
+<meta name="twitter:description" content="MSBD 5012: Machine LearningHomework 3Question 1 (a) Answer: a.1 What are the outputs of the hidden units?$\begin{bmatrix}u_{11} &amp;amp; u_{12} \\u_{21} &amp;amp; u_{22}\end{bmatrix}=\begin{bmatrix}0 &amp;amp; 1">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/q1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/headIcon.jpg">
+  <link rel="apple-touch-icon" href="/css/images/headIcon.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/headIcon.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-MSBD-5012-MLHomework3" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      MSBD-5012-MLHomework3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/26/MSBD-5012-MLHomework3/" class="article-date">
+	  <time datetime="2018-11-26T03:20:14.000Z" itemprop="datePublished">2018-11-26</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MSBD-5012-Machine-Learning"><a href="#MSBD-5012-Machine-Learning" class="headerlink" title="MSBD 5012: Machine Learning"></a><center>MSBD 5012: Machine Learning</center></h1><h2 id="Homework-3"><a href="#Homework-3" class="headerlink" title="Homework 3"></a><center>Homework 3</center></h2><h2 id="Question-1"><a href="#Question-1" class="headerlink" title="Question 1"></a>Question 1</h2><p><img src="/2018/11/26/MSBD-5012-MLHomework3/q1.jpg" alt=""></p>
+<h3 id="a-Answer"><a href="#a-Answer" class="headerlink" title="(a) Answer:"></a>(a) Answer:</h3><p><img src="/2018/11/26/MSBD-5012-MLHomework3/nn.png" alt=""></p>
+<h4 id="a-1-What-are-the-outputs-of-the-hidden-units"><a href="#a-1-What-are-the-outputs-of-the-hidden-units" class="headerlink" title="a.1 What are the outputs of the hidden units?"></a>a.1 What are the outputs of the hidden units?</h4><p>$<br>\begin{bmatrix}<br>u_{11} &amp; u_{12} \\<br>u_{21} &amp; u_{22}<br>\end{bmatrix}=<br>\begin{bmatrix}<br>0 &amp; 1 \\<br>1 &amp; 1<br>\end{bmatrix}<br>$</p>
+<h4 id="a-2-What-is-the-logit-z-u-21-w-1-3-u-22-w-2-3-calculated-at-the-output-unit"><a href="#a-2-What-is-the-logit-z-u-21-w-1-3-u-22-w-2-3-calculated-at-the-output-unit" class="headerlink" title="a.2 What is the logit $z=u_{21}w_{1}^{(3)}+u_{22}w_2^{(3)}$ calculated at the output unit?"></a>a.2 What is the logit $z=u_{21}w_{1}^{(3)}+u_{22}w_2^{(3)}$ calculated at the output unit?</h4><p>$z=u_{21}w_{1}^{(3)}+u_{22}w_2^{(3)}=1 \times 1 + 1 \times 1 = 2$</p>
+<h4 id="a-3-What-is-the-probability-distribution-of-the-output-unit"><a href="#a-3-What-is-the-probability-distribution-of-the-output-unit" class="headerlink" title="a.3 What is the probability distribution of the output unit?"></a>a.3 What is the probability distribution of the output unit?</h4><p>$P(y | \mathbf{x})=\sigma((2y-1)z)=\sigma(4y-2)$</p>
+<h3 id="b-Answer"><a href="#b-Answer" class="headerlink" title="(b) Answer:"></a>(b) Answer:</h3><h4 id="b-1-What-is-the-error-frac-partial-L-partial-z-for-the-output-unit"><a href="#b-1-What-is-the-error-frac-partial-L-partial-z-for-the-output-unit" class="headerlink" title="b.1 What is the error $\frac{\partial L}{\partial z}$ for the output unit?"></a>b.1 What is the error $\frac{\partial L}{\partial z}$ for the output unit?</h4><p>$\frac{\partial L}{\partial z}=\delta_z=\sigma(z)-y=0.88$</p>
+<h4 id="b2-What-are-the-errors-for-the-hidden-units"><a href="#b2-What-are-the-errors-for-the-hidden-units" class="headerlink" title="b2. What are the errors for the hidden units?"></a>b2. What are the errors for the hidden units?</h4><p>For each hidden unit j: $\delta_j=\frac{\partial u_j}{\partial z_j}\sum_k{W_{kj}\delta_k}$<br>$\Rightarrow$<br>For the second hidden layer:<br>$\delta_{21}=\frac{\partial{u_{21}}}{\partial{z_{21}}} \times (1\times0.88)=0.88$<br>$\delta_{22}=\frac{\partial{u_{22}}}{\partial{z_{22}}} \times (1\times0.88)=0.88$</p>
+<p>For the first hidden layer:<br>$\delta_{11}=\frac{\partial{u_{11}}}{\partial{z_{11}}} \times (-0.88-0.88)=0$<br>$\delta_{12}=\frac{\partial{u_{12}}}{\partial{z_{12}}} \times (0.88+0.88)=1.76$</p>
+<h4 id="b-3-What-are-frac-partial-L-partial-w-22-2-and-frac-partial-L-partial-w-22-1"><a href="#b-3-What-are-frac-partial-L-partial-w-22-2-and-frac-partial-L-partial-w-22-1" class="headerlink" title="b.3 What are $\frac{\partial L}{\partial w_{22}^{(2)}}$ and $\frac{\partial L}{\partial w_{22}^{(1)}}$?"></a>b.3 What are $\frac{\partial L}{\partial w_{22}^{(2)}}$ and $\frac{\partial L}{\partial w_{22}^{(1)}}$?</h4><p>For a weight $W_{ji}$ in a hidden layer: $\frac{\partial L}{\partial W_{ji}}=u_i \delta_j$<br>$\Rightarrow$<br>$\frac{\partial L}{\partial w_{22}^{(2)}}=u_{12} \delta_{22}=1 \times 0.88=0.88$<br>$\frac{\partial L}{\partial w_{22}^{(1)}}=x_2 \delta_{12}=2 \times 1.76=3.52$</p>
+<h4 id="b-4-If-we-want-to-reduce-the-loss-on-the-example-should-we-increase-or-decrease-the-two-parameters"><a href="#b-4-If-we-want-to-reduce-the-loss-on-the-example-should-we-increase-or-decrease-the-two-parameters" class="headerlink" title="b.4 If we want to reduce the loss on the example, should we increase or decrease the two parameters?"></a>b.4 If we want to reduce the loss on the example, should we increase or decrease the two parameters?</h4><p>The following picture shows the judgement:<br><img src="/2018/11/26/MSBD-5012-MLHomework3/judge.jpg" alt="-w596"></p>
+<p>And as we know from the above question:<br>$\frac{\partial L}{\partial w_{22}^{(2)}}=u_{12} \delta_{22}=1 \times 0.88=0.88 \Rightarrow u_{12}&gt;0, \delta_{22}&gt;0 \Rightarrow$ <strong>Decrease</strong> the parameter of $w_{22}^{(2)}$<br>$\frac{\partial L}{\partial w_{22}^{(1)}}=x_2 \delta_{12}=2 \times 1.76=3.52 \Rightarrow x_{2}&gt;0, \delta_{12}&gt;0 \Rightarrow$ <strong>Decrease</strong> the parameter of $w_{22}^{(1)}$</p>
+<h2 id="Question-2"><a href="#Question-2" class="headerlink" title="Question 2"></a>Question 2</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework3/q2.jpg" alt=""></p>
+</blockquote>
+<h3 id="Answer"><a href="#Answer" class="headerlink" title="Answer:"></a>Answer:</h3><p>Sigmoid units are not recommended for hidden units because they saturates (becomes flat, has very small derivative) across most of their domains.<br>However, they are fine as output units because the negative log-likelihood in the cost function helps to avoid the problem:<br><img src="/2018/11/26/MSBD-5012-MLHomework3/cost_func.jpg" alt=""><br>Saturation occurs only when the model already has the right answer: When y=1 and z is very positive, or y=0 and z is very negative.<br><img src="/2018/11/26/MSBD-5012-MLHomework3/softplus.jpg" alt=""></p>
+<h2 id="Question-3"><a href="#Question-3" class="headerlink" title="Question 3"></a>Question 3</h2><blockquote>
+<p>What is dropout used for in deep learning? How does it work? Why does it work? Answer briefly.</p>
+</blockquote>
+<h3 id="What-is-dropout-used-for-in-deep-learning"><a href="#What-is-dropout-used-for-in-deep-learning" class="headerlink" title="What is dropout used for in deep learning?"></a>What is dropout used for in deep learning?</h3><p>It is a regularization method to reduce test error and avoid overfitting for deep learning. </p>
+<h3 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h3><ul>
+<li>It is to be used with minibatch-based algorithms such as SGD.</li>
+<li>For each minibatch,<ul>
+<li>randomly sample values for mask variables</li>
+<li>carry out one step of gradient descent.</li>
+</ul>
+</li>
+<li>There is only one network, no subnetworks. At each step, training is conducted in a part of the network (a subnetwork).</li>
+</ul>
+<h3 id="Why-does-it-work"><a href="#Why-does-it-work" class="headerlink" title="Why does it work?"></a>Why does it work?</h3><p>It reduces overfitting by preventing complex co-adaptations of parameters on training data.</p>
+<h2 id="Question-4"><a href="#Question-4" class="headerlink" title="Question 4"></a>Question 4</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework3/q4.jpg" alt="-w770"></p>
+</blockquote>
+<p>The following picture shows the Adam Algorithm:<br><img src="/2018/11/26/MSBD-5012-MLHomework3/adam.jpg" alt=""></p>
+<p>Adam optimization algorithm is an extension to <em>Stochastic Gradient Descent</em>. It is roughly a combination of <strong>RMSProp</strong> and <strong>Momentum</strong>, with bias correction. </p>
+<p>Adam is different to classical stochastic gradient descent. Stochastic gradient descent maintains a single learning rate for all weight updates and the learning rate does not change during training. However, Adam computes individual adaptive learning rates for different parameters from estimates of first and second moments of the gradients.</p>
+<p>Meanwhile, it realizes the benefits of both <strong>AdaGrad</strong> and <strong>RMSProp</strong>. Instead of adapting the parameter learning rates based on the average first moment (the mean) as in RMSProp, Adam also makes use of the average of the second moments of the gradients (the uncentered variance).</p>
+<p>Specifically, the algorithm calculates an exponential moving average of the gradient and the squared gradient, and the parameters beta1 and beta2 control the decay rates of these moving averages.</p>
+<p>The initial value of the moving averages and beta1 and beta2 values close to 1.0 (recommended) result in a bias of moment estimates towards zero. This bias is overcome by first calculating the biased estimates before then calculating bias-corrected estimates.</p>
+<h2 id="Question-5"><a href="#Question-5" class="headerlink" title="Question 5"></a>Question 5</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework3/q5.jpg" alt=""></p>
+</blockquote>
+<p>From the question we can get the following data:<br>$W1=27, H1=27, D1=256$<br>$F=3, S=1, P=0, K=384$</p>
+<h3 id="What-is-the-shape-of-the-output-of-the-layer？"><a href="#What-is-the-shape-of-the-output-of-the-layer？" class="headerlink" title="What is the shape of the output of the layer？"></a>What is the shape of the output of the layer？</h3><p>$W2=(W1-F+2P)/S+1=25$<br>$H2=(H1-F+2P)/S+1=25$<br>$D2=K=384$<br>Thus, we can get the shape of:<br>$25\times25\times384$ (width, height, depth)</p>
+<h3 id="How-many-parameters-are-there"><a href="#How-many-parameters-are-there" class="headerlink" title="How many parameters are there?"></a>How many parameters are there?</h3><p>$ (FFD1+1)K=(3 \times 3 \times 256 + 1) \times 384 = 885120$</p>
+<h3 id="How-many-float-multiplication-operations-it-will-take-to-compute-the-net-inputs-of-the-all-the-output-units"><a href="#How-many-float-multiplication-operations-it-will-take-to-compute-the-net-inputs-of-the-all-the-output-units" class="headerlink" title="How many float multiplication operations it will take to compute the net inputs of the all the output units?"></a>How many float multiplication operations it will take to compute the net inputs of the all the output units?</h3><p>$ (FFD1 \times W2H2 \times K) = 3 \times 3 \times 256 \times 25 \times 25 \times 384 = 552960000$</p>
+<h2 id="Question-6"><a href="#Question-6" class="headerlink" title="Question 6"></a>Question 6</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework3/q6.jpg" alt=""></p>
+</blockquote>
+<h3 id="a"><a href="#a" class="headerlink" title="(a)"></a>(a)</h3><p>Yes, it is a good idea to apply dropout to a Convolutional Network because dropout is widely used to solve the problems of overfitting in CNN. </p>
+<p>We should apply dropout to the Fully Connected Layers in CNN because the parameters density in the Fully Connected Layers is very high which  may lead to the problems of overfitting.</p>
+<p>The following picture shows the dropout on CNN Fully Connected Layer.<br><img src="/2018/11/26/MSBD-5012-MLHomework3/dropout_cnn.jpg" alt=""></p>
+<h3 id="b"><a href="#b" class="headerlink" title="(b)"></a>(b)</h3><p>As for RNN, it depends on the situation.</p>
+<p>The following pictures show the two dropout technique for RNN.<br><img src="/2018/11/26/MSBD-5012-MLHomework3/dropout_rnn.jpg" alt=""></p>
+<ul>
+<li><p>Naive Dropout RNN<br>   It is not a good idea to apply dropout to recurrent layers (connections between RNN units) because noise will be amplified for long sequences and drown the signal.</p>
+<p>However, we can apply dropout mask at each time step for inputs, outputs and hidden layers. It looks like the connections with different colours in picture (a). The dashed lines represent the connections with no dropout.</p>
+</li>
+<li><p>Variational RNN<br>  Picture (b) shows the Variational RNN with Bayesian technique. It uses the same dropout mask between recurrent layers (connections between RNN units). Meanwhile, it applies the same dropout mask for all the inputs, outputs and hidden layers, <strong>respectively</strong>.</p>
+</li>
+</ul>
+<h2 id="Question-7"><a href="#Question-7" class="headerlink" title="Question 7"></a>Question 7</h2><blockquote>
+<p><img src="/2018/11/26/MSBD-5012-MLHomework3/q7.jpg" alt=""></p>
+</blockquote>
+<h3 id="a-1"><a href="#a-1" class="headerlink" title="(a)"></a>(a)</h3><p>$f_t$ determines which components of the previous state and how much of them to remember/forget.</p>
+<p>$i_t$ determines which components of the input from $h^{(t-1)}$ and $x^{(t)}$ and how much of them should go into the current state.</p>
+<h3 id="b-1"><a href="#b-1" class="headerlink" title="(b)"></a>(b)</h3><p>Sigmoid activation function is used for the gates so that their values are often close to 0 or 1. However, tanh is used for the output $h^{(t)}$ and memory cell $c_t$ so as to have strong gradient signal during back propagation.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/wechat_pay.png?raw=true',
+  alipayImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/alipay.png?raw=true'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2018/11/26/MSBD-5012-MLHomework3/" target="_blank" title="MSBD-5012-MLHomework3">http://yoursite.com/2018/11/26/MSBD-5012-MLHomework3/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/11/SparkMongoDB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SparkMongoDB
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/26/MSBD-5012-MLHomework2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MSBD-5012-MLHomework2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MSBD-5012-Machine-Learning"><span class="nav-number">1.</span> <span class="nav-text">MSBD 5012: Machine Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Homework-3"><span class="nav-number">1.1.</span> <span class="nav-text">Homework 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-1"><span class="nav-number">1.2.</span> <span class="nav-text">Question 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-Answer"><span class="nav-number">1.2.1.</span> <span class="nav-text">(a) Answer:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-1-What-are-the-outputs-of-the-hidden-units"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">a.1 What are the outputs of the hidden units?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#a-2-What-is-the-logit-z-u-21-w-1-3-u-22-w-2-3-calculated-at-the-output-unit"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">a.2 What is the logit $z=u_{21}w_{1}^{(3)}+u_{22}w_2^{(3)}$ calculated at the output unit?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#a-3-What-is-the-probability-distribution-of-the-output-unit"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">a.3 What is the probability distribution of the output unit?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-Answer"><span class="nav-number">1.2.2.</span> <span class="nav-text">(b) Answer:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#b-1-What-is-the-error-frac-partial-L-partial-z-for-the-output-unit"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">b.1 What is the error $\frac{\partial L}{\partial z}$ for the output unit?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b2-What-are-the-errors-for-the-hidden-units"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">b2. What are the errors for the hidden units?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-3-What-are-frac-partial-L-partial-w-22-2-and-frac-partial-L-partial-w-22-1"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">b.3 What are $\frac{\partial L}{\partial w_{22}^{(2)}}$ and $\frac{\partial L}{\partial w_{22}^{(1)}}$?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-4-If-we-want-to-reduce-the-loss-on-the-example-should-we-increase-or-decrease-the-two-parameters"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">b.4 If we want to reduce the loss on the example, should we increase or decrease the two parameters?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-2"><span class="nav-number">1.3.</span> <span class="nav-text">Question 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer"><span class="nav-number">1.3.1.</span> <span class="nav-text">Answer:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-3"><span class="nav-number">1.4.</span> <span class="nav-text">Question 3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-dropout-used-for-in-deep-learning"><span class="nav-number">1.4.1.</span> <span class="nav-text">What is dropout used for in deep learning?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-does-it-work"><span class="nav-number">1.4.2.</span> <span class="nav-text">How does it work?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-does-it-work"><span class="nav-number">1.4.3.</span> <span class="nav-text">Why does it work?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-4"><span class="nav-number">1.5.</span> <span class="nav-text">Question 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-5"><span class="nav-number">1.6.</span> <span class="nav-text">Question 5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-shape-of-the-output-of-the-layer？"><span class="nav-number">1.6.1.</span> <span class="nav-text">What is the shape of the output of the layer？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-many-parameters-are-there"><span class="nav-number">1.6.2.</span> <span class="nav-text">How many parameters are there?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-many-float-multiplication-operations-it-will-take-to-compute-the-net-inputs-of-the-all-the-output-units"><span class="nav-number">1.6.3.</span> <span class="nav-text">How many float multiplication operations it will take to compute the net inputs of the all the output units?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-6"><span class="nav-number">1.7.</span> <span class="nav-text">Question 6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a"><span class="nav-number">1.7.1.</span> <span class="nav-text">(a)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b"><span class="nav-number">1.7.2.</span> <span class="nav-text">(b)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question-7"><span class="nav-number">1.8.</span> <span class="nav-text">Question 7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-1"><span class="nav-number">1.8.1.</span> <span class="nav-text">(a)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-1"><span class="nav-number">1.8.2.</span> <span class="nav-text">(b)</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 Dojo All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dojo
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 Dojo All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+</body>
+</html>

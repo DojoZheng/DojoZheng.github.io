@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>图片聚类 | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Career" />
+  
+  
+  
+  
+  <meta name="description" content="Unsupervised learning of Images SegmentationPreparationImport Packages &amp;amp; Files12345678910111213141516# Magic functions% matplotlib inlineimport timeimport os, os.pathimport randomimport cv2import">
+<meta name="keywords" content="Career">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图片聚类">
+<meta property="og:url" content="http://yoursite.com/2019/10/02/图片聚类/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Unsupervised learning of Images SegmentationPreparationImport Packages &amp;amp; Files12345678910111213141516# Magic functions% matplotlib inlineimport timeimport os, os.pathimport randomimport cv2import">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/10/02/图片聚类/output_33_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/02/图片聚类/output_36_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/02/图片聚类/output_38_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/02/图片聚类/output_40_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/02/图片聚类/output_45_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/02/图片聚类/output_49_1.png">
+<meta property="og:updated_time" content="2019-10-07T06:40:45.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图片聚类">
+<meta name="twitter:description" content="Unsupervised learning of Images SegmentationPreparationImport Packages &amp;amp; Files12345678910111213141516# Magic functions% matplotlib inlineimport timeimport os, os.pathimport randomimport cv2import">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/02/图片聚类/output_33_0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/headIcon.jpg">
+  <link rel="apple-touch-icon" href="/css/images/headIcon.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/headIcon.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-图片聚类" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      图片聚类
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/10/02/图片聚类/" class="article-date">
+	  <time datetime="2019-10-02T02:19:07.000Z" itemprop="datePublished">2019-10-02</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Unsupervised-learning-of-Images-Segmentation"><a href="#Unsupervised-learning-of-Images-Segmentation" class="headerlink" title="Unsupervised learning of Images Segmentation"></a>Unsupervised learning of Images Segmentation</h1><h2 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h2><h3 id="Import-Packages-amp-Files"><a href="#Import-Packages-amp-Files" class="headerlink" title="Import Packages &amp; Files"></a>Import Packages &amp; Files</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Magic functions</span></span><br><span class="line">% matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os, os.path</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># PIL</span></span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br></pre></td></tr></table></figure>
+<h3 id="Load-images"><a href="#Load-images" class="headerlink" title="Load images"></a>Load images</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import images</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadImageNames</span><span class="params">(dir_path)</span>:</span></span><br><span class="line">    images_dict = []</span><br><span class="line">    file_names = [file <span class="keyword">for</span> file <span class="keyword">in</span> os.listdir(dir_path)]</span><br><span class="line">    file_names.sort(reverse=<span class="keyword">False</span>)</span><br><span class="line">    file_count = len(file_names)</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> file_names:</span><br><span class="line">        images_dict.append(&#123;<span class="string">"names"</span>: name&#125;)</span><br><span class="line">    </span><br><span class="line">    df = pd.DataFrame(images_dict)</span><br><span class="line">    <span class="keyword">return</span> df</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img_dir_path = <span class="string">'./images'</span></span><br><span class="line">img_names_df = loadImageNames(img_dir_path)</span><br><span class="line">img_names_df.head()</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>names</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00000.jpg</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00001.jpg</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00002.jpg</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00003.jpg</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00004.jpg</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="Features-extraction-by-CovNets"><a href="#Features-extraction-by-CovNets" class="headerlink" title="Features extraction by CovNets"></a>Features extraction by CovNets</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Keras</span></span><br><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing <span class="keyword">import</span> image <span class="keyword">as</span> KerasImage</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predictImages</span><span class="params">(model, size, preprocess, decode_pred)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Description: This function is mainly for predicting the types of the images</span></span><br><span class="line"><span class="string">    Parameters:</span></span><br><span class="line"><span class="string">        @model: the CovNet model used for prediction</span></span><br><span class="line"><span class="string">        @size:  the size of the image for the ConNet</span></span><br><span class="line"><span class="string">        @preprocess: the specific 'preprocess_input' function of the CovNet</span></span><br><span class="line"><span class="string">        @decode_pred: the specific 'decode_prediction' function of the CovNet</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    preds_arr = []</span><br><span class="line">    n = len(img_names_df)</span><br><span class="line">    n = <span class="number">10</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># time calculation</span></span><br><span class="line">    start = time.time()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> img_names_df[<span class="string">'names'</span>][:n]:</span><br><span class="line">        <span class="comment"># Load the image</span></span><br><span class="line">        path = os.path.join(img_dir_path, name)</span><br><span class="line">        img = KerasImage.load_img(path, target_size=(size, size))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Preprocess the image</span></span><br><span class="line">        x = KerasImage.img_to_array(img)</span><br><span class="line">        x = np.expand_dims(x, axis=<span class="number">0</span>)</span><br><span class="line">        x = preprocess(x)</span><br><span class="line"></span><br><span class="line">        preds = model.predict(x)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Add the prediction to dataframe</span></span><br><span class="line">        row = []</span><br><span class="line">        <span class="keyword">for</span> result <span class="keyword">in</span> decode_pred(preds, top=<span class="number">3</span>)[<span class="number">0</span>]:</span><br><span class="line">            <span class="comment"># append class name</span></span><br><span class="line">            row.append(result[<span class="number">1</span>])</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># append class prediction probability</span></span><br><span class="line">            row.append(result[<span class="number">2</span>])</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># Add row to the prediction array</span></span><br><span class="line">        preds_arr.append(row)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># total time</span></span><br><span class="line">    end = time.time()</span><br><span class="line">    print(<span class="string">"Prediction time: &#123;&#125;"</span>.format(end - start))</span><br><span class="line">    </span><br><span class="line">     <span class="comment"># transform to DataFrame</span></span><br><span class="line">    indice = list(img_names_df[<span class="string">'names'</span>].str.replace(<span class="string">".jpg"</span>, <span class="string">""</span>))</span><br><span class="line">    columns = [<span class="string">"class1"</span>, <span class="string">"P(class1)"</span>, <span class="string">"class2"</span>, <span class="string">"P(class2)"</span>, <span class="string">"class3"</span>, <span class="string">"P(class3)"</span>]</span><br><span class="line">    preds_df = pd.DataFrame(preds_arr, index=indice[:n], columns=columns)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> preds_df</span><br></pre></td></tr></table></figure>
+<pre><code>Using TensorFlow backend.
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">featuresExtraction</span><span class="params">(model, size, preprocess)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Description: This function is mainly for features extraction of the images</span></span><br><span class="line"><span class="string">    Parameters:</span></span><br><span class="line"><span class="string">        @model: the CovNet model used for prediction</span></span><br><span class="line"><span class="string">        @size:  the size of the image for the ConNet</span></span><br><span class="line"><span class="string">        @preprocess: the specific 'preprocess_input' function of the CovNet</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    features_arr = []</span><br><span class="line">    n = len(img_names_df)</span><br><span class="line"><span class="comment">#     n = 10</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># time calculation</span></span><br><span class="line">    start = time.time()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> img_names_df[<span class="string">'names'</span>][:n]:</span><br><span class="line">        <span class="comment"># Load the image</span></span><br><span class="line">        path = os.path.join(img_dir_path, name)</span><br><span class="line">        img = KerasImage.load_img(path, target_size=(size, size))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Preprocess the image</span></span><br><span class="line">        x = KerasImage.img_to_array(img)</span><br><span class="line">        x = np.expand_dims(x, axis=<span class="number">0</span>)</span><br><span class="line">        x = preprocess(x)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Extract features</span></span><br><span class="line">        features = model.predict(x)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Flatten the array</span></span><br><span class="line">        flat_features = features.flatten()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Add the features to array</span></span><br><span class="line">        features_arr.append(flat_features)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># get the total time</span></span><br><span class="line">    end = time.time()</span><br><span class="line">    total_minutes = float(end - start) / <span class="number">60.</span></span><br><span class="line">    print(<span class="string">"Features extraction minutes: &#123;&#125;"</span>.format(total_minutes))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># transform the array to dataframe</span></span><br><span class="line"><span class="comment">#     features_df = pd.DataFrame(features_arr)</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> features_arr</span><br></pre></td></tr></table></figure>
+<h3 id="VGG16"><a href="#VGG16" class="headerlink" title="VGG16"></a>VGG16</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import modules</span></span><br><span class="line"><span class="keyword">from</span> keras.applications.vgg16 <span class="keyword">import</span> decode_predictions <span class="keyword">as</span> vgg16_decode</span><br><span class="line"><span class="keyword">from</span> keras.applications.vgg16 <span class="keyword">import</span> preprocess_input <span class="keyword">as</span> vgg16_preprocess</span><br><span class="line"><span class="keyword">from</span> keras.applications.vgg16 <span class="keyword">import</span> VGG16</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the size</span></span><br><span class="line">vgg16_size = <span class="number">224</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Predict the images' class</span></span><br><span class="line">vgg16_predictor = VGG16(include_top=<span class="keyword">True</span>, weights=<span class="string">'imagenet'</span>)</span><br><span class="line">vgg16_predictions = predictImages(model=vgg16_predictor,</span><br><span class="line">                                   size=vgg16_size,</span><br><span class="line">                                   preprocess=vgg16_preprocess,</span><br><span class="line">                                   decode_pred=vgg16_decode)</span><br><span class="line">display(vgg16_predictions)</span><br></pre></td></tr></table></figure>
+<pre><code>Downloading data from https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_tf_dim_ordering_tf_kernels.h5
+553467904/553467096 [==============================] - 481s 1us/step
+</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class1</th>
+      <th>P(class1)</th>
+      <th>class2</th>
+      <th>P(class2)</th>
+      <th>class3</th>
+      <th>P(class3)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>00000</th>
+      <td>peacock</td>
+      <td>0.377568</td>
+      <td>vulture</td>
+      <td>0.232632</td>
+      <td>black_stork</td>
+      <td>0.100799</td>
+    </tr>
+    <tr>
+      <th>00001</th>
+      <td>patio</td>
+      <td>0.446481</td>
+      <td>boathouse</td>
+      <td>0.207077</td>
+      <td>canoe</td>
+      <td>0.056574</td>
+    </tr>
+    <tr>
+      <th>00002</th>
+      <td>goose</td>
+      <td>0.124013</td>
+      <td>Indian_cobra</td>
+      <td>0.113438</td>
+      <td>drake</td>
+      <td>0.066087</td>
+    </tr>
+    <tr>
+      <th>00003</th>
+      <td>canoe</td>
+      <td>0.870046</td>
+      <td>sandbar</td>
+      <td>0.033237</td>
+      <td>paddle</td>
+      <td>0.025013</td>
+    </tr>
+    <tr>
+      <th>00004</th>
+      <td>electric_guitar</td>
+      <td>0.098362</td>
+      <td>shopping_basket</td>
+      <td>0.071063</td>
+      <td>shopping_cart</td>
+      <td>0.070547</td>
+    </tr>
+    <tr>
+      <th>00005</th>
+      <td>ruffed_grouse</td>
+      <td>0.162827</td>
+      <td>jay</td>
+      <td>0.120861</td>
+      <td>quail</td>
+      <td>0.119565</td>
+    </tr>
+    <tr>
+      <th>00006</th>
+      <td>bearskin</td>
+      <td>0.126168</td>
+      <td>bubble</td>
+      <td>0.043872</td>
+      <td>gong</td>
+      <td>0.036369</td>
+    </tr>
+    <tr>
+      <th>00007</th>
+      <td>space_heater</td>
+      <td>0.397165</td>
+      <td>radiator</td>
+      <td>0.130882</td>
+      <td>printer</td>
+      <td>0.031022</td>
+    </tr>
+    <tr>
+      <th>00008</th>
+      <td>Siamese_cat</td>
+      <td>0.997221</td>
+      <td>Egyptian_cat</td>
+      <td>0.002413</td>
+      <td>Chihuahua</td>
+      <td>0.000187</td>
+    </tr>
+    <tr>
+      <th>00009</th>
+      <td>drilling_platform</td>
+      <td>0.491829</td>
+      <td>fireboat</td>
+      <td>0.204176</td>
+      <td>container_ship</td>
+      <td>0.052577</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Features extraction</span></span><br><span class="line">vgg16_transformer = VGG16(weights=<span class="string">"imagenet"</span>, include_top=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vgg16_features = featuresExtraction(vgg16_transformer, vgg16_size, vgg16_preprocess)</span><br></pre></td></tr></table></figure>
+<h3 id="ResNet50"><a href="#ResNet50" class="headerlink" title="ResNet50"></a>ResNet50</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import modules</span></span><br><span class="line"><span class="keyword">from</span> keras.applications.resnet50 <span class="keyword">import</span> ResNet50</span><br><span class="line"><span class="keyword">from</span> keras.applications.resnet50 <span class="keyword">import</span> preprocess_input <span class="keyword">as</span> resnet_preprocess</span><br><span class="line"><span class="keyword">from</span> keras.applications.resnet50 <span class="keyword">import</span> decode_predictions <span class="keyword">as</span> resnet_decode</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the image size</span></span><br><span class="line">resnet_size = <span class="number">224</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Predict the images' class</span></span><br><span class="line">resnet_predictor = ResNet50(include_top=<span class="keyword">True</span>, weights=<span class="string">'imagenet'</span>)</span><br><span class="line">resnet_predictions = predictImages(model=resnet_predictor,</span><br><span class="line">                                   size=resnet_size,</span><br><span class="line">                                   preprocess=resnet_preprocess,</span><br><span class="line">                                   decode_pred=resnet_decode)</span><br><span class="line">display(resnet_predictions)</span><br></pre></td></tr></table></figure>
+<pre><code>Prediction time: 1.57790207862854
+</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class1</th>
+      <th>P(class1)</th>
+      <th>class2</th>
+      <th>P(class2)</th>
+      <th>class3</th>
+      <th>P(class3)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>00000</th>
+      <td>black_stork</td>
+      <td>0.312974</td>
+      <td>vulture</td>
+      <td>0.126175</td>
+      <td>koala</td>
+      <td>0.110224</td>
+    </tr>
+    <tr>
+      <th>00001</th>
+      <td>barrow</td>
+      <td>0.371255</td>
+      <td>grand_piano</td>
+      <td>0.210058</td>
+      <td>patio</td>
+      <td>0.141288</td>
+    </tr>
+    <tr>
+      <th>00002</th>
+      <td>slug</td>
+      <td>0.734239</td>
+      <td>boa_constrictor</td>
+      <td>0.040971</td>
+      <td>quail</td>
+      <td>0.036241</td>
+    </tr>
+    <tr>
+      <th>00003</th>
+      <td>canoe</td>
+      <td>0.634652</td>
+      <td>paddle</td>
+      <td>0.220948</td>
+      <td>speedboat</td>
+      <td>0.089380</td>
+    </tr>
+    <tr>
+      <th>00004</th>
+      <td>shopping_cart</td>
+      <td>0.151699</td>
+      <td>shopping_basket</td>
+      <td>0.097454</td>
+      <td>spatula</td>
+      <td>0.090211</td>
+    </tr>
+    <tr>
+      <th>00005</th>
+      <td>African_grey</td>
+      <td>0.645125</td>
+      <td>mongoose</td>
+      <td>0.078653</td>
+      <td>eel</td>
+      <td>0.044929</td>
+    </tr>
+    <tr>
+      <th>00006</th>
+      <td>cowboy_hat</td>
+      <td>0.231403</td>
+      <td>abaya</td>
+      <td>0.128040</td>
+      <td>harmonica</td>
+      <td>0.041996</td>
+    </tr>
+    <tr>
+      <th>00007</th>
+      <td>groenendael</td>
+      <td>0.510088</td>
+      <td>schipperke</td>
+      <td>0.132408</td>
+      <td>radiator</td>
+      <td>0.076450</td>
+    </tr>
+    <tr>
+      <th>00008</th>
+      <td>Siamese_cat</td>
+      <td>0.995259</td>
+      <td>window_screen</td>
+      <td>0.002817</td>
+      <td>Egyptian_cat</td>
+      <td>0.001019</td>
+    </tr>
+    <tr>
+      <th>00009</th>
+      <td>drilling_platform</td>
+      <td>0.962140</td>
+      <td>container_ship</td>
+      <td>0.008455</td>
+      <td>liner</td>
+      <td>0.006559</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Features extraction</span></span><br><span class="line">resnet_transformer = ResNet50(weights=<span class="string">"imagenet"</span>, include_top=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>/Users/zhengdongjia/anaconda2/envs/tensorflow/lib/python3.5/site-packages/keras_applications/resnet50.py:263: UserWarning: The output shape of `ResNet50(include_top=False)` has been changed since Keras 2.2.0.
+  warnings.warn(&#39;The output shape of `ResNet50(include_top=False)` &#39;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resnet_features = featuresExtraction(resnet_transformer, resnet_size, resnet_preprocess)</span><br></pre></td></tr></table></figure>
+<pre><code>Features extraction minutes: 9.532294698556264
+</code></pre><h3 id="Xception"><a href="#Xception" class="headerlink" title="Xception"></a>Xception</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import modules</span></span><br><span class="line"><span class="keyword">from</span> keras.applications.xception <span class="keyword">import</span> Xception</span><br><span class="line"><span class="keyword">from</span> keras.applications.xception <span class="keyword">import</span> preprocess_input <span class="keyword">as</span> xception_preprocess</span><br><span class="line"><span class="keyword">from</span> keras.applications.xception <span class="keyword">import</span> decode_predictions <span class="keyword">as</span> xception_decode</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the image size</span></span><br><span class="line">xception_size = <span class="number">299</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Predict the images' class</span></span><br><span class="line">xception_predictor = Xception(include_top=<span class="keyword">True</span>, weights=<span class="string">'imagenet'</span>)</span><br><span class="line">xception_predictions = predictImages(model=xception_predictor,</span><br><span class="line">                                   size=xception_size,</span><br><span class="line">                                   preprocess=xception_preprocess,</span><br><span class="line">                                   decode_pred=xception_decode)</span><br><span class="line">display(xception_predictions)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class1</th>
+      <th>P(class1)</th>
+      <th>class2</th>
+      <th>P(class2)</th>
+      <th>class3</th>
+      <th>P(class3)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>00000</th>
+      <td>black_stork</td>
+      <td>0.281189</td>
+      <td>limpkin</td>
+      <td>0.138756</td>
+      <td>white_stork</td>
+      <td>0.137013</td>
+    </tr>
+    <tr>
+      <th>00001</th>
+      <td>patio</td>
+      <td>0.507141</td>
+      <td>horse_cart</td>
+      <td>0.101965</td>
+      <td>oxcart</td>
+      <td>0.070453</td>
+    </tr>
+    <tr>
+      <th>00002</th>
+      <td>kite</td>
+      <td>0.734416</td>
+      <td>goldfinch</td>
+      <td>0.020303</td>
+      <td>macaw</td>
+      <td>0.013203</td>
+    </tr>
+    <tr>
+      <th>00003</th>
+      <td>speedboat</td>
+      <td>0.366849</td>
+      <td>paddle</td>
+      <td>0.304516</td>
+      <td>canoe</td>
+      <td>0.056017</td>
+    </tr>
+    <tr>
+      <th>00004</th>
+      <td>shopping_basket</td>
+      <td>0.543007</td>
+      <td>hamper</td>
+      <td>0.077754</td>
+      <td>tricycle</td>
+      <td>0.045767</td>
+    </tr>
+    <tr>
+      <th>00005</th>
+      <td>African_grey</td>
+      <td>0.668332</td>
+      <td>vulture</td>
+      <td>0.091122</td>
+      <td>albatross</td>
+      <td>0.025742</td>
+    </tr>
+    <tr>
+      <th>00006</th>
+      <td>schipperke</td>
+      <td>0.066566</td>
+      <td>American_black_bear</td>
+      <td>0.048919</td>
+      <td>prison</td>
+      <td>0.021901</td>
+    </tr>
+    <tr>
+      <th>00007</th>
+      <td>space_heater</td>
+      <td>0.885888</td>
+      <td>Egyptian_cat</td>
+      <td>0.017458</td>
+      <td>printer</td>
+      <td>0.014848</td>
+    </tr>
+    <tr>
+      <th>00008</th>
+      <td>Siamese_cat</td>
+      <td>0.939057</td>
+      <td>window_screen</td>
+      <td>0.006235</td>
+      <td>doormat</td>
+      <td>0.003726</td>
+    </tr>
+    <tr>
+      <th>00009</th>
+      <td>drilling_platform</td>
+      <td>0.485906</td>
+      <td>aircraft_carrier</td>
+      <td>0.112375</td>
+      <td>container_ship</td>
+      <td>0.088699</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Features extraction</span></span><br><span class="line">xception_transformer = Xception(weights=<span class="string">"imagenet"</span>, include_top=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xception_features = featuresExtraction(xception_transformer, xception_size, xception_preprocess)</span><br><span class="line">print(xception_features[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>Features extraction minutes: 15.042704033851624
+[0. 0. 0. ... 0. 0. 0.]
+</code></pre><h3 id="InceptionResNetV2"><a href="#InceptionResNetV2" class="headerlink" title="InceptionResNetV2"></a>InceptionResNetV2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import modules</span></span><br><span class="line"><span class="keyword">from</span> keras.applications.inception_resnet_v2 <span class="keyword">import</span> InceptionResNetV2</span><br><span class="line"><span class="keyword">from</span> keras.applications.inception_resnet_v2 <span class="keyword">import</span> preprocess_input <span class="keyword">as</span> inception_preprocess</span><br><span class="line"><span class="keyword">from</span> keras.applications.inception_resnet_v2 <span class="keyword">import</span> decode_predictions <span class="keyword">as</span> inception_decode</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the image size</span></span><br><span class="line">inception_size = <span class="number">299</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Predict the images' class</span></span><br><span class="line">inception_predictor = InceptionResNetV2(include_top=<span class="keyword">True</span>, weights=<span class="string">'imagenet'</span>)</span><br><span class="line">inception_predictions = predictImages(model=inception_predictor,</span><br><span class="line">                                   size=inception_size,</span><br><span class="line">                                   preprocess=inception_preprocess,</span><br><span class="line">                                   decode_pred=inception_decode)</span><br><span class="line">display(inception_predictions)</span><br></pre></td></tr></table></figure>
+<pre><code>Prediction time: 16.088445901870728
+</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class1</th>
+      <th>P(class1)</th>
+      <th>class2</th>
+      <th>P(class2)</th>
+      <th>class3</th>
+      <th>P(class3)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>00000</th>
+      <td>limpkin</td>
+      <td>0.354209</td>
+      <td>redshank</td>
+      <td>0.184044</td>
+      <td>black_stork</td>
+      <td>0.116822</td>
+    </tr>
+    <tr>
+      <th>00001</th>
+      <td>patio</td>
+      <td>0.934444</td>
+      <td>restaurant</td>
+      <td>0.018608</td>
+      <td>lakeside</td>
+      <td>0.009297</td>
+    </tr>
+    <tr>
+      <th>00002</th>
+      <td>brambling</td>
+      <td>0.258900</td>
+      <td>goldfinch</td>
+      <td>0.257969</td>
+      <td>kite</td>
+      <td>0.090909</td>
+    </tr>
+    <tr>
+      <th>00003</th>
+      <td>speedboat</td>
+      <td>0.198967</td>
+      <td>paddle</td>
+      <td>0.109394</td>
+      <td>sandbar</td>
+      <td>0.104126</td>
+    </tr>
+    <tr>
+      <th>00004</th>
+      <td>power_drill</td>
+      <td>0.211188</td>
+      <td>shopping_basket</td>
+      <td>0.189919</td>
+      <td>screwdriver</td>
+      <td>0.143631</td>
+    </tr>
+    <tr>
+      <th>00005</th>
+      <td>African_grey</td>
+      <td>0.957284</td>
+      <td>vulture</td>
+      <td>0.007387</td>
+      <td>albatross</td>
+      <td>0.001660</td>
+    </tr>
+    <tr>
+      <th>00006</th>
+      <td>cowboy_hat</td>
+      <td>0.593928</td>
+      <td>ox</td>
+      <td>0.192778</td>
+      <td>worm_fence</td>
+      <td>0.035793</td>
+    </tr>
+    <tr>
+      <th>00007</th>
+      <td>space_heater</td>
+      <td>0.958563</td>
+      <td>radiator</td>
+      <td>0.003036</td>
+      <td>electric_fan</td>
+      <td>0.000789</td>
+    </tr>
+    <tr>
+      <th>00008</th>
+      <td>Siamese_cat</td>
+      <td>0.906933</td>
+      <td>Egyptian_cat</td>
+      <td>0.001990</td>
+      <td>lynx</td>
+      <td>0.000994</td>
+    </tr>
+    <tr>
+      <th>00009</th>
+      <td>drilling_platform</td>
+      <td>0.894426</td>
+      <td>aircraft_carrier</td>
+      <td>0.033702</td>
+      <td>container_ship</td>
+      <td>0.025612</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inception_transformer = InceptionResNetV2(weights=<span class="string">"imagenet"</span>, include_top=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">inception_features = featuresExtraction(inception_transformer, inception_size, inception_preprocess)</span><br><span class="line">display(inception_features.head())</span><br></pre></td></tr></table></figure>
+<pre><code>Features extraction minutes: 23.43153581619263
+</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>98294</th>
+      <th>98295</th>
+      <th>98296</th>
+      <th>98297</th>
+      <th>98298</th>
+      <th>98299</th>
+      <th>98300</th>
+      <th>98301</th>
+      <th>98302</th>
+      <th>98303</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.161820</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>1.205772</td>
+      <td>0.000000</td>
+      <td>1.876668</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.511738</td>
+      <td>0.000000</td>
+      <td>0.097872</td>
+      <td>1.742356</td>
+      <td>0.101525</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.531742</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.135945</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.348137</td>
+      <td>0.967040</td>
+      <td>0.000000</td>
+      <td>0.276122</td>
+      <td>0.876260</td>
+      <td>0.243328</td>
+      <td>0.000000</td>
+      <td>0.675683</td>
+      <td>1.031659</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.154089</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.203061</td>
+      <td>0.000000</td>
+      <td>0.124394</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.210872</td>
+      <td>0.173454</td>
+      <td>0.000000</td>
+      <td>0.160510</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000000</td>
+      <td>0.293457</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>1.365147</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>1.020301</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.206946</td>
+      <td>0.000000</td>
+      <td>0.079383</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 98304 columns</p>
+</div>
+
+
+<h2 id="Dimensions-Reduction"><a href="#Dimensions-Reduction" class="headerlink" title="Dimensions Reduction"></a>Dimensions Reduction</h2><p>Since there are still many features after features extraction, I will try to apply PCA to reduce the dimensions.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pca_transform</span><span class="params">(features_df, n_components=None)</span>:</span></span><br><span class="line">    <span class="comment"># PCA transformation</span></span><br><span class="line">    pca = PCA(n_components=n_components, random_state=<span class="number">728</span>)</span><br><span class="line">    output = pca.fit_transform(features_df)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># plot the cumulative explained variance plot</span></span><br><span class="line">    plt.plot(np.cumsum(pca.explained_variance_ratio_))</span><br><span class="line">    plt.xlabel(<span class="string">'number of components'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'cumulative explained variance'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> pca, output</span><br></pre></td></tr></table></figure>
+<h3 id="InceptionResNetV2-1"><a href="#InceptionResNetV2-1" class="headerlink" title="InceptionResNetV2"></a>InceptionResNetV2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">inception_pca, inception_pca_features = pca_transform(inception_features)</span><br><span class="line">inception_pca_df = pd.DataFrame(inception_pca_features)</span><br><span class="line">inception_pca_df.shape</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/02/图片聚类/output_33_0.png" alt=""></p>
+<pre><code>(5011, 5011)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># store to file</span></span><br><span class="line">inception_pca_df.to_csv(<span class="string">"inception_pca.csv"</span>, index=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="ResNet50-1"><a href="#ResNet50-1" class="headerlink" title="ResNet50"></a>ResNet50</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resnet_pca, resnet_pca_features = pca_transform(resnet_features)</span><br><span class="line">resnet_pca_df = pd.DataFrame(resnet_pca_features)</span><br><span class="line">resnet_pca_df.shape</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/02/图片聚类/output_36_0.png" alt=""></p>
+<pre><code>(5011, 5011)
+</code></pre><h3 id="VGG16-1"><a href="#VGG16-1" class="headerlink" title="VGG16"></a>VGG16</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vgg16_pca, vgg16_pca_features = pca_transform(vgg16_features)</span><br><span class="line">vgg16_pca_df = pd.DataFrame(vgg16_pca_features)</span><br><span class="line">vgg16_pca_df.shape</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/02/图片聚类/output_38_0.png" alt=""></p>
+<pre><code>(5011, 5011)
+</code></pre><h3 id="Xception-1"><a href="#Xception-1" class="headerlink" title="Xception"></a>Xception</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xception_pca, xception_pca_features = pca_transform(xception_features)</span><br><span class="line">xception_pca_df = pd.DataFrame(xception_pca_features)</span><br><span class="line">xception_pca_df.shape</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/02/图片聚类/output_40_0.png" alt=""></p>
+<pre><code>(5011, 5011)
+</code></pre><h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><h3 id="Find-out-the-suitable-CovNet-amp-K-value"><a href="#Find-out-the-suitable-CovNet-amp-K-value" class="headerlink" title="Find out the suitable CovNet &amp; K value"></a>Find out the suitable CovNet &amp; K value</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.mixture <span class="keyword">import</span> GaussianMixture</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> silhouette_score</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">silhouetteScore</span><span class="params">(dimension, pca_data, k_range)</span>:</span></span><br><span class="line">    <span class="comment"># Select the top N features</span></span><br><span class="line">    train_data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(pca_data)):</span><br><span class="line">        train_data.append(pca_data[i][:dimension])</span><br><span class="line"></span><br><span class="line">    train_data = np.array(train_data)</span><br><span class="line">    print(train_data.shape)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Get the silhouette score list</span></span><br><span class="line">    silhouette_list = []</span><br><span class="line">    print(<span class="string">"\n### Using the method of KMeans:"</span>)</span><br><span class="line">    <span class="keyword">for</span> n_clusters <span class="keyword">in</span> k_range:</span><br><span class="line">        clusterer = KMeans(n_clusters=n_clusters, algorithm=<span class="string">"elkan"</span>, random_state=<span class="number">0</span>).fit(train_data)</span><br><span class="line">        preds = clusterer.predict(train_data)</span><br><span class="line">        centers = clusterer.cluster_centers_</span><br><span class="line">        score = silhouette_score(train_data, preds)</span><br><span class="line">        silhouette_list.append(score)</span><br><span class="line">        print(<span class="string">"n_clusters = &#123;&#125;, silhouette_score: &#123;:.4f&#125;"</span>.format(n_clusters, score))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> silhouette_list</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Compute the silhouette score with different CovNets PCA features</span></span><br><span class="line">k_range = range(<span class="number">10</span>, <span class="number">30</span>, <span class="number">2</span>)</span><br><span class="line">inception_silhouette_scores = silhouetteScore(<span class="number">3000</span>, inception_pca_features, k_range)</span><br><span class="line">resnet_silhouette_scores = silhouetteScore(<span class="number">3000</span>, resnet_pca_features, k_range)</span><br><span class="line">vgg16_silhouette_scores = silhouetteScore(<span class="number">3000</span>, vgg16_pca_features, k_range)</span><br><span class="line">xception_silhouette_scores = silhouetteScore(<span class="number">3000</span>, xception_pca_features, k_range)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Credit: Josh Hemann</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.ticker <span class="keyword">import</span> MaxNLocator</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n_clusters = len(resnet_silhouette_scores)</span><br><span class="line">silhouette_scores = [inception_silhouette_scores,</span><br><span class="line">                    resnet_silhouette_scores,</span><br><span class="line">                    vgg16_silhouette_scores,</span><br><span class="line">                    xception_silhouette_scores]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">15</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">index = np.arange(<span class="number">3</span>, <span class="number">4</span>*n_clusters, <span class="number">4</span>)</span><br><span class="line">bar_width = <span class="number">0.7</span></span><br><span class="line"></span><br><span class="line">opacity = <span class="number">0.5</span></span><br><span class="line">error_config = &#123;<span class="string">'ecolor'</span>: <span class="string">'0.3'</span>&#125;</span><br><span class="line"></span><br><span class="line">labels_list = [<span class="string">'InceptionResNetV2'</span>, <span class="string">'ResNet50'</span>, <span class="string">'VGG16'</span>, <span class="string">'Xception'</span>]</span><br><span class="line">colors = [<span class="string">'b'</span>, <span class="string">'r'</span>, <span class="string">'g'</span>, <span class="string">'y'</span>]</span><br><span class="line">means = [means_men, means_women]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i, (score, color, label) <span class="keyword">in</span> enumerate(zip(silhouette_scores, colors, labels_list)):</span><br><span class="line">    rects1 = ax.bar(x=index + bar_width*i,</span><br><span class="line">                    height=score,</span><br><span class="line">                    width=bar_width,</span><br><span class="line">                    alpha=opacity,</span><br><span class="line">                    color=color,</span><br><span class="line">                    error_kw=error_config,</span><br><span class="line">                    label=label)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ax.set_xlabel(<span class="string">'number of clusters'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'Silhouette Scores'</span>)</span><br><span class="line">ax.set_title(<span class="string">'Silhouette Score by K &amp; CovNets'</span>)</span><br><span class="line">ax.set_xticks(index + bar_width)</span><br><span class="line">ax.set_xticklabels(list(k_range))</span><br><span class="line">ax.legend()</span><br><span class="line"></span><br><span class="line"><span class="comment"># fig.tight_layout()</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/02/图片聚类/output_45_0.png" alt=""></p>
+<h3 id="ResNet50-with-16-clusters"><a href="#ResNet50-with-16-clusters" class="headerlink" title="ResNet50 with 16 clusters"></a>ResNet50 with 16 clusters</h3><p>From the above picture, it is quite obvious that <strong>ResNet50</strong> can lead to a relatively high silhouette score. Thus, we will choose the PCA Featreus from ResNet50 to make some prediction.</p>
+<h4 id="Optimal-K-in-Elbow-Curve"><a href="#Optimal-K-in-Elbow-Curve" class="headerlink" title="Optimal K in Elbow Curve"></a>Optimal K in Elbow Curve</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line"><span class="keyword">from</span> scipy.spatial.distance <span class="keyword">import</span> cdist</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_elbow_curve</span><span class="params">(dimension, pca_data, elbow_range)</span>:</span></span><br><span class="line">    <span class="comment"># define the pca data</span></span><br><span class="line">    pca_data = inception_pca_features</span><br><span class="line"></span><br><span class="line">    <span class="comment"># define the training data</span></span><br><span class="line">    train_data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(pca_data)):</span><br><span class="line">        train_data.append(pca_data[i][:dimension])</span><br><span class="line">    train_data = np.array(train_data)</span><br><span class="line"></span><br><span class="line">    distortions = []</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> elbow_range:</span><br><span class="line">        print(<span class="string">"=======&#123;&#125;========"</span>.format(k))</span><br><span class="line">        kmeanModel = KMeans(n_clusters=k, algorithm=<span class="string">"elkan"</span>, random_state=<span class="number">0</span>)</span><br><span class="line">        kmeanModel.fit(train_data)</span><br><span class="line">        distortions.append(sum(np.min(cdist(train_data, kmeanModel.cluster_centers_, <span class="string">'euclidean'</span>), axis=<span class="number">1</span>)) / train_data.shape[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Plot the elbow</span></span><br><span class="line">    plt.plot(elbow_range, distortions, <span class="string">'bx-'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'k'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'Distortion'</span>)</span><br><span class="line">    plt.title(<span class="string">'The Elbow Method showing the optimal k'</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">draw_elbow_curve(dimension=<span class="number">3000</span>,</span><br><span class="line">                 pca_data=resnet_pca_features,</span><br><span class="line">                 elbow_range=k_range)</span><br></pre></td></tr></table></figure>
+<pre><code>=======10========
+=======12========
+=======14========
+=======16========
+=======18========
+=======20========
+=======22========
+=======24========
+=======26========
+=======28========
+</code></pre><p><img src="/2019/10/02/图片聚类/output_49_1.png" alt=""></p>
+<p>From the elbow curve, it’s quite obvious that <strong>16</strong> can be the elbow value. Thus, we will choose 16 clusters for prediction.</p>
+<h4 id="KMeans-Clustering"><a href="#KMeans-Clustering" class="headerlink" title="KMeans Clustering"></a>KMeans Clustering</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMeansClustering</span><span class="params">(k, dimension, pca_data)</span>:</span></span><br><span class="line">    <span class="comment"># define the training data</span></span><br><span class="line">    train_data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(pca_data)):</span><br><span class="line">        train_data.append(pca_data[i][:dimension])</span><br><span class="line">    </span><br><span class="line">    train_data = np.array(train_data)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># make predictions</span></span><br><span class="line">    model = KMeans(n_clusters=k, n_jobs=<span class="number">-1</span>, algorithm=<span class="string">'elkan'</span>, random_state=<span class="number">100</span>)</span><br><span class="line">    model.fit(train_data)</span><br><span class="line">    clusters_pred = model.predict(train_data)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> clusters_pred</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make prediction with kmeans</span></span><br><span class="line">kmeans_k = <span class="number">16</span></span><br><span class="line">kmeans_d = <span class="number">3000</span></span><br><span class="line">pca_data = resnet_pca_features</span><br><span class="line">kmeans_pred = KMeansClustering(kmeans_k, kmeans_d, pca_data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PredictionDict</span><span class="params">(pred_arr, k)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Get the dictionary from the predictions array</span></span><br><span class="line"><span class="string">    '''</span> </span><br><span class="line">    <span class="comment"># store the predictions into dictionary</span></span><br><span class="line">    clusters_dict = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># initialize the Series for each cluster key</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">        clusters_dict[i] = []</span><br><span class="line"></span><br><span class="line">    <span class="comment">#   Key: the index of K</span></span><br><span class="line">    <span class="comment"># Value: the index string of the image</span></span><br><span class="line">    <span class="keyword">for</span> i, k_index <span class="keyword">in</span> enumerate(pred_arr):</span><br><span class="line">        value = img_names_df[<span class="string">'names'</span>][i].replace(<span class="string">'.jpg'</span>, <span class="string">''</span>)</span><br><span class="line">        clusters_dict[k_index].append(value)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># Transfer the value into Series so the dictionary</span></span><br><span class="line">    <span class="comment"># can be transformed into DataFrame</span></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> clusters_dict.items():</span><br><span class="line">        clusters_dict[key] = pd.Series(value)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> clusters_dict</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Write the prediction result to file</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">clusters_pred_dict = PredictionDict(kmeans_pred, kmeans_k)</span><br><span class="line">clusters_pred_dict.keys()</span><br><span class="line"></span><br><span class="line">clusters_cols_dict = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(kmeans_k):</span><br><span class="line">    clusters_cols_dict[i] = <span class="string">'cluster&#123;&#125;'</span>.format(i+<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">clusters_pred_pd = pd.DataFrame.from_dict(clusters_pred_dict)</span><br><span class="line">clusters_pred_pd = clusters_pred_pd.rename(clusters_cols_dict, axis=<span class="string">'columns'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clusters_pred_pd.to_csv(<span class="string">'resnet_predictions.csv'</span>, index=<span class="keyword">False</span>)</span><br><span class="line">clusters_pred_pd.head()</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cluster1</th>
+      <th>cluster2</th>
+      <th>cluster3</th>
+      <th>cluster4</th>
+      <th>cluster5</th>
+      <th>cluster6</th>
+      <th>cluster7</th>
+      <th>cluster8</th>
+      <th>cluster9</th>
+      <th>cluster10</th>
+      <th>...</th>
+      <th>cluster15</th>
+      <th>cluster16</th>
+      <th>cluster17</th>
+      <th>cluster18</th>
+      <th>cluster19</th>
+      <th>cluster20</th>
+      <th>cluster21</th>
+      <th>cluster22</th>
+      <th>cluster23</th>
+      <th>cluster24</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00000</td>
+      <td>00002</td>
+      <td>00046</td>
+      <td>00065</td>
+      <td>00018</td>
+      <td>00267</td>
+      <td>00017</td>
+      <td>00028</td>
+      <td>00019</td>
+      <td>00011</td>
+      <td>...</td>
+      <td>00025</td>
+      <td>00007</td>
+      <td>00035</td>
+      <td>00032</td>
+      <td>00012</td>
+      <td>00010</td>
+      <td>00001</td>
+      <td>00036</td>
+      <td>00137</td>
+      <td>00005</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>00013</td>
+      <td>00003</td>
+      <td>00248</td>
+      <td>00072</td>
+      <td>00022</td>
+      <td>00305</td>
+      <td>00066</td>
+      <td>00049</td>
+      <td>00024</td>
+      <td>00020</td>
+      <td>...</td>
+      <td>00044</td>
+      <td>00008</td>
+      <td>00057</td>
+      <td>00034</td>
+      <td>00031</td>
+      <td>00021</td>
+      <td>00006</td>
+      <td>00067</td>
+      <td>00213</td>
+      <td>00052</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00014</td>
+      <td>00004</td>
+      <td>00300</td>
+      <td>00091</td>
+      <td>00026</td>
+      <td>00649</td>
+      <td>00082</td>
+      <td>00071</td>
+      <td>00027</td>
+      <td>00037</td>
+      <td>...</td>
+      <td>00079</td>
+      <td>00016</td>
+      <td>00064</td>
+      <td>00190</td>
+      <td>00038</td>
+      <td>00123</td>
+      <td>00015</td>
+      <td>00077</td>
+      <td>00277</td>
+      <td>00055</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>00047</td>
+      <td>00009</td>
+      <td>00325</td>
+      <td>00152</td>
+      <td>00104</td>
+      <td>00756</td>
+      <td>00111</td>
+      <td>00073</td>
+      <td>00033</td>
+      <td>00060</td>
+      <td>...</td>
+      <td>00088</td>
+      <td>00039</td>
+      <td>00095</td>
+      <td>00240</td>
+      <td>00048</td>
+      <td>00128</td>
+      <td>00029</td>
+      <td>00097</td>
+      <td>00285</td>
+      <td>00061</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>00051</td>
+      <td>00030</td>
+      <td>00551</td>
+      <td>00188</td>
+      <td>00105</td>
+      <td>00837</td>
+      <td>00182</td>
+      <td>00085</td>
+      <td>00189</td>
+      <td>00069</td>
+      <td>...</td>
+      <td>00161</td>
+      <td>00070</td>
+      <td>00100</td>
+      <td>00351</td>
+      <td>00099</td>
+      <td>00138</td>
+      <td>00042</td>
+      <td>00118</td>
+      <td>00296</td>
+      <td>00076</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
+
+
+
+<h3 id="Xception-with-24-Clusters"><a href="#Xception-with-24-Clusters" class="headerlink" title="Xception with 24 Clusters"></a>Xception with 24 Clusters</h3><p>From the silhouette score distribution bar chart, it is quite obvious that Xception with 24 clusters have a sudden increase. Thus, I would try 24 clusters with PCA features from Xception.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make prediction with kmeans</span></span><br><span class="line">kmeans_k = <span class="number">24</span></span><br><span class="line">kmeans_d = <span class="number">3000</span></span><br><span class="line">pca_data = xception_pca_features</span><br><span class="line">xception_kmeans_pred = KMeansClustering(kmeans_k, kmeans_d, pca_data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Write the prediction result to file</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">clusters_pred_dict = PredictionDict(xception_kmeans_pred, kmeans_k)</span><br><span class="line">clusters_cols_dict = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(kmeans_k):</span><br><span class="line">    clusters_cols_dict[i] = <span class="string">'cluster&#123;&#125;'</span>.format(i+<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">clusters_pred_pd = pd.DataFrame.from_dict(clusters_pred_dict)</span><br><span class="line">clusters_pred_pd = clusters_pred_pd.rename(clusters_cols_dict, axis=<span class="string">'columns'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">xception_predictions_df = clusters_pred_pd.applymap(<span class="keyword">lambda</span> x: <span class="string">'\'&#123;&#125;\''</span>.format(x))</span><br><span class="line">xception_predictions_df = xception_predictions_df.applymap(<span class="keyword">lambda</span> x: <span class="string">''</span> <span class="keyword">if</span> x==<span class="string">'\'nan\''</span> <span class="keyword">else</span> x)</span><br><span class="line">xception_predictions_df.to_csv(<span class="string">"xception_predictions.csv"</span>, index=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Comparision"><a href="#Comparision" class="headerlink" title="Comparision"></a>Comparision</h3><p>Finally, I try to judge whether these 2 models are good by my own eyes. The following results is what I label the clusters.</p>
+<h4 id="ResNet50-PCA-Clustering-with-KMeans"><a href="#ResNet50-PCA-Clustering-with-KMeans" class="headerlink" title="ResNet50 PCA Clustering with KMeans"></a>ResNet50 PCA Clustering with KMeans</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Cluster</th>
+<th style="text-align:center">Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">cluster1</td>
+<td style="text-align:center">plane</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster2</td>
+<td style="text-align:center">cat, dog</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster3</td>
+<td style="text-align:center">bus, train</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster4</td>
+<td style="text-align:center"><strong>NOT CLEAR</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">cluster5</td>
+<td style="text-align:center"><strong>NOT CLEAR</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">cluster6</td>
+<td style="text-align:center">restaurant, dinner</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster7</td>
+<td style="text-align:center">dogs, cows, sheep</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster8</td>
+<td style="text-align:center">human faces</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster9</td>
+<td style="text-align:center">bicycle, motorcycle</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster10</td>
+<td style="text-align:center">living room</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster11</td>
+<td style="text-align:center">people</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster12</td>
+<td style="text-align:center">car</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster13</td>
+<td style="text-align:center">birds</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster14</td>
+<td style="text-align:center">bird</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster15</td>
+<td style="text-align:center">horses</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster16</td>
+<td style="text-align:center"><strong>NOT CLEAR</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Xception-PCA-Clustering-with-KMeans"><a href="#Xception-PCA-Clustering-with-KMeans" class="headerlink" title="Xception PCA Clustering with KMeans"></a>Xception PCA Clustering with KMeans</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Cluster</th>
+<th style="text-align:center">Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">cluster1</td>
+<td style="text-align:center">computers, work room</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster2</td>
+<td style="text-align:center">car(for common drive)</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster3</td>
+<td style="text-align:center">bus</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster4</td>
+<td style="text-align:center">human</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster5</td>
+<td style="text-align:center">horse</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster6</td>
+<td style="text-align:center">restaurant</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster7</td>
+<td style="text-align:center">train</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster8</td>
+<td style="text-align:center">motorcyle</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster9</td>
+<td style="text-align:center">living room</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster10</td>
+<td style="text-align:center"><strong>NOT CLEAR</strong>(ship, animals)</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster11</td>
+<td style="text-align:center"><strong>NOT CLEAR</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">cluster12</td>
+<td style="text-align:center">bicycle</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster13</td>
+<td style="text-align:center">cat</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster14</td>
+<td style="text-align:center">sport car</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster15</td>
+<td style="text-align:center">human face</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster16</td>
+<td style="text-align:center">dog</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster17</td>
+<td style="text-align:center">car(street, park, road)</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster18</td>
+<td style="text-align:center">plane</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster19</td>
+<td style="text-align:center">sheep, cow</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster20</td>
+<td style="text-align:center">car(more fancy)</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster21</td>
+<td style="text-align:center">train</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster22</td>
+<td style="text-align:center">bird</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster23</td>
+<td style="text-align:center">motorcycle, bicycle</td>
+</tr>
+<tr>
+<td style="text-align:center">cluster24</td>
+<td style="text-align:center">dog, animals</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>From the above comparision, I would like to draw a conclusion that the clusters by Xception Features Extraction and KMeans clustering have a better images segmentations.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xception_predictions_df.to_csv(<span class="string">"A3_dzhengah_20546139_prediction.csv"</span>, index=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/wechat_pay.png?raw=true',
+  alipayImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/alipay.png?raw=true'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2019/10/02/图片聚类/" target="_blank" title="图片聚类">http://yoursite.com/2019/10/02/图片聚类/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/03/收入预测/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          收入预测
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/20/梯度消失与爆炸/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">梯度消失与爆炸</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unsupervised-learning-of-Images-Segmentation"><span class="nav-number">1.</span> <span class="nav-text">Unsupervised learning of Images Segmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preparation"><span class="nav-number">1.1.</span> <span class="nav-text">Preparation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Import-Packages-amp-Files"><span class="nav-number">1.1.1.</span> <span class="nav-text">Import Packages &amp; Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Load-images"><span class="nav-number">1.1.2.</span> <span class="nav-text">Load images</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Features-extraction-by-CovNets"><span class="nav-number">1.2.</span> <span class="nav-text">Features extraction by CovNets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VGG16"><span class="nav-number">1.2.1.</span> <span class="nav-text">VGG16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResNet50"><span class="nav-number">1.2.2.</span> <span class="nav-text">ResNet50</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xception"><span class="nav-number">1.2.3.</span> <span class="nav-text">Xception</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InceptionResNetV2"><span class="nav-number">1.2.4.</span> <span class="nav-text">InceptionResNetV2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dimensions-Reduction"><span class="nav-number">1.3.</span> <span class="nav-text">Dimensions Reduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#InceptionResNetV2-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">InceptionResNetV2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResNet50-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">ResNet50</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VGG16-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">VGG16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xception-1"><span class="nav-number">1.3.4.</span> <span class="nav-text">Xception</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clustering"><span class="nav-number">1.4.</span> <span class="nav-text">Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Find-out-the-suitable-CovNet-amp-K-value"><span class="nav-number">1.4.1.</span> <span class="nav-text">Find out the suitable CovNet &amp; K value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResNet50-with-16-clusters"><span class="nav-number">1.4.2.</span> <span class="nav-text">ResNet50 with 16 clusters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Optimal-K-in-Elbow-Curve"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">Optimal K in Elbow Curve</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KMeans-Clustering"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">KMeans Clustering</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xception-with-24-Clusters"><span class="nav-number">1.4.3.</span> <span class="nav-text">Xception with 24 Clusters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparision"><span class="nav-number">1.4.4.</span> <span class="nav-text">Comparision</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ResNet50-PCA-Clustering-with-KMeans"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">ResNet50 PCA Clustering with KMeans</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Xception-PCA-Clustering-with-KMeans"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">Xception PCA Clustering with KMeans</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 Dojo All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dojo
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 Dojo All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+</body>
+</html>

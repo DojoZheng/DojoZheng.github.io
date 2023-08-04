@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>收入预测 | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Career" />
+  
+  
+  
+  
+  <meta name="description" content="Income PredictionTask DescriptionThe dataset come from 1994 Census database. Prediction task is to determine whether a person makes over 50K a year. Data ExplorationImport Necessary Modules &amp;amp; File">
+<meta name="keywords" content="Career">
+<meta property="og:type" content="article">
+<meta property="og:title" content="收入预测">
+<meta property="og:url" content="http://yoursite.com/2019/10/03/收入预测/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Income PredictionTask DescriptionThe dataset come from 1994 Census database. Prediction task is to determine whether a person makes over 50K a year. Data ExplorationImport Necessary Modules &amp;amp; File">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/10/03/收入预测/output_8_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/03/收入预测/output_13_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/03/收入预测/output_15_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/03/收入预测/output_27_0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/03/收入预测/output_31_0.png">
+<meta property="og:updated_time" content="2019-10-07T06:40:15.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="收入预测">
+<meta name="twitter:description" content="Income PredictionTask DescriptionThe dataset come from 1994 Census database. Prediction task is to determine whether a person makes over 50K a year. Data ExplorationImport Necessary Modules &amp;amp; File">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/03/收入预测/output_8_0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/headIcon.jpg">
+  <link rel="apple-touch-icon" href="/css/images/headIcon.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/headIcon.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-收入预测" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      收入预测
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/10/03/收入预测/" class="article-date">
+	  <time datetime="2019-10-03T05:25:33.000Z" itemprop="datePublished">2019-10-03</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Income-Prediction"><a href="#Income-Prediction" class="headerlink" title="Income Prediction"></a>Income Prediction</h1><h2 id="Task-Description"><a href="#Task-Description" class="headerlink" title="Task Description"></a>Task Description</h2><p>The dataset come from 1994 Census database. Prediction task is to determine whether a person makes over 50K a year.</p>
+<h2 id="Data-Exploration"><a href="#Data-Exploration" class="headerlink" title="Data Exploration"></a>Data Exploration</h2><h3 id="Import-Necessary-Modules-amp-Files"><a href="#Import-Necessary-Modules-amp-Files" class="headerlink" title="Import Necessary Modules &amp; Files"></a>Import Necessary Modules &amp; Files</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import modules</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line"></span><br><span class="line"><span class="comment"># import visualization file</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> visuals <span class="keyword">as</span> vs</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># import Training Data &amp; Testing Data</span></span><br><span class="line">train_features = pd.read_csv(<span class="string">"trainFeatures.csv"</span>)</span><br><span class="line">train_labels = pd.read_csv(<span class="string">"trainLabels.csv"</span>, header=<span class="keyword">None</span>, names=[<span class="string">"label"</span>])</span><br><span class="line">test_features = pd.read_csv(<span class="string">"testFeatures.csv"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Explore-the-Training-Data-Sets"><a href="#Explore-the-Training-Data-Sets" class="headerlink" title="Explore the Training Data Sets"></a>Explore the Training Data Sets</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># display the training sets</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"features shape: &#123;&#125;"</span>.format(train_features.shape)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"features shape: &#123;&#125;"</span>.format(train_labels.shape)</span><br><span class="line">display(train_features.head())</span><br><span class="line">display(train_labels.head())</span><br></pre></td></tr></table></figure>
+<pre><code>features shape: (34189, 14)
+features shape: (34189, 1)
+</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>fnlwgt</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>Marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>native-country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>24</td>
+      <td>Private</td>
+      <td>258298</td>
+      <td>Assoc-voc</td>
+      <td>11</td>
+      <td>Never-married</td>
+      <td>Tech-support</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>45</td>
+      <td>United-States</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>28</td>
+      <td>Private</td>
+      <td>208249</td>
+      <td>Some-college</td>
+      <td>10</td>
+      <td>Divorced</td>
+      <td>Tech-support</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>24</td>
+      <td>United-States</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>49</td>
+      <td>Private</td>
+      <td>143459</td>
+      <td>9th</td>
+      <td>5</td>
+      <td>Separated</td>
+      <td>Handlers-cleaners</td>
+      <td>Own-child</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>38</td>
+      <td>United-States</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>24</td>
+      <td>Private</td>
+      <td>228772</td>
+      <td>5th-6th</td>
+      <td>3</td>
+      <td>Never-married</td>
+      <td>Machine-op-inspct</td>
+      <td>Other-relative</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>Mexico</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>State-gov</td>
+      <td>41103</td>
+      <td>Some-college</td>
+      <td>10</td>
+      <td>Never-married</td>
+      <td>Other-service</td>
+      <td>Own-child</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>20</td>
+      <td>United-States</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Describe the training features</span></span><br><span class="line">train_features.describe()</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>34189.000000</td>
+      <td>3.418900e+04</td>
+      <td>34189.000000</td>
+      <td>34189.000000</td>
+      <td>34189.000000</td>
+      <td>34189.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>38.646143</td>
+      <td>1.897921e+05</td>
+      <td>10.077101</td>
+      <td>1073.523765</td>
+      <td>87.645442</td>
+      <td>40.452836</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>13.679417</td>
+      <td>1.054070e+05</td>
+      <td>2.565457</td>
+      <td>7451.485819</td>
+      <td>403.366678</td>
+      <td>12.482635</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>17.000000</td>
+      <td>1.228500e+04</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>28.000000</td>
+      <td>1.178470e+05</td>
+      <td>9.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>40.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>37.000000</td>
+      <td>1.784490e+05</td>
+      <td>10.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>40.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>48.000000</td>
+      <td>2.376240e+05</td>
+      <td>12.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>45.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>90.000000</td>
+      <td>1.490400e+06</td>
+      <td>16.000000</td>
+      <td>99999.000000</td>
+      <td>4356.000000</td>
+      <td>99.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Explore the training labels</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># total records</span></span><br><span class="line">n_records = len(train_labels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># number of people making over 50k/year</span></span><br><span class="line">n_greater_50k = len(train_labels[train_labels[<span class="string">'label'</span>] == <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># number of people making at most 50k/year</span></span><br><span class="line">n_at_most_50k = len(train_labels[train_labels[<span class="string">'label'</span>] == <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># calculate the percent of people making over 50k/year</span></span><br><span class="line">percentage = float(n_greater_50k) / n_records</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印结果</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Total number of records: &#123;&#125;"</span>.format(n_records)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"Individuals making more than $50,000: &#123;&#125;"</span>.format(n_greater_50k)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"Individuals making at most $50,000: &#123;&#125;"</span>.format(n_at_most_50k)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"Percentage of individuals making more than $50,000: &#123;:.2%&#125;"</span>.format(percentage)</span><br></pre></td></tr></table></figure>
+<pre><code>Total number of records: 34189
+Individuals making more than $50,000: 8168
+Individuals making at most $50,000: 26021
+Percentage of individuals making more than $50,000: 23.89%
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Visualize the result in bar chart</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># initialize the data</span></span><br><span class="line">n_list = [n_records, n_at_most_50k, n_greater_50k]</span><br><span class="line">name_list = [<span class="string">'Total'</span>, <span class="string">'&lt;= 50k'</span>, <span class="string">' &gt; 50k'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the bars</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">width = <span class="number">0.75</span></span><br><span class="line">ax.bar(<span class="number">0</span>, n_list[<span class="number">0</span>], width, label=name_list[<span class="number">0</span>])</span><br><span class="line">ax.bar(<span class="number">1</span>, n_list[<span class="number">1</span>], width, label=name_list[<span class="number">1</span>])</span><br><span class="line">ax.bar(<span class="number">2</span>, n_list[<span class="number">2</span>], width, label=name_list[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the x-axis ticklabels</span></span><br><span class="line">ax.set_xticks(range(len(n_list)))</span><br><span class="line">ax.set_xticklabels(name_list, minor=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># show the number above the bars</span></span><br><span class="line"><span class="keyword">for</span> i, value <span class="keyword">in</span> enumerate(n_list):</span><br><span class="line">    ax.text(i - <span class="number">.15</span>, value + <span class="number">100</span>, str(value), color=<span class="string">"black"</span>, fontweight=<span class="string">'bold'</span>)</span><br><span class="line">    </span><br><span class="line">ax.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/03/收入预测/output_8_0.png" alt=""></p>
+<h2 id="Data-Preparation"><a href="#Data-Preparation" class="headerlink" title="Data Preparation"></a>Data Preparation</h2><p>Before the training data sets can be used as input for ensemble learning algorithms, they must be cleaned, formatted, and restructured which is known as <strong>data preprocessing</strong>. It can help tremendously with the final outcome and accurate prediction.</p>
+<h3 id="Combine-the-training-datasets-and-testing-datasets"><a href="#Combine-the-training-datasets-and-testing-datasets" class="headerlink" title="Combine the training datasets and testing datasets"></a>Combine the training datasets and testing datasets</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">combined_features = pd.concat([train_features, test_features], axis=<span class="number">0</span>)</span><br><span class="line">combined_features.shape</span><br></pre></td></tr></table></figure>
+<pre><code>(48842, 14)
+</code></pre><h3 id="Transforming-Skewed-Continuous-Features"><a href="#Transforming-Skewed-Continuous-Features" class="headerlink" title="Transforming Skewed Continuous Features"></a>Transforming Skewed Continuous Features</h3><p>Training datasets usually contain some skewed continuous features which will have negative effects on our prediction. Machine learning algorithms can be very sensitive to such distributions of values or some outliers. Thus, we have to do some data preprocessing or transformation to avoid such kinds of problem. In our training data set, 2 features have this problem: <code>&#39;capital-gain&#39;</code> and <code>&#39;capital-loss&#39;</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Visualize the distributions of features "capital-gain" &amp; "capital-loss"</span></span><br><span class="line">vs.distribution(combined_features)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/03/收入预测/output_13_0.png" alt=""></p>
+<p>But how can we solve this kinds of problems? Actually, for highly-skewed features, it is common practice to apply <strong>Logarithmic transformation</strong> on the data so as to eliminate the negative effects of outliers. </p>
+<p>Note: The logarithm of <code>0</code> is undefined, so we must translate the values by a small amount above <code>0</code> to apply the the logarithm successfully.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Apply Logarithmic Transformation on the training features &amp; testing features</span></span><br><span class="line">skewed = [<span class="string">'capital-gain'</span>, <span class="string">'capital-loss'</span>]</span><br><span class="line">features_log = pd.DataFrame(data = combined_features)</span><br><span class="line">features_log[skewed] = combined_features[skewed].apply(<span class="keyword">lambda</span> x: np.log(x + <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Visualize the distributions of features "capital-gain" &amp; "capital-loss"</span></span><br><span class="line">vs.distribution(features_log, transformed = <span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/03/收入预测/output_15_0.png" alt=""></p>
+<h3 id="Normalizing-Numerical-Features"><a href="#Normalizing-Numerical-Features" class="headerlink" title="Normalizing Numerical Features"></a>Normalizing Numerical Features</h3><p>Usually, different features have different values. Some features may have a very large mean value  while the other features have a very small mean. However, we have to ensure that all the numeric features share the same value range so that classifiers or models will treat features equivalently. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line">scaler = MinMaxScaler() <span class="comment"># default=(0, 1)</span></span><br><span class="line">numerical = [<span class="string">'age'</span>, <span class="string">'education-num'</span>, <span class="string">'capital-gain'</span>, <span class="string">'capital-loss'</span>, <span class="string">'hours-per-week'</span>, <span class="string">'fnlwgt'</span>]</span><br><span class="line"></span><br><span class="line">features_log_minmax = pd.DataFrame(data = features_log)</span><br><span class="line">features_log_minmax[numerical] = scaler.fit_transform(features_log[numerical])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the result</span></span><br><span class="line">display(features_log_minmax.head(n = <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>fnlwgt</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>Marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>native-country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.095890</td>
+      <td>Private</td>
+      <td>0.166437</td>
+      <td>Assoc-voc</td>
+      <td>0.666667</td>
+      <td>Never-married</td>
+      <td>Tech-support</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.448980</td>
+      <td>United-States</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.150685</td>
+      <td>Private</td>
+      <td>0.132577</td>
+      <td>Some-college</td>
+      <td>0.600000</td>
+      <td>Divorced</td>
+      <td>Tech-support</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.234694</td>
+      <td>United-States</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.438356</td>
+      <td>Private</td>
+      <td>0.088744</td>
+      <td>9th</td>
+      <td>0.266667</td>
+      <td>Separated</td>
+      <td>Handlers-cleaners</td>
+      <td>Own-child</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.377551</td>
+      <td>United-States</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.095890</td>
+      <td>Private</td>
+      <td>0.146462</td>
+      <td>5th-6th</td>
+      <td>0.133333</td>
+      <td>Never-married</td>
+      <td>Machine-op-inspct</td>
+      <td>Other-relative</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.397959</td>
+      <td>Mexico</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.041096</td>
+      <td>State-gov</td>
+      <td>0.019496</td>
+      <td>Some-college</td>
+      <td>0.600000</td>
+      <td>Never-married</td>
+      <td>Other-service</td>
+      <td>Own-child</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.193878</td>
+      <td>United-States</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<h3 id="One-Hot-Encoding"><a href="#One-Hot-Encoding" class="headerlink" title="One-Hot Encoding"></a>One-Hot Encoding</h3><p>Machine learning algorithms will prefer numeric values for prediction so we have to transfer some categorical features into numeric features by using the technique of <strong>One-Hot Encoding</strong>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># One-Hot Encoding</span></span><br><span class="line">features_encoded = pd.get_dummies(features_log_minmax)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the features list</span></span><br><span class="line">encoded_features = list(features_encoded.columns)</span><br><span class="line"><span class="comment"># display(encoded_features)</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Total number of features after one-hot encoding: &#123;&#125;"</span>.format(len(encoded_features))</span><br></pre></td></tr></table></figure>
+<pre><code>Total number of features after one-hot encoding: 108
+</code></pre><h3 id="Shuffle-amp-Split-Data"><a href="#Shuffle-amp-Split-Data" class="headerlink" title="Shuffle &amp; Split Data"></a>Shuffle &amp; Split Data</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import train_test_split</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split the preprocessed training datasets &amp; testing datasets</span></span><br><span class="line">train_features_pre = features_encoded[:train_features.shape[<span class="number">0</span>]]</span><br><span class="line">test_features_pre = features_encoded[train_features.shape[<span class="number">0</span>]:]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split the 'features' and 'income' data into training and testing sets</span></span><br><span class="line">X_train, X_val, y_train, y_val = train_test_split(train_features_pre, </span><br><span class="line">                                                  train_labels,</span><br><span class="line">                                                  test_size = <span class="number">0.2</span>,</span><br><span class="line">                                                  random_state = <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show the results of the split</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Training set has &#123;&#125; samples."</span>.format(X_train.shape[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">print</span> <span class="string">"Validation set has &#123;&#125; samples."</span>.format(X_val.shape[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>Training set has 27351 samples.
+Validation set has 6838 samples.
+</code></pre><h2 id="Model-Evaluation-amp-Selection"><a href="#Model-Evaluation-amp-Selection" class="headerlink" title="Model Evaluation &amp; Selection"></a>Model Evaluation &amp; Selection</h2><h3 id="Naive-Predictor"><a href="#Naive-Predictor" class="headerlink" title="Naive Predictor"></a>Naive Predictor</h3><p>We have to use a <strong>Naive Predictor</strong> for comparison of our models. In this naive predictor, we mainly consider about the following evaluation metrics:</p>
+<ul>
+<li>Accuracy</li>
+<li>Recall Rate</li>
+<li>Precision Rate</li>
+<li>F0.5-Score (Higher Precision)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Check the validation data</span></span><br><span class="line">n_val_greater_50k = len(y_val[y_val[<span class="string">'label'</span>]==<span class="number">1</span>])</span><br><span class="line">n_val_at_most_50k = len(y_val[y_val[<span class="string">'label'</span>]==<span class="number">0</span>])</span><br><span class="line">n_val_records = len(y_val)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Validaiton set has &#123;&#125; samples"</span>.format(n_val_records)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"&#123;&#125; samples are greater than 50k"</span>.format(n_val_greater_50k)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"&#123;&#125; samples are at most 50k"</span>.format(n_val_at_most_50k)</span><br></pre></td></tr></table></figure>
+<pre><code>Validaiton set has 6838 samples
+1655 samples are greater than 50k
+5183 samples are at most 50k
+</code></pre><p>We can then draw a <strong>Confusion Metrix</strong> from the validation data:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">income</th>
+<th style="text-align:center">predict &gt;50k</th>
+<th style="text-align:center">predict &lt;=50k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&gt;50k</td>
+<td style="text-align:center">n_val_greater_50k</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;=50k</td>
+<td style="text-align:center">n_val_at_most_50k</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Calculate the evaluation metrics value of the Naive Predictor</span></span><br><span class="line">naive_accuracy = round(float(n_val_greater_50k) / n_val_records, <span class="number">2</span>)</span><br><span class="line">naive_precision = round(float(n_val_greater_50k) / n_val_records, <span class="number">2</span>)</span><br><span class="line">naive_recall = round(float(n_val_greater_50k) / n_val_greater_50k, <span class="number">2</span>)</span><br><span class="line">beta = <span class="number">0.5</span></span><br><span class="line">naive_fscore = round((<span class="number">1</span> + beta**<span class="number">2</span>) * (naive_precision * naive_recall) / (beta**<span class="number">2</span> * naive_precision + naive_recall), <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印结果</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Naive Predictor on validation data: \n \</span></span><br><span class="line"><span class="string">    Accuracy score: &#123;:.2f&#125; \n \</span></span><br><span class="line"><span class="string">    Precision: &#123;:.2f&#125; \n \</span></span><br><span class="line"><span class="string">    Recall: &#123;:.2f&#125; \n \</span></span><br><span class="line"><span class="string">    F-score: &#123;:.2f&#125;"</span>.format(naive_accuracy,</span><br><span class="line">                            naive_precision,</span><br><span class="line">                            naive_recall,</span><br><span class="line">                            naive_fscore)</span><br></pre></td></tr></table></figure>
+<pre><code>Naive Predictor on validation data: 
+     Accuracy score: 0.24 
+     Precision: 0.24 
+     Recall: 1.00 
+     F-score: 0.28
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Visualize the result of the Naive Predictor</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># initialize the data</span></span><br><span class="line">naive_list = [naive_accuracy, naive_precision, naive_recall, naive_fscore]</span><br><span class="line">naive_name_list = [<span class="string">'Accuracy'</span>, <span class="string">'Precision'</span>, <span class="string">'Recall'</span>, <span class="string">'F_0.5 Score'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the bars</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">width = <span class="number">0.75</span></span><br><span class="line">ax.bar(<span class="number">0</span>, naive_list[<span class="number">0</span>], width, label=naive_name_list[<span class="number">0</span>])</span><br><span class="line">ax.bar(<span class="number">1</span>, naive_list[<span class="number">1</span>], width, label=naive_name_list[<span class="number">1</span>])</span><br><span class="line">ax.bar(<span class="number">2</span>, naive_list[<span class="number">2</span>], width, label=naive_name_list[<span class="number">2</span>])</span><br><span class="line">ax.bar(<span class="number">3</span>, naive_list[<span class="number">3</span>], width, label=naive_name_list[<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the x-axis ticklabels</span></span><br><span class="line">ax.set_xticks(range(len(naive_list)))</span><br><span class="line">ax.set_xticklabels(naive_name_list, minor=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># show the number above the bars</span></span><br><span class="line"><span class="keyword">for</span> i, value <span class="keyword">in</span> enumerate(naive_list):</span><br><span class="line">    ax.text(i - <span class="number">.15</span>, value, str(value), color=<span class="string">"black"</span>, fontweight=<span class="string">'bold'</span>)</span><br><span class="line">    </span><br><span class="line">ax.legend()</span><br><span class="line">ax.set_title(<span class="string">"Naive Predictor"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/03/收入预测/output_27_0.png" alt=""></p>
+<h3 id="Ensemble-Learning-Model-Selection"><a href="#Ensemble-Learning-Model-Selection" class="headerlink" title="Ensemble Learning Model Selection"></a>Ensemble Learning Model Selection</h3><p>I choose the following ensemble learning model for prediction:</p>
+<h4 id="RandomForest"><a href="#RandomForest" class="headerlink" title="RandomForest"></a>RandomForest</h4><h4 id="Adaboost"><a href="#Adaboost" class="headerlink" title="Adaboost"></a>Adaboost</h4><h4 id="Gradient-Boosted-Regression-Trees"><a href="#Gradient-Boosted-Regression-Trees" class="headerlink" title="Gradient Boosted Regression Trees"></a>Gradient Boosted Regression Trees</h4><p>Before using the ensemble learning models, I will first write a function for training and testing. The function is implemented in the following part:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> fbeta_score, accuracy_score</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_predict</span><span class="params">(learner, sample_size, X_train, y_train, X_val, y_val)</span>:</span> </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    inputs:</span></span><br><span class="line"><span class="string">       - learner: the learning algorithm to be trained and predicted on</span></span><br><span class="line"><span class="string">       - sample_size: the size of samples (number) to be drawn from training set</span></span><br><span class="line"><span class="string">       - X_train: features training set</span></span><br><span class="line"><span class="string">       - y_train: income training set</span></span><br><span class="line"><span class="string">       - X_val: features validation set</span></span><br><span class="line"><span class="string">       - y_val: income validation set</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    </span><br><span class="line">    results = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Fit the learner to the training data using slicing with 'sample_size'</span></span><br><span class="line">    start = time() <span class="comment"># Get the start time</span></span><br><span class="line">    learner = learner.fit(X_train.iloc[: sample_size], y_train.iloc[: sample_size].values.ravel())</span><br><span class="line">    end = time()   <span class="comment"># Get the end time</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Calculate the training time</span></span><br><span class="line">    results[<span class="string">'train_time'</span>] = end - start</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Get the predictions on the validation set(X_val)</span></span><br><span class="line">    <span class="comment"># Then, calculate the predictions of the first 1000 training samples</span></span><br><span class="line">    start = time()</span><br><span class="line">    predictions_val = learner.predict(X_val)</span><br><span class="line">    predictions_train = learner.predict(X_train.iloc[:<span class="number">1000</span>])</span><br><span class="line">    end = time()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Calculate the prediction time</span></span><br><span class="line">    results[<span class="string">'pred_time'</span>] = end - start</span><br><span class="line">            </span><br><span class="line">    <span class="comment"># Calculate the accuracy &amp; F-score of the prediction</span></span><br><span class="line">    <span class="comment"># on the first 1000 training samples</span></span><br><span class="line">    results[<span class="string">'acc_train'</span>] = accuracy_score(y_train.iloc[:<span class="number">1000</span>], predictions_train)</span><br><span class="line">    results[<span class="string">'f_train'</span>] = fbeta_score(y_train.iloc[:<span class="number">1000</span>], predictions_train, beta=<span class="number">0.5</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># Calculate the accuracy &amp; F-score of the prediction on the validation set</span></span><br><span class="line">    results[<span class="string">'acc_val'</span>] = accuracy_score(y_val, predictions_val)</span><br><span class="line">    results[<span class="string">'f_val'</span>] = fbeta_score(y_val, predictions_val, beta=<span class="number">0.5</span>)</span><br><span class="line">       </span><br><span class="line">    <span class="comment"># Output the result</span></span><br><span class="line"><span class="comment">#     print "&#123;&#125; trained on &#123;&#125; samples.".format(learner.__class__.__name__, sample_size)</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment"># Return the result</span></span><br><span class="line">    <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
+<p>Then, I will make a comparison on the three ensemble learning models.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> AdaBoostClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</span><br><span class="line"><span class="keyword">from</span> xgboost <span class="keyword">import</span> XGBClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize the classifiers</span></span><br><span class="line">randomForest = RandomForestClassifier(random_state=<span class="number">0</span>)</span><br><span class="line">adaBoost = AdaBoostClassifier(random_state=<span class="number">0</span>)</span><br><span class="line">gradientBoost = GradientBoostingClassifier(random_state=<span class="number">0</span>)</span><br><span class="line">xgb = XGBClassifier(random_state=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># n_estimators=100, learning_rate=1.0, max_depth=1, </span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">samples_100 = len(y_train)</span><br><span class="line">samples_10 = int(round(<span class="number">0.1</span> * samples_100))</span><br><span class="line">samples_1 = int(round(<span class="number">0.01</span> * samples_100))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Collect results on the learners</span></span><br><span class="line">results = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> clf <span class="keyword">in</span> [gradientBoost, randomForest, xgb]:</span><br><span class="line">    clf_name = clf.__class__.__name__</span><br><span class="line">    results[clf_name] = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i, samples <span class="keyword">in</span> enumerate([samples_1, samples_10, samples_100]):</span><br><span class="line">        results[clf_name][i] = \</span><br><span class="line">        train_predict(clf, samples, X_train, y_train, X_val, y_val)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run metrics visualization for the three ensemble learning models chosen</span></span><br><span class="line">vs.evaluate(results, naive_accuracy, naive_fscore)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/03/收入预测/output_31_0.png" alt=""></p>
+<h2 id="Model-Improvement"><a href="#Model-Improvement" class="headerlink" title="Model Improvement"></a>Model Improvement</h2><p>From the evaluation on the results of the three models, <strong>XGBoost</strong> and <strong>GradientDescent Boosting</strong> classifiers share a very high accuracy on the validation datasets which is around <strong>0.87</strong>. However, <strong>RandomForest</strong> classifier has an accuracy of <strong>0.85</strong> which is smaller compared with the other models.</p>
+<p>Thus, I will choose boosting methods and try to improve <strong>XGBoost</strong> and <strong>Gradient Boosting</strong>.</p>
+<p><strong>Note: Since the following procedures will take a long time to run, I have not runned them in the ‘readme.pdf’. But the results are already listed in the next part.</strong></p>
+<h3 id="Gradient-Boosting"><a href="#Gradient-Boosting" class="headerlink" title="Gradient Boosting"></a>Gradient Boosting</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.grid_search <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> make_scorer</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">clf = GradientBoostingClassifier(random_state=<span class="number">0</span>)</span><br><span class="line">parameters = &#123;</span><br><span class="line">    <span class="string">"learning_rate"</span>: [<span class="number">0.01</span>, <span class="number">0.05</span>, <span class="number">0.1</span>, <span class="number">0.2</span>],</span><br><span class="line">    <span class="string">"max_depth"</span>:[<span class="number">3</span>],</span><br><span class="line">    <span class="string">"n_estimators"</span>:[<span class="number">200</span>, <span class="number">400</span>, <span class="number">600</span>, <span class="number">800</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make an fbeta_score scoring object using make_scorer()</span></span><br><span class="line">scorer = make_scorer(fbeta_score, beta=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Perform grid search on the classifier using 'scorer' as the scoring method using GridSearchCV()</span></span><br><span class="line">grid_obj = GridSearchCV(estimator=clf, param_grid=parameters, scoring=scorer, cv=<span class="number">10</span>, n_jobs=<span class="number">-1</span>, verbose=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the grid search object to the training data and find the optimal parameters using fit()</span></span><br><span class="line">grid_fit = grid_obj.fit(X_train, y_train.values.flatten())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the estimator</span></span><br><span class="line">best_clf = grid_fit.best_estimator_</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make predictions using the unoptimized and model</span></span><br><span class="line">predictions = (clf.fit(X_train, y_train)).predict(X_val)</span><br><span class="line">best_predictions = best_clf.predict(X_val)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Report the before-and-afterscores</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Unoptimized model\n------"</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Accuracy score on testing data: &#123;:.4f&#125;"</span>.format(accuracy_score(y_val, predictions))</span><br><span class="line"><span class="keyword">print</span> <span class="string">"F-score on testing data: &#123;:.4f&#125;"</span>.format(fbeta_score(y_val, predictions, beta = <span class="number">0.5</span>))</span><br><span class="line"><span class="keyword">print</span> <span class="string">"\nOptimized Model\n------"</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Final accuracy score on the testing data: &#123;:.4f&#125;"</span>.format(accuracy_score(y_val, best_predictions))</span><br><span class="line"><span class="keyword">print</span> <span class="string">"Final F-score on the testing data: &#123;:.4f&#125;"</span>.format(fbeta_score(y_val, best_predictions, beta = <span class="number">0.5</span>))</span><br><span class="line"><span class="keyword">print</span> best_clf</span><br></pre></td></tr></table></figure>
+<h3 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.grid_search <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> make_scorer</span><br><span class="line"><span class="keyword">from</span> xgboost <span class="keyword">import</span> XGBClassifier</span><br><span class="line"></span><br><span class="line">clf = XGBClassifier(</span><br><span class="line"> learning_rate =<span class="number">0.1</span>,</span><br><span class="line"> n_estimators=<span class="number">1000</span>,</span><br><span class="line"> max_depth=<span class="number">2</span>,</span><br><span class="line"> min_child_weight=<span class="number">2</span>,</span><br><span class="line"> gamma=<span class="number">0.3</span>,</span><br><span class="line"> subsample=<span class="number">0.8</span>,</span><br><span class="line"> colsample_bytree=<span class="number">0.8</span>,</span><br><span class="line"> objective= <span class="string">'binary:logistic'</span>,</span><br><span class="line"> nthread=<span class="number">4</span>,</span><br><span class="line"> scale_pos_weight=<span class="number">1</span>,</span><br><span class="line"> seed=<span class="number">27</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">parameters = &#123;</span><br><span class="line">    <span class="string">'max_depth'</span>: [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">    <span class="string">'learning_rate'</span>: [<span class="number">0.01</span>, <span class="number">0.05</span>, <span class="number">0.1</span>, <span class="number">0.2</span>],</span><br><span class="line">    <span class="string">"n_estimators"</span>:[<span class="number">600</span>, <span class="number">800</span>, <span class="number">1000</span>],</span><br><span class="line">    <span class="string">'min_child_weight'</span>:range(<span class="number">2</span>,<span class="number">5</span>,<span class="number">1</span>),</span><br><span class="line">    <span class="string">"gamma"</span>: [i/<span class="number">10.0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">5</span>)]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make an fbeta_score scoring object using make_scorer()</span></span><br><span class="line">scorer = make_scorer(fbeta_score, beta=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Perform grid search on the classifier using 'scorer' as the scoring method using GridSearchCV()</span></span><br><span class="line">grid_obj = GridSearchCV(estimator=clf, param_grid=parameters, scoring=scorer, cv=<span class="number">10</span>, n_jobs=<span class="number">-1</span>, verbose=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fit the grid search object to the training data and find the optimal parameters using fit()</span></span><br><span class="line">grid_fit = grid_obj.fit(X_train, y_train.values.flatten())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the estimator</span></span><br><span class="line">best_clf = grid_fit.best_estimator_</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make predictions using the unoptimized and model</span></span><br><span class="line">predictions = (clf.fit(X_train, y_train)).predict(X_val)</span><br><span class="line">best_predictions = best_clf.predict(X_val)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Report the before-and-afterscores</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Unoptimized model\n------"</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Accuracy score on testing data: &#123;:.4f&#125;"</span>.format(accuracy_score(y_val, predictions))</span><br><span class="line"><span class="keyword">print</span> <span class="string">"F-score on testing data: &#123;:.4f&#125;"</span>.format(fbeta_score(y_val, predictions, beta = <span class="number">0.5</span>))</span><br><span class="line"><span class="keyword">print</span> <span class="string">"\nOptimized Model\n------"</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Final accuracy score on the testing data: &#123;:.4f&#125;"</span>.format(accuracy_score(y_val, best_predictions))</span><br><span class="line"><span class="keyword">print</span> <span class="string">"Final F-score on the testing data: &#123;:.4f&#125;"</span>.format(fbeta_score(y_val, best_predictions, beta = <span class="number">0.5</span>))</span><br><span class="line"><span class="keyword">print</span> best_clf</span><br></pre></td></tr></table></figure>
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><h4 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h4><p><strong>Optimized Model:</strong><br>Final accuracy score on the testing data: 0.8807<br>Final F-score on the testing data: 0.7773<br>GradientBoostingClassifier(criterion=’friedman_mse’, init=None,<br>              learning_rate=0.1, loss=’deviance’, max_depth=3,<br>              max_features=None, max_leaf_nodes=None,<br>              min_impurity_decrease=0.0, min_impurity_split=None,<br>              min_samples_leaf=1, min_samples_split=2,<br>              min_weight_fraction_leaf=0.0, n_estimators=400,<br>              presort=’auto’, random_state=0, subsample=1.0, verbose=0,<br>              warm_start=False)</p>
+<h4 id="XGBoost-1"><a href="#XGBoost-1" class="headerlink" title="XGBoost"></a>XGBoost</h4><p><strong>Optimized Model:</strong><br>Final accuracy score on the testing data: 0.8829<br>Final F-score on the testing data: 0.7835<br>XGBClassifier(base_score=0.5, booster=’gbtree’, colsample_bylevel=1,<br>       colsample_bytree=0.8, gamma=0.3, learning_rate=0.1,<br>       max_delta_step=0, max_depth=2, min_child_weight=2, missing=None,<br>       n_estimators=1000, n_jobs=1, nthread=4, objective=’binary:logistic’,<br>       random_state=0, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,<br>       seed=27, silent=True, subsample=0.8)</p>
+<h4 id="Result-1"><a href="#Result-1" class="headerlink" title="Result"></a>Result</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Parameters/Models</th>
+<th style="text-align:center">Gradient Descent Boosting</th>
+<th style="text-align:center">XGBoost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>Accuracy</strong></td>
+<td style="text-align:center">0.8807</td>
+<td style="text-align:center">0.8829</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>F-0.5 Score</strong></td>
+<td style="text-align:center">0.7773</td>
+<td style="text-align:center">0.7835</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Thus, I finally choose <strong>XGBoost</strong> for prediction.</p>
+<h2 id="Prediction-on-the-Test-Datasets"><a href="#Prediction-on-the-Test-Datasets" class="headerlink" title="Prediction on the Test Datasets"></a>Prediction on the Test Datasets</h2><h3 id="Train-the-XGBoost-Model"><a href="#Train-the-XGBoost-Model" class="headerlink" title="Train the XGBoost Model"></a>Train the XGBoost Model</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xgboost <span class="keyword">import</span> XGBClassifier</span><br><span class="line"></span><br><span class="line">xgb = XGBClassifier(base_score=<span class="number">0.5</span>, booster=<span class="string">'gbtree'</span>, colsample_bylevel=<span class="number">1</span>,</span><br><span class="line">                    colsample_bytree=<span class="number">0.8</span>, gamma=<span class="number">0.3</span>, learning_rate=<span class="number">0.1</span>,</span><br><span class="line">                    max_delta_step=<span class="number">0</span>, max_depth=<span class="number">2</span>, min_child_weight=<span class="number">2</span>,</span><br><span class="line">                    missing=<span class="keyword">None</span>, n_estimators=<span class="number">1000</span>, n_jobs=<span class="number">1</span>, nthread=<span class="number">4</span>,</span><br><span class="line">                    objective=<span class="string">'binary:logistic'</span>, random_state=<span class="number">0</span>, reg_alpha=<span class="number">0</span>,</span><br><span class="line">                    reg_lambda=<span class="number">1</span>, scale_pos_weight=<span class="number">1</span>, seed=<span class="number">27</span>, silent=<span class="keyword">True</span>,</span><br><span class="line">                    subsample=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">xgb = xgb.fit(train_features_pre, train_labels.values.ravel())</span><br></pre></td></tr></table></figure>
+<h3 id="Predict-the-test-datasets"><a href="#Predict-the-test-datasets" class="headerlink" title="Predict the test datasets"></a>Predict the test datasets</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start prediction</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">test_pred = xgb.predict(test_features_pre)</span><br><span class="line">labels_pred_df = pd.DataFrame(data=test_pred)</span><br><span class="line">display(labels_pred_df)</span><br><span class="line"><span class="keyword">print</span> labels_pred_df.shape</span><br><span class="line"><span class="keyword">print</span> test_features_pre.shape</span><br><span class="line"></span><br><span class="line"><span class="comment"># write to "A2_dzhengah_20546139_prediction.csv"</span></span><br><span class="line">labels_pred_df.to_csv(<span class="string">"A2_dzhengah_20546139_prediction.csv"</span>, index=<span class="keyword">None</span>, header=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14646</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14647</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14648</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14649</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14650</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14651</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14652</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>14653 rows × 1 columns</p>
+</div>
+
+
+<pre><code>(14653, 1)
+(14653, 108)
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/wechat_pay.png?raw=true',
+  alipayImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/alipay.png?raw=true'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2019/10/03/收入预测/" target="_blank" title="收入预测">http://yoursite.com/2019/10/03/收入预测/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/05/强化学习之解迷宫/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          强化学习之解迷宫
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/02/图片聚类/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">图片聚类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Income-Prediction"><span class="nav-number">1.</span> <span class="nav-text">Income Prediction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-Description"><span class="nav-number">1.1.</span> <span class="nav-text">Task Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Exploration"><span class="nav-number">1.2.</span> <span class="nav-text">Data Exploration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Import-Necessary-Modules-amp-Files"><span class="nav-number">1.2.1.</span> <span class="nav-text">Import Necessary Modules &amp; Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Explore-the-Training-Data-Sets"><span class="nav-number">1.2.2.</span> <span class="nav-text">Explore the Training Data Sets</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Preparation"><span class="nav-number">1.3.</span> <span class="nav-text">Data Preparation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Combine-the-training-datasets-and-testing-datasets"><span class="nav-number">1.3.1.</span> <span class="nav-text">Combine the training datasets and testing datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transforming-Skewed-Continuous-Features"><span class="nav-number">1.3.2.</span> <span class="nav-text">Transforming Skewed Continuous Features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalizing-Numerical-Features"><span class="nav-number">1.3.3.</span> <span class="nav-text">Normalizing Numerical Features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-Hot-Encoding"><span class="nav-number">1.3.4.</span> <span class="nav-text">One-Hot Encoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shuffle-amp-Split-Data"><span class="nav-number">1.3.5.</span> <span class="nav-text">Shuffle &amp; Split Data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Evaluation-amp-Selection"><span class="nav-number">1.4.</span> <span class="nav-text">Model Evaluation &amp; Selection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-Predictor"><span class="nav-number">1.4.1.</span> <span class="nav-text">Naive Predictor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ensemble-Learning-Model-Selection"><span class="nav-number">1.4.2.</span> <span class="nav-text">Ensemble Learning Model Selection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RandomForest"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">RandomForest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adaboost"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">Adaboost</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-Boosted-Regression-Trees"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">Gradient Boosted Regression Trees</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Improvement"><span class="nav-number">1.5.</span> <span class="nav-text">Model Improvement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-Boosting"><span class="nav-number">1.5.1.</span> <span class="nav-text">Gradient Boosting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost"><span class="nav-number">1.5.2.</span> <span class="nav-text">XGBoost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.5.3.</span> <span class="nav-text">Result</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XGBoost-1"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">XGBoost</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Result-1"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">Result</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prediction-on-the-Test-Datasets"><span class="nav-number">1.6.</span> <span class="nav-text">Prediction on the Test Datasets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Train-the-XGBoost-Model"><span class="nav-number">1.6.1.</span> <span class="nav-text">Train the XGBoost Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Predict-the-test-datasets"><span class="nav-number">1.6.2.</span> <span class="nav-text">Predict the test datasets</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 Dojo All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dojo
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 Dojo All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+</body>
+</html>

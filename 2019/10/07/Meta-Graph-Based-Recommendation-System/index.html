@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>meta-graph based recommendation system | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Career" />
+  
+  
+  
+  
+  <meta name="description" content="介绍 论文链接 Github源码链接  2019年中旬在华为实习阶段中，接触到了一篇有关推荐系统的论文：「Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks」，这篇论文被KDD 2017的Research Track接受并且作了口头报告(录取率8.6%)，相关视频可以在YouTube上查看。下">
+<meta name="keywords" content="Career">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Meta-Graph Based Recommendation System">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="介绍 论文链接 Github源码链接  2019年中旬在华为实习阶段中，接触到了一篇有关推荐系统的论文：「Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks」，这篇论文被KDD 2017的Research Track接受并且作了口头报告(录取率8.6%)，相关视频可以在YouTube上查看。下">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704395265618.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704399663036.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704410707765.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704410372223.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413266449.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413094404.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704414358208.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704415323132.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991515194.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991035284.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705010410823.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705012599919.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705015524648.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705016896847.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705032373752.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705052812513.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705052999773.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705053245578.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705056173451.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15705057810241.jpg">
+<meta property="og:updated_time" content="2019-11-15T03:15:41.184Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Meta-Graph Based Recommendation System">
+<meta name="twitter:description" content="介绍 论文链接 Github源码链接  2019年中旬在华为实习阶段中，接触到了一篇有关推荐系统的论文：「Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks」，这篇论文被KDD 2017的Research Track接受并且作了口头报告(录取率8.6%)，相关视频可以在YouTube上查看。下">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/15704395265618.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/headIcon.jpg">
+  <link rel="apple-touch-icon" href="/css/images/headIcon.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/headIcon.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Meta-Graph-Based-Recommendation-System" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Meta-Graph Based Recommendation System
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/10/07/Meta-Graph-Based-Recommendation-System/" class="article-date">
+	  <time datetime="2019-10-07T07:42:58.000Z" itemprop="datePublished">2019-10-07</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li><a href="http://www.cse.ust.hk/~hzhaoaf/data/kdd17-paper.pdf" target="_blank" rel="noopener">论文链接</a></li>
+<li><a href="https://github.com/HKUST-KnowComp/FMG" target="_blank" rel="noopener">Github源码链接</a></li>
+</ul>
+<p>2019年中旬在华为实习阶段中，接触到了一篇有关推荐系统的论文：<strong>「Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks」</strong>，这篇论文被KDD 2017的Research Track接受并且作了口头报告(录取率8.6%)，相关视频可以在YouTube上查看。下面罗列出所有的作者：</p>
+<blockquote>
+<ul>
+<li><p>第一作者赵欢，香港科技大学计算机系博士生，研究方向为「异构网络与推荐系统」；</p>
+</li>
+<li><p>第二作者姚权铭，香港科技大学计算机博士生，研究方向为「机器学习优化算法研究」，2016 Google Fellowship 获得者；</p>
+</li>
+<li><p>第三作者李健达，香港科技大学硕士毕业生，本科毕业于上海交通大学。</p>
+</li>
+<li><p>第四作者宋阳秋，香港科技大学助理教授，研究方向为「知识图谱、文本数据挖掘和自然语言处理」；</p>
+</li>
+<li><p>第五作者李迪麟，香港科技大学正教授，研究方向为「信息检索，推荐系统，移动数据管理」。</p>
+</li>
+</ul>
+</blockquote>
+<p>（以上内容来自<a href="https://yq.aliyun.com/articles/228856" target="_blank" rel="noopener">雷锋网</a>）</p>
+<p>刚看到这篇论文，觉得这么多页的论文看起来一定很枯燥啊，一堆公式、一堆表格，乍一看很繁琐复杂，但是看完之后觉得没有那么复杂，反倒像打开一个新世界一样。刚翻开论文，我想读者都会突然冒出几个问题：</p>
+<ol>
+<li>什么是Meta-Graph和HIN（Heterogeneous Information Network）?</li>
+<li>Meta-Graph有什么用？</li>
+<li>Meta-Graph怎么用在推荐系统里面？</li>
+<li>这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？</li>
+</ol>
+<p>接下来，我就根据这几个问题，去论文里面寻找答案，剥茧抽丝、化繁为简地为大家分析一番，相信理解了这几个问题，也就基本掌握了这篇论文的核心知识。</p>
+<h1 id="1-什么是Meta-Graph和HIN（Heterogeneous-Information-Network）"><a href="#1-什么是Meta-Graph和HIN（Heterogeneous-Information-Network）" class="headerlink" title="1. 什么是Meta-Graph和HIN（Heterogeneous Information Network）?"></a>1. 什么是Meta-Graph和HIN（Heterogeneous Information Network）?</h1><h2 id="异构信息网络HIN"><a href="#异构信息网络HIN" class="headerlink" title="异构信息网络HIN"></a>异构信息网络HIN</h2><p>如下图所示，异构信息网络其实就是一张有向无环图，是计算机数据结构中的<code>Graph图</code>的一种。Heterogeneous的中文意思是纷繁复杂的、由很多种类组成的，下面这张图也很形象的解释了什么是“有很多种类组成的”，其中包含了各种各样的信息。</p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704395265618.jpg" width="500"></p>
+<p>但是也正是这张图，精炼的涵盖的所有的信息和关系！这张HIN是基于下图 <em>Royal House on Yelp</em> 来构建的，类似于大众点评上面的宜家餐厅。在这个HIN中，节点<code>Vertex</code>表示一个实体例如用户、酒店、城市等等，带箭头的线段<code>Edge</code>表示实体之间的关系。譬如用户U1入住了酒店Royal House，那就可以用 <code>U1 --Check-in--&gt; Royal House</code>这样的一个简单连接来表示。</p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704399663036.jpg" width="500"></p>
+<h2 id="Meta-Path-amp-Meta-Graph"><a href="#Meta-Path-amp-Meta-Graph" class="headerlink" title="Meta-Path &amp; Meta-Graph"></a>Meta-Path &amp; Meta-Graph</h2><p>在HIN中，我们其实可以抽取出Meta-Path或者Meta-Graph来表示更加简单的逻辑，Meta-Path和Meta-Graph可以算是HIN的一个组成部分、一个板块。而Meta-Path和Meta-Graph的区别就在于前者只有单独的一条路径，而后者可以有多条路径来表示更加复杂的关系。</p>
+<ul>
+<li>Meta-Path<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704410707765.jpg" width="300"></li>
+</ul>
+<ul>
+<li>Meta-Graph<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704410372223.jpg" width="400"></li>
+</ul>
+<h1 id="2-Meta-Path-和-Meta-Graph有什么用？"><a href="#2-Meta-Path-和-Meta-Graph有什么用？" class="headerlink" title="2. Meta-Path 和 Meta-Graph有什么用？"></a>2. Meta-Path 和 Meta-Graph有什么用？</h1><p>之所以要从HIN当中抽取出Meta-Path和Meta-Graph，是因为我们想要计算出用户之间或者是物品之间的相似度，这个就有点像是我们所说的<code>协同过滤</code>，也可以根据计算的目的，将Meta-Graph和Meta-Path分成以下两种类型。</p>
+<h2 id="两种类别"><a href="#两种类别" class="headerlink" title="两种类别:"></a>两种类别:</h2><ul>
+<li><p>基于用户User-based: $U \rightarrow * \leftarrow U \rightarrow B$<br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413266449.jpg" width="300"><br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704413094404.jpg" width="400"><br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704414358208.jpg" width="400"></p>
+</li>
+<li><p>基于物品Item-based: $U \rightarrow B \rightarrow * \leftarrow B$<br>  <img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704415323132.jpg" width="300"></p>
+</li>
+</ul>
+<h2 id="相似度计算"><a href="#相似度计算" class="headerlink" title="相似度计算"></a>相似度计算</h2><p>既然Meta-Path和Meta-Graph可以基于用户或者物品来计算相似度，又要如何计算呢？下面通过几个例子来描述计算过程。</p>
+<h3 id="基于用户的相似度计算"><a href="#基于用户的相似度计算" class="headerlink" title="基于用户的相似度计算"></a>基于用户的相似度计算</h3><script type="math/tex; mode=display">U1 \rightarrow City \leftarrow U2 \rightarrow Food</script><ul>
+<li>$U \rightarrow City$</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>成都</th>
+<th>上海</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>0</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td><strong>1</strong></td>
+<td>0</td>
+</tr>
+<tr>
+<td>胡歌</td>
+<td>0</td>
+<td><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$City \rightarrow U$</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>姚明</th>
+<th>李易峰</th>
+<th>胡歌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>成都</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>上海</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$U \rightarrow Food$</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>胡歌???</td>
+<td>0 ???</td>
+<td>0 ???</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>第一步：根据City计算用户相似度</strong> $U \leftrightarrow U $ （UC * CU = UU）</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0 \\
+    0 & 1 \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 1\\
+\end{bmatrix} =
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 1 \\
+\end{bmatrix}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>姚明</th>
+<th>李易峰</th>
+<th>胡歌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>胡歌</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>第二步：根据用户相似度推荐物品</strong> $U \rightarrow Food$ （UU * UF = UF）</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 1 \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+    0 & 0 \\
+\end{bmatrix} =
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+    1 & 0 \\
+\end{bmatrix}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>胡歌</td>
+<td><strong>1</strong></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="基于物品的相似度计算"><a href="#基于物品的相似度计算" class="headerlink" title="基于物品的相似度计算"></a>基于物品的相似度计算</h3><script type="math/tex; mode=display">U1 \rightarrow Food \rightarrow Category \leftarrow Food</script><ul>
+<li>$U \rightarrow Food$</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+<th>大闸蟹???</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>1</td>
+<td>0</td>
+<td>0???</td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td>0</td>
+<td>1</td>
+<td>0???</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$ Food \rightarrow Category $</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>沪菜</th>
+<th>川菜</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小笼包</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>串串</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>大闸蟹</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$ Category \rightarrow Food $</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+<th>大闸蟹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>沪菜</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>川菜</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>第一步：根据Category计算食物相似度</strong> $F \leftrightarrow F $ （FC * CF = FF）</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+    1 & 0 \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0\\
+\end{bmatrix} =
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 1 \\
+\end{bmatrix}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+<th>大闸蟹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小笼包</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>串串</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>大闸蟹</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>第二步：根据食物相似度进行推荐</strong> $U \rightarrow Food$ (UF * FF = UF)</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+    1 & 0 & 1\\
+    0 & 1 & 0\\
+    1 & 0 & 1 \\
+\end{bmatrix} =
+\begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 0  \\
+\end{bmatrix}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>小笼包</th>
+<th>串串</th>
+<th>大闸蟹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姚明</td>
+<td>1</td>
+<td>0</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>李易峰</td>
+<td>0</td>
+<td>1</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Meta-Graph的相似度计算："><a href="#Meta-Graph的相似度计算：" class="headerlink" title="Meta-Graph的相似度计算："></a>Meta-Graph的相似度计算：</h3><p>上面都是Meta-Path的相似度计算，那Meta-Graph要怎么计算呢？下面我直接用论文中的Meta-Graph和计算步骤来解释：</p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991515194.jpg" width="500"></p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15704991035284.jpg" width="450"></p>
+<ol>
+<li>计算矩阵： RB*BR=RR，根据对B（Business）的打分计算出R之间的相似度；</li>
+<li>计算矩阵： RA*AR=RR，根据关键词A（Aspect提到了哪些方面）计算R之间的相似度；</li>
+<li>融合两个相似矩阵：通过Hadamard Product，融合两个相似矩阵，这也吻合论文标题‘Fusion’的意思；下列公式展示了Hadamard Product的定义:<script type="math/tex; mode=display">
+   \begin{aligned}
+   C_{P_1} \odot C_{P_2} &= 
+   \begin{bmatrix}
+     a_{11} & a_{12} & ... & a_{n1} \\
+     a_{21} & a_{22} & ... & a_{n2} \\
+     ... & ... & ... & ... \\
+     a_{n1} & a_{n2} & ... & a_{nn} \\
+   \end{bmatrix}
+   \odot
+   \begin{bmatrix}
+     b_{11} & b_{12} & ... & b_{n1} \\
+     b_{21} & b_{22} & ... & b_{n2} \\
+     ... & ... & ... & ... \\
+     b_{n1} & b_{n2} & ... & b_{nn} \\
+   \end{bmatrix} \\&= 
+   \begin{bmatrix}
+     a_{11}b_{11} & a_{12}b_{12} & ... & a_{n1}b_{n1} \\
+     a_{21}b_{21} & a_{22}b_{22} & ... & a_{n2}b_{n1} \\
+     ... & ... & ... & ... \\
+     a_{n1}b_{n1} & a_{n2}b_{n2} & ... & a_{nn}b_{nn} \\
+   \end{bmatrix}
+   \end{aligned}</script></li>
+<li>最后一步其实跟Meta-Path的求解过程类似了，最终实现为用户推荐物品；</li>
+</ol>
+<h1 id="3-Meta-Graph怎么用在推荐系统里面？"><a href="#3-Meta-Graph怎么用在推荐系统里面？" class="headerlink" title="3. Meta-Graph怎么用在推荐系统里面？"></a>3. Meta-Graph怎么用在推荐系统里面？</h1><p>通过上述步骤，我们知道了一个HIN能够生成多个Meta-Path和Meta-Graph，每个Meta-Path和Meta-Graph都能够生成一个相似度矩阵，也就是说对于论文中下图Yelp数据集构建的9张Meta-Graph，我们能够构建出9个相似度矩阵，那要如何把这部分矩阵转换为有用的特征，添加到推荐系统里面做训练呢？<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705010410823.jpg" width="500"></p>
+<h2 id="MF-FM"><a href="#MF-FM" class="headerlink" title="MF + FM"></a>MF + FM</h2><p>作者提出了一个大胆的框架<code>MF + FM</code>来解决这个问题。</p>
+<p>想要从矩阵中获取特征，一个很简单的办法，就是对每个相似矩阵进行矩阵分解，也就是Matrix Factorization(MF)，通过论文公式(1)将每个相似矩阵分解为<code>U</code>和<code>B</code>两个矩阵的乘积，<code>U</code>代表用户的隐性特征(Latent Features)，<code>B</code>代表物品的特征。假设一共有<code>L</code>张Meta-Graph和Meta-Path，每个特征的维度是<code>F</code>，那么最后总共的特征$x^n=2LF$，也就是论文公式(2)所表述的意思。</p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705012599919.jpg" width="400"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705015524648.jpg" width="405"></p>
+<p>通过<code>MF</code>抽取出特征之后，我们可以把特征投喂给模型<code>FM</code>(Factorization Machine)做训练和预测，这个模型的优点就是能够高效的训练出特征中的一次项特征和二次项特征（非线性交叉项）对结果的影响，我们知道传统的求解二阶交叉项系数(权重)的方法有两个很严重的缺点：</p>
+<ul>
+<li>求解的时间复杂度是$O(n^2)$，因为交叉项数量呈指数级增长；</li>
+<li>交叉项数据非常稀疏，因为我们知道如果一个特征为0的话，那么跟这个特征相关的所有交叉项也都为0，这就会导致很多交叉项系数权重也为0而无法被学习。</li>
+</ul>
+<p>而FM分解机方法能够很好的处理以上两个问题，因为在FM里面，交叉项系数通过数学的方式和矩阵分解，被转换为了两个向量的乘积，直接把复杂度降低到$O(n)$；而且可以很好的解决数据稀疏的问题，因为分解出来的两个向量的维度K是可控的（参考下列第二个公式），像一个参数一样可以由工程师自行调节，K的值越小，数据越不稀疏，不过代价就是所包含的信息会减少。<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705016896847.jpg" width="405"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705032373752.jpg" width="205"></p>
+<h2 id="FFM"><a href="#FFM" class="headerlink" title="FFM"></a>FFM</h2><p>其实现阶段有一种改进的FM模型要比以往的FM模型要好得多，虽然时间复杂度并不能得到优化，那就是<strong>FFM(Field-aware Factorization Machines)</strong>。</p>
+<p>FFM是FM的升级版模型，引入了field的概念。FFM把相同性质的特征归于同一个field。在FFM中，每一维特征$x_i$，针对每一种field $f_j$，都会学习到一个隐向量$V_{i,f_j}$，因此，隐向量不仅与特征相关，也与field相关。</p>
+<p>设样本一共有<code>n</code>个特征, <code>f</code>个field，那么FFM的二次项有<code>nf</code>个隐向量。而在FM模型中，每一维特征的隐向量只有一个。FM可以看做FFM的特例，即把所有特征都归属到同一个field中。</p>
+<script type="math/tex; mode=display">
+y = w_0 + \Sigma_{i=1}^{n}w_{i} x_{i} + \Sigma_{i=1}^{n}\Sigma_{j=i+1}^{n} <V_{i,f_{j}}, V_{j,f_{i}}>x_{i}x_{j}</script><p>如果隐向量的长度为<code>k</code>，那么FFM的二次项参数数量为<code>nfk</code>，远多于FM模型。此外由于隐向量与field相关，FFM二次项并不能够化简，时间复杂度为$O(kn^2)$。需要注意的是由于FFM中的latent vector只需要学习特定的field，所以通常$K_{FFM} &lt;&lt; K_{FM}$。</p>
+<h2 id="Group-Lasso-amp-nmAPG"><a href="#Group-Lasso-amp-nmAPG" class="headerlink" title="Group-Lasso &amp; nmAPG"></a>Group-Lasso &amp; nmAPG</h2><p>在我们的算法框架中，我们是以 meta-graph 为单位来构造用户和商品的隐式特征的，因此，每条 meta-graph 对应一组用户和商品的隐式特征。一旦某条 meta-graph 没有用，那么它对应的一组特征都应该被去掉，这就是我们采用 group lasso 来做正则项的动机。下列公式中(6)(7)就是对于一阶特征权重和二阶特征权重引入了正则化因子，从而实现Meta-Graph的自动筛选，并且能够避免过拟合的问题。</p>
+<p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705052812513.jpg" width="300"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705052999773.jpg" width="300"><br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705053245578.jpg" width="450"></p>
+<p>使用 group lasso 正则项之后，目标函数优化就变成了一个非凸非光滑（non-convex, non-smooth）的问题，我们使用了邻近梯度算法（proximal gradient）nmAPG算法来求解它。<br><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705056173451.jpg" width="450"></p>
+<h1 id="4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"><a href="#4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？" class="headerlink" title="4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"></a>4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？</h1><ol>
+<li>FMG能够通过HIN异构信息网络来构建整个推荐系统中实体变量之间的关联，通过可视化技术，大大提高了模型的解释性。</li>
+<li>FMG可以通过构建Meta-Graph，结合矩阵相乘和Hadamard乘积巧妙的融合了多个相似矩阵蕴含的信息，让原本繁琐复杂的关系融合为一个单独的矩阵，提供了一种信息融合的技术，这个是传统协同过滤技术无法做到的。</li>
+<li>FMG在兼顾传统协同过滤中基于用户、基于物品的技术的同时，通过矩阵运算能够从多个角度来计算相似度，让模型更加灵活、丰富；</li>
+<li>与矩阵分解SVD等技术相比，FMG并没有直接用MF来进行预测，而是用它来获取多个方位的隐性特征，再使用FM来进行预测，能够挖掘出更深层次的特征和特征之间的关联。</li>
+</ol>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p><img src="/2019/10/07/Meta-Graph-Based-Recommendation-System/15705057810241.jpg" width="500"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/wechat_pay.png?raw=true',
+  alipayImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/alipay.png?raw=true'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2019/10/07/Meta-Graph-Based-Recommendation-System/" target="_blank" title="Meta-Graph Based Recommendation System">http://yoursite.com/2019/10/07/Meta-Graph-Based-Recommendation-System/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/05/推荐系统简述/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          推荐系统简述
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/05/强化学习之解迷宫/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">强化学习之解迷宫</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Meta-Graph和HIN（Heterogeneous-Information-Network）"><span class="nav-number">2.</span> <span class="nav-text">1. 什么是Meta-Graph和HIN（Heterogeneous Information Network）?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异构信息网络HIN"><span class="nav-number">2.1.</span> <span class="nav-text">异构信息网络HIN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Meta-Path-amp-Meta-Graph"><span class="nav-number">2.2.</span> <span class="nav-text">Meta-Path &amp; Meta-Graph</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Meta-Path-和-Meta-Graph有什么用？"><span class="nav-number">3.</span> <span class="nav-text">2. Meta-Path 和 Meta-Graph有什么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种类别"><span class="nav-number">3.1.</span> <span class="nav-text">两种类别:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似度计算"><span class="nav-number">3.2.</span> <span class="nav-text">相似度计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于用户的相似度计算"><span class="nav-number">3.2.1.</span> <span class="nav-text">基于用户的相似度计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于物品的相似度计算"><span class="nav-number">3.2.2.</span> <span class="nav-text">基于物品的相似度计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meta-Graph的相似度计算："><span class="nav-number">3.2.3.</span> <span class="nav-text">Meta-Graph的相似度计算：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Meta-Graph怎么用在推荐系统里面？"><span class="nav-number">4.</span> <span class="nav-text">3. Meta-Graph怎么用在推荐系统里面？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MF-FM"><span class="nav-number">4.1.</span> <span class="nav-text">MF + FM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FFM"><span class="nav-number">4.2.</span> <span class="nav-text">FFM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Group-Lasso-amp-nmAPG"><span class="nav-number">4.3.</span> <span class="nav-text">Group-Lasso &amp; nmAPG</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？"><span class="nav-number">5.</span> <span class="nav-text">4. 这种方法和传统的协同过滤、矩阵分解等推荐方法相比，有什么优势？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验结果"><span class="nav-number">6.</span> <span class="nav-text">实验结果</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 Dojo All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dojo
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 Dojo All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+</body>
+</html>

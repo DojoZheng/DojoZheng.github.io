@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>关联规则介绍 &amp; fp-tree算法实现 | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Career" />
+  
+  
+  
+  
+  <meta name="description" content="A brief introduction and implementation about FP-Tree.">
+<meta name="keywords" content="Career">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关联规则介绍 &amp; FP-Tree算法实现">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/FPTree/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="A brief introduction and implementation about FP-Tree.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/candidates.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/rules.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/apriori_pruned_supersets.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/apriori_prune.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/apriori_steps.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/candidates_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/transactions_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/apriori_comparisons.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/1_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/100_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/200_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/300_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/400_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/500_scan.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/g_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/f_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/e_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/d_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/b_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/a_tree.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/generate_fp.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/09/FPTree/fptree.jpg">
+<meta property="og:updated_time" content="2019-09-12T06:13:49.149Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关联规则介绍 &amp; FP-Tree算法实现">
+<meta name="twitter:description" content="A brief introduction and implementation about FP-Tree.">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/09/FPTree/candidates.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/headIcon.jpg">
+  <link rel="apple-touch-icon" href="/css/images/headIcon.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" ><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/headIcon.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-FPTree" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      关联规则介绍 &amp; FP-Tree算法实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/09/09/FPTree/" class="article-date">
+	  <time datetime="2019-09-09T09:42:52.000Z" itemprop="datePublished">2019-09-09</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="FP-Tree介绍"><a href="#FP-Tree介绍" class="headerlink" title="FP-Tree介绍"></a>FP-Tree介绍</h1><ul>
+<li>源码地址  <ol>
+<li><a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q1_code" target="_blank" rel="noopener">Apriori哈希树源码地址</a>  </li>
+<li><a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q2_code" target="_blank" rel="noopener">FP-Tree算法实现源码地址</a></li>
+</ol>
+</li>
+<li><p>介绍<br>  <strong>Frequent Pattern Tree(FP-Tree频繁模式树)</strong>算法主要用于关联规则分析，查找出频繁项集。例如在‘啤酒’和‘尿布’这个经典的案例中，<code>{&#39;啤酒&#39;, &#39;尿布&#39;}</code>就可以被称为一个频繁项集，因为这两件毫无关系的商品共同被客户购买的频率非常高。而FP-Tree就可以挖掘出它们的潜在关系，它是一种紧缩的数据结构，用于存储或者查找<strong>频繁项集</strong>所需要的全部信息。</p>
+</li>
+<li><p>背景<br>  传统的<strong>Apriori</strong>频繁项集算法需要多次扫描数据库才能计算出最终结果，I/O会是性能优化的瓶颈。为了解决这个问题，<strong>韩家炜</strong>教授在2000年左右提出了FP-Tree这个算法，只需要扫描<code>2次</code>数据库就能够挖掘出所有的频繁项集！这大大提高了计算性能并且节约了计算资源！感兴趣的朋友可以阅读论文原著: <a href="https://www.cs.sfu.ca/~jpei/publications/sigmod00.pdf" target="_blank" rel="noopener">“Mining Frequent Patterns without Candidate Generation”</a></p>
+</li>
+<li><p>主要内容<br>  这篇博客主要介绍算法的原理和实现过程，并且通过一个简单的测试数据集来测试一下算法的准确性。其实这是我在香港科技大学读研的时候，MSBD5002-DataMining这门课的第一份作业，博客中所用到的图片和材料都来自于业界非常权威的教科书: </p>
+<ul>
+<li><a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining Concepts and Techniques by Han”</a></li>
+<li><a href="https://www.pearson.com/us/higher-education/product/Tan-Introduction-to-Data-Mining/9780321321367.html?tab=resources" target="_blank" rel="noopener">“Introduction to Data Mining by TSK”</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="关联规则"><a href="#关联规则" class="headerlink" title="关联规则"></a>关联规则</h1><p>在介绍FP-Tree之前，有必要介绍一下关联规则的定义、暴力破解法以及Apriori的原理，下面的这张表格会围绕着‘啤酒’和‘尿布’作为例子，对一些专业术语做生动的解释。</p>
+<h2 id="关联规则定义"><a href="#关联规则定义" class="headerlink" title="关联规则定义"></a>关联规则定义</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>啤酒，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>啤酒，尿布，面包，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>啤酒，尿布，面包，鸡蛋</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>啤酒，尿布，牛奶，可乐</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>牛奶，面包</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>Association Rule 关联规则</p>
+<ul>
+<li>$X \rightarrow Y $   （X、Y都是itemsets）</li>
+<li>假设 $X = \{啤酒\}, Y = \{尿布\}$，那么关联规则可以是$\{啤酒\} \rightarrow \{尿布\}$；也就是说买了啤酒的客户很有可能买尿布</li>
+</ul>
+</li>
+<li><p>目标: 找出所有满足以下两个条件的关联规则</p>
+<ul>
+<li>support $\geq$ minsup</li>
+<li>confidence $\geq$ minconf</li>
+</ul>
+</li>
+<li><p>Support Count ($\sigma$) 支持度计数</p>
+<ul>
+<li>itemset(项集)出现的频次</li>
+<li>E.g. $\sigma(\{啤酒，尿布\})=3$</li>
+</ul>
+</li>
+<li><p>Support 支持度</p>
+<ul>
+<li>包含X和Y的交易，在总交易数量中的占比：$s=\frac{\sigma(X+Y)}{|T|}$</li>
+<li>E.g. $s(X+Y)=s(\{啤酒，尿布\})=\frac{3}{5}$</li>
+</ul>
+</li>
+<li><p>Confidence 置信度</p>
+<ul>
+<li>所有包含X的交易记录中，包含Y的比例：$c=\frac{\sigma(X+Y)}{\sigma(X)}$</li>
+<li>E.g. $c=\frac{\sigma(\{啤酒，尿布\})}{\sigma({啤酒})}=\frac{3}{4}$</li>
+</ul>
+</li>
+<li><p>Frequent Itemset 频繁项集</p>
+<ul>
+<li>定义：当一个itemset的<strong>Support</strong>大于或者等于<strong>Minsup</strong>，可以认为该itemset是<strong>频繁项集</strong>；<strong>Minsup</strong>就像一个参数一样，需要工程师自己去设置；</li>
+<li>E.g. 假设 Minsup $=\frac{1}{2}$，$s(\{啤酒，尿布\})=\frac{3}{4} &gt;$ Minsup，所以{啤酒，尿布}可以认为是频繁项集。</li>
+</ul>
+</li>
+</ul>
+<h2 id="挖掘关联规则"><a href="#挖掘关联规则" class="headerlink" title="挖掘关联规则"></a>挖掘关联规则</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><blockquote>
+<ol>
+<li>生成频繁项集(Frequent Itemset Generation)<br> 找出所有<strong>Support $\geq$ MinSup</strong>的频繁项集</li>
+<li>生成关联规则(Rule Generation)<br> 根据频繁项集罗列出所有可能的关联规则(Binary Partitions)，再计算出每一个关联规则的置信度，筛选出所有<strong>Confidence $\geq$ MinConf</strong>的关联规则。 </li>
+</ol>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>啤酒，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>啤酒，尿布，面包，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>啤酒，尿布，面包，鸡蛋</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>啤酒，尿布，牛奶，可乐</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>牛奶，面包</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例如有一个频繁项集<code>{啤酒，尿布，面包}</code>, 那么它的所有可能的关联规则（Binary Partitions）是：</p>
+<script type="math/tex; mode=display">\{啤酒，尿布\} \rightarrow \{面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer, diaper)}=\frac{2}{3})</script><script type="math/tex; mode=display">\{啤酒，面包\} \rightarrow \{尿布\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer, bread)}=\frac{2}{2})</script><script type="math/tex; mode=display">\{尿布，面包\} \rightarrow \{啤酒\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(diaper, bread)}=\frac{2}{2})</script><script type="math/tex; mode=display">\{啤酒\} \rightarrow \{尿布, 面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(beer)}=\frac{2}{4})</script><script type="math/tex; mode=display">\{尿布\} \rightarrow \{啤酒，面包\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(diaper)}=\frac{2}{3})</script><script type="math/tex; mode=display">\{面包\} \rightarrow \{啤酒, 尿布\} (s=\frac{2}{5}, c=\frac{\sigma(beer, diaper, bread)}{\sigma(bread)}=\frac{2}{3})</script><p>仔细的研究会发现，同一个频繁项集的所有关联规则支持度都相同，但是置信度却可以有多个值(因为分母可能不同)，这也是为何先满足支持度要求、再满足置信度要求，两步走。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>暴力破解法 Brute-Force Approach</li>
+<li>Apriori</li>
+<li>FP-Tree</li>
+</ul>
+<h2 id="暴力破解法"><a href="#暴力破解法" class="headerlink" title="暴力破解法"></a>暴力破解法</h2><h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li>罗列出所有可能的候选集Candidate Itemsets，根据<strong>Minsup</strong>进行筛选；</li>
+<li>根据每一个频繁项集，罗列出所有的关联规则，根据<strong>MinConf</strong>进行筛选。</li>
+</ul>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>暴利破解法的时间复杂度非常高，但是时间复杂度和空间复杂度高的惊人！如果有<code>d</code>个item：</p>
+<ul>
+<li>候选集总数量: <strong>$2^d$</strong></li>
+<li>关联规则总数量: $R=\sum_{k=1}^{d-1} \left[\begin{pmatrix}<br>d \\<br>k<br>\end{pmatrix} \times \sum_{j=1}^{d-k}\begin{pmatrix}<br>d-k\\<br>j<br>\end{pmatrix}\right]=3^d-2^{d+1}+1$<br>那么就会有个候选集，这个指数级数量的爆炸性💥是相当惊人的！<br><img src="/2019/09/09/FPTree/candidates.jpg" alt="Total Candidates"><br><img src="/2019/09/09/FPTree/rules.jpg" alt="Total Rules"></li>
+</ul>
+<p>幸运的是，我们有更优的选择，下面我会先讲解一下<code>Apriori</code>，因为这是一个非常经典的算法，而且只有了解了<code>Apriori</code>之后，才知道为什么<code>FP-Tree</code>更加高效。</p>
+<h2 id="Apriori"><a href="#Apriori" class="headerlink" title="Apriori"></a>Apriori</h2><h3 id="Apriori-Principle-法则"><a href="#Apriori-Principle-法则" class="headerlink" title="Apriori Principle 法则"></a>Apriori Principle 法则</h3><ul>
+<li>如果一个项集是频繁项集，那么它的所有子集也都是频繁项集；</li>
+<li>$\forall X, Y: (X \subseteq Y) \Rightarrow s(X) \geq s(Y) $</li>
+<li>例子：还是利用下面的表格数据，如果<code>{啤酒，尿布}</code>是频繁项集，那么它的子集<code>{啤酒}</code>和<code>{尿布}</code>也都是频繁项集，因为<code>sup({啤酒}) = 4 &gt; sup({啤酒，尿布}) = 3</code></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>啤酒，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>啤酒，尿布，面包，牛奶</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>啤酒，尿布，面包，鸡蛋</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>啤酒，尿布，牛奶，可乐</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>牛奶，面包</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>现在我们再来观察一下下面这张生成了所有的候选集的图，如果候选集<code>{AB}</code>不是频繁项集，那么根据Apriori法则，我们可以把<code>{AB}</code>的所有超集都进行减枝，这将大大减少计算量！<br><img src="/2019/09/09/FPTree/apriori_pruned_supersets.jpg" alt="Apriori减枝"></p>
+<p>下图展示了Apriori减枝的具体步骤，假设当前的<code>MinSup=3</code>，那么当$\sigma(Candidate) &lt; 3$，该候选集就会被减枝。例如在计算<strong>1-itemsets</strong>的时候，<code>{Coke}</code>和<code>{Eggs}</code>的支持度计数小于3，就会被减枝，并且在计算<strong>2-itemsets</strong>的时候，我们就不会再考虑任何包含<code>Coke</code>和<code>Eggs</code>的候选集。我们也可以看到，通过减枝操作，候选集的数量从<strong>41</strong>减少到了<strong>13</strong>！当然，对于不同的数据集，减少的数量也会有所区别。<br><img src="/2019/09/09/FPTree/apriori_prune.jpg" alt="Apriori减枝步骤"></p>
+<h3 id="Apriori案例分析"><a href="#Apriori案例分析" class="headerlink" title="Apriori案例分析"></a>Apriori案例分析</h3><p>下面通过一个非常经典的教科书案例进行讲解：</p>
+<ul>
+<li>$1^{st} Scan$<br>  对数据库进行第一次扫描之后，可以统计出<strong>1-itemset</strong>（数量为1的候选集<code>C1</code>，简称为1维候选集）的支持度计数，发现<code>{D}</code>的支持度计数小于最小支持度计数$\sigma_{min}=2$，过滤后得到1维频繁项集列表<code>L1</code>；</li>
+<li>$2^{nd} Scan$<br>  根据<code>L1</code>生成<strong>2-itemsets</strong>列表<code>C2</code>，也就是所有可能的2维候选集；然后对数据库进行第二次扫描，发现<code>{A,B}</code>和<code>{A,E}</code>支持度计数小于2，过滤之后得到2维频繁项集列表<code>L2</code>；</li>
+<li>$3^{rd} Scan$<br>  步骤同上，得到3维频繁项集<code>L3</code>=<code>{B,C,E}</code>;</li>
+<li>频繁项集汇总<br>  最后，我们需要把所有维度的频繁项集汇总，也就是<code>L1+L2+L3</code>;<br><img src="/2019/09/09/FPTree/apriori_steps.jpg" alt="-w1163"></li>
+</ul>
+<h3 id="Apriori-哈希树"><a href="#Apriori-哈希树" class="headerlink" title="Apriori 哈希树"></a>Apriori 哈希树</h3><p><a href="https://github.com/DojoZheng/MSBD5002/tree/master/01-FPTree/Q1_code" target="_blank" rel="noopener">Apriori哈希树源码地址</a><br>Apriori哈希树是干什么的？它其实是用来减少数据库与候选集的比对次数的，什么意思呢？如上图所示，我要如何统计<code>C2</code>所有候选集的支持度计数？常规的方法是从数据库拿到一条数据，例如Tid=10的数据<code>{A,C,D}</code>，然后生成所有满足这条记录的2维候选集<code>T1</code> = [<code>{A,C}</code>, <code>{A,D}</code>, <code>{C,D}</code>]，再去匹配<code>C2</code>中所有的候选集，发现只有<code>{A,C}</code>这个候选集匹配的上，于是C2中的候选集<code>{A,C}</code>会更新加1；但是这样子的话，我需要让<code>C2</code>中所有的候选集都和<code>T1</code>的每条记录都匹配一遍；有没有更高效的办法，能够减少比对次数呢？答案就是：Apriori哈希树!</p>
+<ul>
+<li><p>候选集哈希树<br>假设有以下15个长度为3的候选集：<br>{1 4 5}, {1 2 4}, {4 5 7}, {1 2 5}, {4 5 8},<br>{1 5 9}, {1 3 6}, {2 3 4}, {5 6 7}, {3 4 5},<br>{3 5 6}, {3 5 7}, {6 8 9}, {3 6 7}, {3 6 8}</p>
+<p>  随后，可以把各个候选集都映射到哈希树对应的节点当中，如下图所示，例如候选集 <code>{1 5 9}</code>，1对应左分支，5对应中间分支，9对应右分支，于是被映射到图中红色的节点位置。<br><img src="/2019/09/09/FPTree/candidates_tree.jpg" alt="候选集哈希树"></p>
+</li>
+<li><p>交易记录哈希树<br>  假设数据库中有一条交易记录<code>t = {1 2 3 5 6}</code>,交易记录t的所有子集在哈希树中的映射关系如下图所示，总共有$C_{5}^{3}=10$个长度为3的子集：<br>T = []<br><img src="/2019/09/09/FPTree/transactions_tree.jpg" alt="交易记录子集"></p>
+<p>  交易记录中长度为3的所有子集<code>T</code>在候选集哈希树中的映射情况如下图所示，所有匹配的子集都别映射到红色的方框节点当中，与节点当中所有的候选集进行比对，从而对候选集的支持度计数进行更新，下面对常规方法和哈希树方法的比对次数进行比较。<br><img src="/2019/09/09/FPTree/apriori_comparisons.jpg" alt="哈希树比对次数"></p>
+</li>
+<li><p>比对次数PK       </p>
+<ul>
+<li>常规方法：$|T| \times |C| = 10 \times 15 = 150 次$</li>
+<li><p>哈希树方法(叶子节点被称为一个桶Bucket)：</p>
+<ul>
+<li>Bucket({1 2 5}, {4 5 8}):<br>  <code>{1 2 5}</code>        </li>
+<li>Bucket({1 5 9}):<br>  <code>{1 2 3}</code> <code>{1 2 6}</code> <code>{1 5 6}</code></li>
+<li>Bucket({1 3 6}):<br>  <code>{1 3 5}</code> <code>{1 3 6}</code></li>
+<li>Bucket({2 3 4} {5 6 7}):<br>  <code>{2 3 5}</code> <code>{2 3 6}</code> <code>{2 5 6}</code></li>
+<li>Bucket({3 5 6} {3 5 7} {6 8 9}):<br>  <code>{3 5 6}</code></li>
+<li>统计<ul>
+<li>比对用到的候选集个数：9个</li>
+<li>比对总次数：2+3+2+3*2+3=16次</li>
+</ul>
+</li>
+</ul>
+<p>通过这个案例可以很直观的感受到哈希树优化了多少，从常规方法15个候选集降到9个候选集，150次比对减少到16次比对！当数据规模非常大的时候，优化提升的效果会更加显著！<br>需要提示的是，我们会更加关注候选集比对减少的个数，因为在实际应用情况中，候选集个数往往非常大，而一条数据库记录的子集个数往往比较小。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="FP-Tree"><a href="#FP-Tree" class="headerlink" title="FP-Tree"></a>FP-Tree</h1><p>根据前面的介绍，我们知道Apriori需要通过扫描数据库来生成候选集，而且需要的候选集有多长，就需要扫描多少次，例如前面案例生成3维的候选集，就需要扫描3次数据库；而我们知道扫描一次数据库需要耗费很长的时间、消耗很多的计算资源和性能，因为扫描数据库不像从内存里面直接读取数据，它需要去硬盘、甚至需要通过网络连接到数据库服务器来获取数据，而且需要获取的数据量往往大的惊人，可以是上G甚至上T的数据量。那有没有更好的算法，可以解决这个问题呢？FP-Tree在这里就派上用场了，因为不管你想要的候选集有多长，它只需要扫描2次数据库，而且是生成所有的候选集！</p>
+<h2 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>扫描数据库<strong>第1次</strong>，对所有1维频繁项进行排序，记排序序列为L；非频繁项剔除；如果有一些频繁项的支持度计数Support Count相同，那就再根据字母进行排序；</li>
+<li>扫描数据库<strong>第2次</strong>，将每一条记录按照序列L进行排序，剔除非频繁项集后，将预处理好的记录T插入到FP-Tree当中；</li>
+<li>倒序遍历序列L的1维item，根据FP-Tree为每一个1维item频繁项构建FP-Conditional-Tree(条件状态树)；</li>
+<li>根据每一颗条件状态树，生成频繁项集。</li>
+</ol>
+<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><ol>
+<li><p>扫描数据库<strong>第一次</strong>，得到1维频繁项及其降序序列L;<br> <img src="/2019/09/09/FPTree/1_scan.jpg" alt="1st扫描数据库"></p>
+</li>
+<li><p>扫描数据库<strong>第二次</strong>，生成FP-Tree<br> 2.1 扫描$1^{st}$记录TID=100<br> <img src="/2019/09/09/FPTree/100_scan.jpg" alt="TID=100"></p>
+<p> 2.2 扫描$2^{nd}$记录TID=200<br> <img src="/2019/09/09/FPTree/200_scan.jpg" alt="TID=200"></p>
+<p> 2.3 扫描$3^{rd}$记录TID=300<br> <img src="/2019/09/09/FPTree/300_scan.jpg" alt="TID=300"></p>
+<p> 2.4 扫描$4^{th}$记录TID=400<br> <img src="/2019/09/09/FPTree/400_scan.jpg" alt="TID=300"></p>
+<p> 2.5 扫描$5^{th}$记录TID=500<br> <img src="/2019/09/09/FPTree/500_scan.jpg" alt="TID=400"></p>
+</li>
+<li><p>构建条件状态树<br> 3.1 条件模式基(Conditional Pattern Base): <code>g</code><br> <img src="/2019/09/09/FPTree/g_tree.jpg" alt="&#39;g&#39;条件状态树"></p>
+<p> 3.2 条件模式基: <code>f</code><br> <img src="/2019/09/09/FPTree/f_tree.jpg" alt="&#39;f&#39;条件状态树"></p>
+<p> 3.3 条件模式基: <code>e</code><br> <img src="/2019/09/09/FPTree/e_tree.jpg" alt="&#39;e&#39;条件状态树"></p>
+<p> 3.4 条件模式基: <code>d</code><br> <img src="/2019/09/09/FPTree/d_tree.jpg" alt="&#39;d&#39;条件状态树"></p>
+<p> 3.5 条件模式基: <code>b</code><br> <img src="/2019/09/09/FPTree/b_tree.jpg" alt="&#39;b&#39;条件状态树"></p>
+<p> 3.6 条件模式基: <code>a</code><br> <img src="/2019/09/09/FPTree/a_tree.jpg" alt="&#39;a&#39;条件状态树"></p>
+</li>
+<li><p>生成频繁项集<br> <img src="/2019/09/09/FPTree/generate_fp.jpg" alt="生成频繁项集"></p>
+</li>
+</ol>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><blockquote>
+<p>参考伪代码自: <a href="http://myweb.sabanciuniv.edu/rdehkharghani/files/2016/02/The-Morgan-Kaufmann-Series-in-Data-Management-Systems-Jiawei-Han-Micheline-Kamber-Jian-Pei-Data-Mining.-Concepts-and-Techniques-3rd-Edition-Morgan-Kaufmann-2011.pdf" target="_blank" rel="noopener">“Data Mining: Concepts and Techniques 3rd Edition by Han”</a> P260 Figure 6.9<br><img src="/2019/09/09/FPTree/fptree.jpg" alt="FPTree伪代码"></p>
+</blockquote>
+<p><strong>中文翻译</strong>:</p>
+<blockquote>
+<p><strong>算法</strong>：FP-Grouth 或者 FP-Tree。使用FP树，通过模式增长挖掘频繁模式。<br><strong>输入</strong>:</p>
+<ul>
+<li>D: 事务数据库；</li>
+<li>min_sup: 最小支持度阈值  </li>
+</ul>
+<p><strong>输出</strong>：频繁模式的完全集<br><strong>方法</strong>：</p>
+<ol>
+<li>按以下步骤构建FP树：<br> (a) 扫描事务数据库<code>D</code>一次，收集频繁项的集合<code>F</code>和它们的支持度计数。对<code>F</code>按支持度计数<strong>降序排序</strong>，结果为频繁项列表<code>L</code>。<br> (b) 创建FP树的根节点，以“null”标记它。对于<code>D</code>中每个事务<code>Trans</code>，执行：选择<code>Trans</code>中的频繁项，并按<code>L</code>中的次序排序。设<code>Trans</code>排序后的频繁项列表为<code>[p|P]</code>，其中<code>p</code>是第一个元素，而<code>P</code>是剩余元素的列表。调用<strong><em>insert_tree([p|P], T)</em></strong>。该过程执行情况如下：<br> 如果<code>T</code>有子女<code>N</code>使得 <strong>N.item-name=p.item-name</strong> ，则<code>N</code>的计数增加1；否则，创建一个新结点<code>N</code>，将其计数设置为1，链接到它的父节点<code>T</code>，并且通过结点链结构将其链接到具有相同 <strong>item-name</strong> 的结点。如果<code>P</code>非空，则递归地调用 <strong>insert_tree(P, N)</strong>。 </li>
+<li>FP树的挖掘通过调用 <strong>FP_growth(FP_tree, null)</strong> 实现。该过程实现如下：<br> <strong>procedure FP_growth(Tree, $\alpha$)</strong><br> (1) if <em>Tree</em> 包含单个路径 <em>P</em> <strong>then</strong><br> (2) <strong>for</strong> 路径 <em>P</em> 中结点的每个组合（记作$\beta$）<br> (3) 产生模式 $\beta \cup \alpha$，其支持度计数 <em>support_count</em> 等于 $\beta$ 中结点的最小支持度计数；<br> (4) <strong>else for</strong> <em>Tree</em> 的头表中的每个 $a_i$ {<br> (5) 产生一个模式 $\beta=a_i \cap \alpha$, 使其支持度计数 <em>support_count</em> = $a_i$;<br> (6) 构造 $\beta$ 的条件模式基，然后构造 $\beta$ 的条件<em>FP</em>树 $Tree_\beta$;<br> (7) <strong>if</strong> $Tree_\beta \neq \varnothing$ <strong>then</strong><br> (8) 调用 <strong>FP_growth($Tree_\beta, \beta$)</strong>; }</li>
+</ol>
+</blockquote>
+<h2 id="关键代码分析"><a href="#关键代码分析" class="headerlink" title="关键代码分析"></a>关键代码分析</h2><h2 id="数据集-amp-运行结果"><a href="#数据集-amp-运行结果" class="headerlink" title="数据集 &amp; 运行结果"></a>数据集 &amp; 运行结果</h2>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/wechat_pay.png?raw=true',
+  alipayImage: 'https://github.com/DojoZheng/DojoZheng.github.io/blob/master/alipay.png?raw=true'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong></a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2019/09/09/FPTree/" target="_blank" title="关联规则介绍 &amp; FP-Tree算法实现">http://yoursite.com/2019/09/09/FPTree/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/20/梯度消失与爆炸/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          梯度消失与爆炸
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/11/SparkMongoDB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SparkMongoDB</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FP-Tree介绍"><span class="nav-number">1.</span> <span class="nav-text">FP-Tree介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关联规则"><span class="nav-number">2.</span> <span class="nav-text">关联规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关联规则定义"><span class="nav-number">2.1.</span> <span class="nav-text">关联规则定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挖掘关联规则"><span class="nav-number">2.2.</span> <span class="nav-text">挖掘关联规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">2.2.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴力破解法"><span class="nav-number">2.3.</span> <span class="nav-text">暴力破解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">2.3.2.</span> <span class="nav-text">复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apriori"><span class="nav-number">2.4.</span> <span class="nav-text">Apriori</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori-Principle-法则"><span class="nav-number">2.4.1.</span> <span class="nav-text">Apriori Principle 法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori案例分析"><span class="nav-number">2.4.2.</span> <span class="nav-text">Apriori案例分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori-哈希树"><span class="nav-number">2.4.3.</span> <span class="nav-text">Apriori 哈希树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FP-Tree"><span class="nav-number">3.</span> <span class="nav-text">FP-Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤-2"><span class="nav-number">3.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图解"><span class="nav-number">3.2.</span> <span class="nav-text">图解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪代码"><span class="nav-number">3.3.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键代码分析"><span class="nav-number">3.4.</span> <span class="nav-text">关键代码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集-amp-运行结果"><span class="nav-number">3.5.</span> <span class="nav-text">数据集 &amp; 运行结果</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 Dojo All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dojo
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 Dojo All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+</body>
+</html>
