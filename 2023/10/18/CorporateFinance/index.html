@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>HKU-MBA | Dojo</title>
+        <title>CorporateFinance | Dojo</title>
         <meta name="author" content="ZHENG Dongjia" />
         <meta name="description" content="Look at the starry night! Stand on the solid ground!" />
         <meta name="keywords" content="" />
@@ -152,23 +152,14 @@
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
                 <div class="article">
     <div>
-        <h1>HKU-MBA</h1>
+        <h1>CorporateFinance</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/8/5
-        </span>
-        
-        <span class="category">
-            <a href="/categories/Life/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Life
-            </a>
+            2023/10/18
         </span>
         
         
@@ -179,7 +170,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/MBA/" style="color: #00bcd4">MBA</a>
+                <a href="/tags/MBA/" style="color: #ffa2c4">MBA</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Finance/" style="color: #03a9f4">Finance</a>
             </span>
             
         </span>
@@ -187,7 +183,36 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="香港大学MBA"><a href="#香港大学MBA" class="headerlink" title="香港大学MBA"></a>香港大学MBA</h1><p>2023年7月，在深思熟虑、几经周折之后，我终于拿下香港大学MBA课程的录取通知书，并且在7月29日迎来了开学典礼！<br><img src="/2023/08/05/HKU-MBA/HKUOrientation.jpg" alt="HKUOrientation"></p>
+        <h1 id="PMBA6003-Corporate-Finance"><a href="#PMBA6003-Corporate-Finance" class="headerlink" title="PMBA6003 - Corporate Finance"></a>PMBA6003 - Corporate Finance</h1><p><img src="/2023/10/18/CorporateFinance/pmba6003.jpg" alt="PMBA6003-Corporate Finance"></p>
+<span id="more"></span>
+<h2 id="Discounted-Cash-Flow-Valuation"><a href="#Discounted-Cash-Flow-Valuation" class="headerlink" title="Discounted Cash Flow Valuation"></a>Discounted Cash Flow Valuation</h2><h3 id="Excel-Formula"><a href="#Excel-Formula" class="headerlink" title="Excel Formula"></a>Excel Formula</h3><p>$$ Discount\ rate: RATE(nper, pmt, pv, fv) $$<br>$$ Number\ of\ payments: NPER(rate, pmt, pv, fv) $$<br>$$ Payment\ amount\ per\ period: PMT(rate, nper, pv, fv) $$<br>$$ Present\ value: PV(rate, nper, pmt, fv) $$<br>$$ Future\ value: FV(rate, nper, pmt, pv) $$</p>
+<h3 id="Exercise-1-难度系数"><a href="#Exercise-1-难度系数" class="headerlink" title="Exercise 1 - 难度系数 *"></a>Exercise 1 - 难度系数 *</h3><p>Andy deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Barb also deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Andy will withdraw his interest earnings and spend it as soon as possible.<br>Barb will reinvest her interest earnings into her account. Given this, which one of the following statements is true?</p>
+<p>A. Barb will earn more interest the first year than Andy will.<br>B. Andy will earn more interest in year three than Barb will.<br><strong><u>C. Barb will earn interest on interest.</u></strong><br>D. After five years, Andy and Barb will both have earned the same amount of interest.<br>E. Andy will earn compound interest.</p>
+<pre><code class="Explanation">Andy is earning simple interest. 
+Barb is earning compound interest. 
+In the first year, both will earn the same amount of interest given the same interest rate and initial investment amount $3,000. 
+But after the first year, Barb will always earn more interest than Andy.
+</code></pre>
+<h3 id="EXERCISE-2-难度系数"><a href="#EXERCISE-2-难度系数" class="headerlink" title="EXERCISE 2 - 难度系数 *"></a>EXERCISE 2 - 难度系数 *</h3><p>Louis is going to receive $20,000 six years from now.<br>Soo is going to receive $20,000 nine years from now.<br>Which one of the following statements is correct if both Louis and Soo apply a 7% discount rate to these amounts?</p>
+<p>A. The present values of Louis and Soo’s monies are equal.<br>B. In future dollars, Soo’s money is worth more than Louis’ money.<br><strong><u>C. In today’s dollars, Louis’ money is worth more than Soo’s.</u></strong><br>D. Twenty years from now, the value of Louis’ money will be equal to the value of Soo’s money.<br>E. Soo’s money is worth more than Louis’ money given the 7 percent discount rate.</p>
+<pre><code class="Explanation">Although both Louis and Soo are going to receive the same amount $20,000, 
+but they are not comparable as they are not received at the same point of time. 
+$1 today worths more than $1 tomorrow (general rule). 
+$20,000 received six years from today should be also worth more than $20,000 received nine years from now. 
+Given 7% discount rate, both the PV and FV of Louis’s $20,000 are always higher than the PV and FV of Soo’s $20,000 at the same point of time on the timeline.
+</code></pre>
+<h3 id="EXERCISE-3-难度系数"><a href="#EXERCISE-3-难度系数" class="headerlink" title="EXERCISE 3 - 难度系数 *"></a>EXERCISE 3 - 难度系数 *</h3><p>You invested $1,650 in an account that pays 5% simple interest.<br>How much more could you have earned over a 20-year period if the interest had compounded annually?</p>
+<p>A. $849.22<br>B. $930.11<br>C. $982.19<br>D. $1,021.15<br><strong><u>E. $1,077.94</u></strong></p>
+<pre><code class="Explanation">Simple interest = $1,650 + ($1,650 x .05 x 20) = $3,300 
+Annual compounding = $1,650 x (1.05)^20 = $4,377.94 
+Difference = $4,377.94 − $3,300 = $1,077.94
+
+Excel Calculation:
+future value (fv): FV(rate, nper, pmt, pv) = FV(5%, 20, 0, -1650) = $4,377.94
+
+Note:
+When it comes to applying PV(1+r)^t=FV formula in excel, either PV of FV has to be a negative value in order for another cash flow variable value to be a positive.
+</code></pre>
 
     </div>
     
