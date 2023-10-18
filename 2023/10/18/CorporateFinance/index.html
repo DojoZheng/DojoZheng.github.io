@@ -170,12 +170,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/MBA/" style="color: #ffa2c4">MBA</a>
+                <a href="/tags/MBA/" style="color: #00bcd4">MBA</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Finance/" style="color: #03a9f4">Finance</a>
+                <a href="/tags/Finance/" style="color: #00a596">Finance</a>
             </span>
             
         </span>
@@ -183,17 +183,33 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="PMBA6003-Corporate-Finance"><a href="#PMBA6003-Corporate-Finance" class="headerlink" title="PMBA6003 - Corporate Finance"></a>PMBA6003 - Corporate Finance</h1><p><img src="/2023/10/18/CorporateFinance/pmba6003.jpg" alt="PMBA6003-Corporate Finance"></p>
+        <h1 id="Corporate-Finance-Tutorial-1"><a href="#Corporate-Finance-Tutorial-1" class="headerlink" title="Corporate Finance: Tutorial 1"></a>Corporate Finance: Tutorial 1</h1><p><img src="/2023/10/18/CorporateFinance/pmba6003-tutorial1.jpg" alt="PMBA6003-Tutorial1"></p>
 <span id="more"></span>
-<h2 id="Discounted-Cash-Flow-Valuation"><a href="#Discounted-Cash-Flow-Valuation" class="headerlink" title="Discounted Cash Flow Valuation"></a>Discounted Cash Flow Valuation</h2><h3 id="Excel-Formula"><a href="#Excel-Formula" class="headerlink" title="Excel Formula"></a>Excel Formula</h3><p>$$ Discount\ rate: RATE(nper, pmt, pv, fv) $$<br>$$ Number\ of\ payments: NPER(rate, pmt, pv, fv) $$<br>$$ Payment\ amount\ per\ period: PMT(rate, nper, pv, fv) $$<br>$$ Present\ value: PV(rate, nper, pmt, fv) $$<br>$$ Future\ value: FV(rate, nper, pmt, pv) $$</p>
-<h3 id="Exercise-1-难度系数"><a href="#Exercise-1-难度系数" class="headerlink" title="Exercise 1 - 难度系数 *"></a>Exercise 1 - 难度系数 *</h3><p>Andy deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Barb also deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Andy will withdraw his interest earnings and spend it as soon as possible.<br>Barb will reinvest her interest earnings into her account. Given this, which one of the following statements is true?</p>
+
+<h2 id="Excel-Formula"><a href="#Excel-Formula" class="headerlink" title="Excel Formula"></a>Excel Formula</h2><ul>
+<li>$ Discount\ rate: RATE(nper, pmt, pv, fv) $</li>
+<li>$ Number\ of\ payments: NPER(rate, pmt, pv, fv) $</li>
+<li>$ Payment\ amount\ per\ period: PMT(rate, nper, pv, fv) $</li>
+<li>$ Present\ value: PV(rate, nper, pmt, fv) $</li>
+<li>$ Future\ value: FV(rate, nper, pmt, pv) $<blockquote>
+<p>Note:<br>When it comes to applying $PV(1+r)^t&#x3D;FV$ formula in excel, either PV of FV has to be a negative value in order for another cash flow variable value to be a positive.</p>
+</blockquote>
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="Exercise-1-难度系数"><a href="#Exercise-1-难度系数" class="headerlink" title="Exercise 1 - 难度系数 *"></a>Exercise 1 - 难度系数 *</h2><blockquote>
+<p>Andy deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Barb also deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Andy will withdraw his interest earnings and spend it as soon as possible.<br>Barb will reinvest her interest earnings into her account. Given this, which one of the following statements is true?</p>
+</blockquote>
 <p>A. Barb will earn more interest the first year than Andy will.<br>B. Andy will earn more interest in year three than Barb will.<br><strong><u>C. Barb will earn interest on interest.</u></strong><br>D. After five years, Andy and Barb will both have earned the same amount of interest.<br>E. Andy will earn compound interest.</p>
 <pre><code class="Explanation">Andy is earning simple interest. 
 Barb is earning compound interest. 
 In the first year, both will earn the same amount of interest given the same interest rate and initial investment amount $3,000. 
 But after the first year, Barb will always earn more interest than Andy.
 </code></pre>
-<h3 id="EXERCISE-2-难度系数"><a href="#EXERCISE-2-难度系数" class="headerlink" title="EXERCISE 2 - 难度系数 *"></a>EXERCISE 2 - 难度系数 *</h3><p>Louis is going to receive $20,000 six years from now.<br>Soo is going to receive $20,000 nine years from now.<br>Which one of the following statements is correct if both Louis and Soo apply a 7% discount rate to these amounts?</p>
+<p><br><br></p>
+<h2 id="EXERCISE-2-难度系数"><a href="#EXERCISE-2-难度系数" class="headerlink" title="EXERCISE 2 - 难度系数 *"></a>EXERCISE 2 - 难度系数 *</h2><blockquote>
+<p>Louis is going to receive $20,000 six years from now.<br>Soo is going to receive $20,000 nine years from now.<br>Which one of the following statements is correct if both Louis and Soo apply a 7% discount rate to these amounts?</p>
+</blockquote>
 <p>A. The present values of Louis and Soo’s monies are equal.<br>B. In future dollars, Soo’s money is worth more than Louis’ money.<br><strong><u>C. In today’s dollars, Louis’ money is worth more than Soo’s.</u></strong><br>D. Twenty years from now, the value of Louis’ money will be equal to the value of Soo’s money.<br>E. Soo’s money is worth more than Louis’ money given the 7 percent discount rate.</p>
 <pre><code class="Explanation">Although both Louis and Soo are going to receive the same amount $20,000, 
 but they are not comparable as they are not received at the same point of time. 
@@ -201,18 +217,146 @@ $1 today worths more than $1 tomorrow (general rule).
 $20,000 received six years from today should be also worth more than $20,000 received nine years from now. 
 Given 7% discount rate, both the PV and FV of Louis’s $20,000 are always higher than the PV and FV of Soo’s $20,000 at the same point of time on the timeline.
 </code></pre>
-<h3 id="EXERCISE-3-难度系数"><a href="#EXERCISE-3-难度系数" class="headerlink" title="EXERCISE 3 - 难度系数 *"></a>EXERCISE 3 - 难度系数 *</h3><p>You invested $1,650 in an account that pays 5% simple interest.<br>How much more could you have earned over a 20-year period if the interest had compounded annually?</p>
+<p><br><br></p>
+<h2 id="EXERCISE-3-难度系数"><a href="#EXERCISE-3-难度系数" class="headerlink" title="EXERCISE 3 - 难度系数 **"></a>EXERCISE 3 - 难度系数 **</h2><blockquote>
+<p>You invested $1,650 in an account that pays 5% simple interest.<br>How much more could you have earned over a 20-year period if the interest had compounded annually?</p>
+</blockquote>
 <p>A. $849.22<br>B. $930.11<br>C. $982.19<br>D. $1,021.15<br><strong><u>E. $1,077.94</u></strong></p>
 <pre><code class="Explanation">Simple interest = $1,650 + ($1,650 x .05 x 20) = $3,300 
 Annual compounding = $1,650 x (1.05)^20 = $4,377.94 
 Difference = $4,377.94 − $3,300 = $1,077.94
 
 Excel Calculation:
-future value (fv): FV(rate, nper, pmt, pv) = FV(5%, 20, 0, -1650) = $4,377.94
-
-Note:
-When it comes to applying PV(1+r)^t=FV formula in excel, either PV of FV has to be a negative value in order for another cash flow variable value to be a positive.
+FV(rate, nper, pmt, pv) = FV(5%, 20, 0, -1650) = $4,377.94
 </code></pre>
+<p><br><br></p>
+<h2 id="Exercise-4-难度系数"><a href="#Exercise-4-难度系数" class="headerlink" title="Exercise 4 - 难度系数 **"></a>Exercise 4 - 难度系数 **</h2><blockquote>
+<p>At 11% interest rate, how long would it take from today to quadruple your $1,500 if it is invested 3 years later from now?</p>
+</blockquote>
+<p>A. 13.09 years<br>B. 13.28 years<br>C. 13.56 years<br><u><strong>D. 16.28 years</strong></u><br>E. 16.56 years</p>
+<pre><code class="Explanation">$6,000 = $1,500 x (1 + .11)^t
+t = 13.28 years
+t + 3 = 16.28 years
+
+Excel Calculation:
+NPER(rate, pmt, pv, fv) = NPER(11%,0,1500,-1500*4) = 13.2832
+</code></pre>
+<p><br><br></p>
+<h2 id="Self-Study-Exercise-1-难度系数"><a href="#Self-Study-Exercise-1-难度系数" class="headerlink" title="Self-Study Exercise 1 - 难度系数 **"></a>Self-Study Exercise 1 - 难度系数 **</h2><blockquote>
+<p>You would like to give your daughter $75,000 towards her college education 17 years from now. How much money must you set aside today for this purpose if you can earn 8% on your investments?</p>
+</blockquote>
+<p>A. $18,388.19<br><strong><u>B. $20,270.17</u></strong><br>C. $28,417.67<br>D. $29,311.13<br>E. $32,488.37</p>
+<pre><code class="Explanation">Present value = $75, 000 x [1/(1 + .08)^17 ] = $20,270.17
+
+Excel:
+PV(rate, nper, pmt, fv) = PV(8%,17,0,-75000) = $20,270.17
+</code></pre>
+<p><br><br></p>
+<h2 id="Self-Study-Exercise-2-难度系数"><a href="#Self-Study-Exercise-2-难度系数" class="headerlink" title="Self-Study Exercise 2 - 难度系数**"></a>Self-Study Exercise 2 - 难度系数**</h2><blockquote>
+<p>Fourteen years ago from now, your parents set aside $7,500 to help fund your college education.<br>2 years later from now, that fund is valued at $26,180. What rate of interest is being earned on this account?</p>
+</blockquote>
+<p>A. 7.99 percent<br><strong><u>B. 8.13 percent</u></strong><br>C. 8.51 percent<br>D. 9.34 percent<br>E. 10.06 percent</p>
+<pre><code class="Explanation">$26,180 = $7,500 x (1 + r)^16 
+r = 8.13%
+
+Excel: 
+RATE(nper, pmt, pv, fv) = RATE(16,0,7500,-26180)
+</code></pre>
+<p><br><br></p>
+<h2 id="Exercise-5-难度系数"><a href="#Exercise-5-难度系数" class="headerlink" title="Exercise 5 - 难度系数***"></a>Exercise 5 - 难度系数***</h2><blockquote>
+<p>Which one of the following statements is correct given the following two sets of project cash flows?</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Project A</th>
+<th>Project B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Year 1</td>
+<td>$6,000</td>
+<td>$2,000</td>
+</tr>
+<tr>
+<td>Year 2</td>
+<td>$0</td>
+<td>$3,000</td>
+</tr>
+<tr>
+<td>Year 3</td>
+<td>$2,500</td>
+<td>$3,000</td>
+</tr>
+<tr>
+<td>Year 4</td>
+<td>$2,500</td>
+<td>$3,000</td>
+</tr>
+</tbody></table>
+</blockquote>
+<p>A. The cash flows for Project B are an annuity, but those of Project A are not.<br>B. Both sets of cash flows have equal present values as of time zero given the same positive discount rate.<br>C. The present value of Project A cannot be computed because the second cash flow is equal to zero.<br><u><strong>D. As long as the discount rate is positive, Project B will always be worth less today than will Project A.</strong></u></p>
+<blockquote>
+<p>Explanation</p>
+<ul>
+<li>Option A: Both Project A and B cash flows are not annuity as the cash flow each period in A is not of same amount, and the cash flow each period in B is also not of same amount. </li>
+<li>Option B, C, D: You can change the RATE to any positive interest rate (assume that the rate &#x3D; 5% ) to prove the options make sense or not. Project A should worth more than Project B given the same positive interest rate because a higher proportion of A’s total cash flows occurs earlier than B’s. Even project A and B have the same amount of cash flows totally ($11,000), the distribution of the cash flows in each year is not the same. Given the same interest rate, they will not have the same present value. If the cash flow is zero, then the PV must be always zero.<br><strong>Excel formula: PV(rate, nper, pmt, fv)</strong><table>
+<thead>
+<tr>
+<th></th>
+<th>PV of A</th>
+<th>PV of B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Year 1</td>
+<td>PV(5%, 1, 0, -6000) &#x3D; $5,714.29</td>
+<td>PV(5%, 1, 0, -2000) &#x3D; $1,904.76</td>
+</tr>
+<tr>
+<td>Year 2</td>
+<td>$0</td>
+<td>PV(5%, 2, 0, -3000) &#x3D; $2,721.09</td>
+</tr>
+<tr>
+<td>Year 3</td>
+<td>PV(5%, 0, 3, -2500) &#x3D; $2,159.59</td>
+<td>PV(5%, 0, 3, -3000) &#x3D; $2,591.51</td>
+</tr>
+<tr>
+<td>Year 4</td>
+<td>PV(5%, 0, 4, -2500) &#x3D; $2,056.76</td>
+<td>PV(5%, 0, 4, -3,000) &#x3D; $2,468.11</td>
+</tr>
+<tr>
+<td>Sum</td>
+<td>$9,930.64</td>
+<td>$9,685.47</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</blockquote>
+<p>  <br><br>  </p>
+<h2 id="Exercise-6-难度系数"><a href="#Exercise-6-难度系数" class="headerlink" title="Exercise 6 - 难度系数***"></a>Exercise 6 - 难度系数***</h2><blockquote>
+<p>Which of the following statements related to interest rates are correct?<br>I. Annual percentage rates consider the effect of interest earned on reinvested interest payments. 年利率考虑利息收入对再投资利息支付的影响<br>II. When comparing loans, you should compare the effective annual rates. 在比较贷款时，你应该比较有效的年利率<br>III. Lenders are required by law to disclose the effective annual rate of a loan to prospective borrowers. 法律规定放款人须向准借款人披露贷款的有效年利率<br>IV. Annual percentage rates(APR) and effective interest rates(EAR) are equal when interest is compounded annually. 当利息按年复利时，年利率和实际利率相等</p>
+</blockquote>
+<p>A. I and II only<br>B. II and III only<br><strong><u>C. II and IV only </u></strong><br>D. I, II, and III only<br>E. II, III, and IV only</p>
+<blockquote>
+<p><strong>Explanation</strong><br>Statement I:<br>APR(annual percentage rates) is an annualized interest rate using simple interest.<br>再投资利息这个说的是复利，年利率考虑的是单利</p>
+<p>Statement II:<br>APRs with different compounding frequency are not comparable.<br>We should convert all APRs with different compounding frequency into EARs(effective annual rates) for comparison. </p>
+<p>Statement III:<br>Lenders are required by law to disclose披露 APRs, not EARs. </p>
+<p>Statement IV:<br>Relationship between APR and EAR: (参考自课件)<br>$$1+EAR&#x3D;(1+\frac{APR}{Number\ of\ Periods\ per\ Year})^{Number\ of\ Periods\ per\ Year}$$<br>When compounding frequency is annual, $(1+\frac{APR}{1})^1 &#x3D; 1+EAR$ or $1+APR &#x3D; 1+EAR$.<br>As number of periods per year ↑, EAR ↑ if APR remains the same<br>$1 + EAR &#x3D; eAPR$<br>Number of periods per year → ∞, maximum EAR is achieved</p>
+</blockquote>
+<p><br><br></p>
+<h2 id="Exercise-7"><a href="#Exercise-7" class="headerlink" title="Exercise 7"></a>Exercise 7</h2><blockquote>
+<p>You are the beneficiary of a life insurance policy.<br>The insurance company informs you that you have two options for receiving the insurance proceeds.<br>You can receive a lump sum of $200,000 today,<br>or receive payments of $1,400 a month for 20 years.<br>You can earn 6% on your money.<br>Which option should you take and why?</p>
+</blockquote>
+<p>A. You should accept the payments because they are worth $209,414 to you today.<br>B. You should accept the payments because they are worth $247,800 to you today.<br>C. You should accept the payments because they are worth $336,000 to you today.<br>D. You should accept the 200,000USD because the payments are only worth 189,311USD to you today.<br><strong><u>E. You should accept the 200,000USD because the payments are only worth 195,413USD to you today.</u></strong></p>
+<blockquote>
+<p>Explanation:<br>Option 1 is a $200,000 lump sum payment received today while option 2 is a annuity with monthly payments last for 20 years. We need to compare the PVs of the two options to see which one is more valuable today.<br>$$ APV &#x3D; \$1400 \times \frac{1-(1+\frac{0.06}{12})^{20 \times 12}}{\frac{0.06}{12}} &#x3D; \$195,413 $$</p>
+<p>Excel:<br>$$PV(rate, nper, pmt, fv) &#x3D; PV(0.06 &#x2F; 12, 20*12, -1400, 0)&#x3D;195,413.08$$<br>Since PMT is a monthly payment, NPER has to be in months and RATE has to be monthly rate.</p>
+</blockquote>
 
     </div>
     
