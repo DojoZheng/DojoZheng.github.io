@@ -170,12 +170,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/MBA/" style="color: #00bcd4">MBA</a>
+                <a href="/tags/MBA/" style="color: #00a596">MBA</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Finance/" style="color: #00a596">Finance</a>
+                <a href="/tags/Finance/" style="color: #00bcd4">Finance</a>
             </span>
             
         </span>
@@ -186,7 +186,7 @@
         <h1 id="Corporate-Finance-Tutorial-1"><a href="#Corporate-Finance-Tutorial-1" class="headerlink" title="Corporate Finance: Tutorial 1"></a>Corporate Finance: Tutorial 1</h1><p><img src="/2023/10/18/CorporateFinance/pmba6003-tutorial1.jpg" alt="PMBA6003-Tutorial1"></p>
 <span id="more"></span>
 
-<h2 id="Excel-Formula"><a href="#Excel-Formula" class="headerlink" title="Excel Formula"></a>Excel Formula</h2><ul>
+<h2 id="Formula"><a href="#Formula" class="headerlink" title="Formula"></a>Formula</h2><h3 id="Excel-Formula"><a href="#Excel-Formula" class="headerlink" title="Excel Formula"></a>Excel Formula</h3><ul>
 <li>$ Discount\ rate: RATE(nper, pmt, pv, fv) $</li>
 <li>$ Number\ of\ payments: NPER(rate, pmt, pv, fv) $</li>
 <li>$ Payment\ amount\ per\ period: PMT(rate, nper, pv, fv) $</li>
@@ -196,10 +196,16 @@
 </blockquote>
 </li>
 </ul>
-<p><br><br></p>
-<h2 id="Exercise-1-难度系数"><a href="#Exercise-1-难度系数" class="headerlink" title="Exercise 1 - 难度系数 *"></a>Exercise 1 - 难度系数 *</h2><blockquote>
-<p>Andy deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Barb also deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Andy will withdraw his interest earnings and spend it as soon as possible.<br>Barb will reinvest her interest earnings into her account. Given this, which one of the following statements is true?</p>
+<h3 id="Math-Formula"><a href="#Math-Formula" class="headerlink" title="Math Formula"></a>Math Formula</h3><ul>
+<li>Ordinary Annuity<br>$$PVA_0&#x3D;C \frac{1-\frac{1}{(1+r)^t}}{r}$$<br>$$FVA_t&#x3D;C \frac{(1+r)^t-1}{r}$$<blockquote>
+<p>关于以上两个公式的推导，可以先从$FVA_t$开始推导，比较符合我们常人的生活经验思维：<br>$FVA_t \times r &#x3D; C(1+r)^t - C$，也就是<code>利息 = 本息 - 本金</code><br>因为$FV&#x3D;PV(1+r)^t$，所以上面的公式两边同时除以$(1+r)^t$，就可以得到Present Value的公式<br>$$\frac{FVA_t }{(1+r)^t} \times r &#x3D; \frac{C(1+r)^t-C}{(1+r)^t} \Rightarrow PVA_0 \times r &#x3D; C - \frac{C}{(1+r)^t} \Rightarrow PVA_0&#x3D;C \frac{1-\frac{1}{(1+r)^t}}{r}$$</p>
 </blockquote>
+</li>
+<li>Ordinary Perpetuity: $$PVP_0 &#x3D; \frac{C}{r}$$</li>
+<li>Relationship between APR and EAR:<br>  $$1+EAR&#x3D;(1+\frac{APR}{Number\ of\ Periods\ per\ Year})^{Number\ of\ Periods\ per\ Year}$$<br>When compounding frequency is annual, $(1+\frac{APR}{1})^1 &#x3D; 1+EAR$ or $1+APR &#x3D; 1+EAR$.<br>As number of periods per year ↑, EAR ↑ if APR remains the same<br>$$1 + EAR &#x3D; e^{APR}$$<br>Number of periods per year → ∞, maximum EAR is achieved</li>
+</ul>
+<p><br><br></p>
+<h2 id="Exercise-1-难度系数"><a href="#Exercise-1-难度系数" class="headerlink" title="Exercise 1 - 难度系数 *"></a>Exercise 1 - 难度系数 *</h2><p>Andy deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Barb also deposited $3,000 this morning into an account that pays 5 percent interest, compounded annually.<br>Andy will withdraw his interest earnings and spend it as soon as possible.<br>Barb will reinvest her interest earnings into her account. Given this, which one of the following statements is true?</p>
 <p>A. Barb will earn more interest the first year than Andy will.<br>B. Andy will earn more interest in year three than Barb will.<br><strong><u>C. Barb will earn interest on interest.</u></strong><br>D. After five years, Andy and Barb will both have earned the same amount of interest.<br>E. Andy will earn compound interest.</p>
 <pre><code class="Explanation">Andy is earning simple interest. 
 Barb is earning compound interest. 
@@ -207,9 +213,7 @@ In the first year, both will earn the same amount of interest given the same int
 But after the first year, Barb will always earn more interest than Andy.
 </code></pre>
 <p><br><br></p>
-<h2 id="EXERCISE-2-难度系数"><a href="#EXERCISE-2-难度系数" class="headerlink" title="EXERCISE 2 - 难度系数 *"></a>EXERCISE 2 - 难度系数 *</h2><blockquote>
-<p>Louis is going to receive $20,000 six years from now.<br>Soo is going to receive $20,000 nine years from now.<br>Which one of the following statements is correct if both Louis and Soo apply a 7% discount rate to these amounts?</p>
-</blockquote>
+<h2 id="EXERCISE-2-难度系数"><a href="#EXERCISE-2-难度系数" class="headerlink" title="EXERCISE 2 - 难度系数 *"></a>EXERCISE 2 - 难度系数 *</h2><p>Louis is going to receive $20,000 six years from now.<br>Soo is going to receive $20,000 nine years from now.<br>Which one of the following statements is correct if both Louis and Soo apply a 7% discount rate to these amounts?</p>
 <p>A. The present values of Louis and Soo’s monies are equal.<br>B. In future dollars, Soo’s money is worth more than Louis’ money.<br><strong><u>C. In today’s dollars, Louis’ money is worth more than Soo’s.</u></strong><br>D. Twenty years from now, the value of Louis’ money will be equal to the value of Soo’s money.<br>E. Soo’s money is worth more than Louis’ money given the 7 percent discount rate.</p>
 <pre><code class="Explanation">Although both Louis and Soo are going to receive the same amount $20,000, 
 but they are not comparable as they are not received at the same point of time. 
@@ -218,9 +222,7 @@ $20,000 received six years from today should be also worth more than $20,000 rec
 Given 7% discount rate, both the PV and FV of Louis’s $20,000 are always higher than the PV and FV of Soo’s $20,000 at the same point of time on the timeline.
 </code></pre>
 <p><br><br></p>
-<h2 id="EXERCISE-3-难度系数"><a href="#EXERCISE-3-难度系数" class="headerlink" title="EXERCISE 3 - 难度系数 **"></a>EXERCISE 3 - 难度系数 **</h2><blockquote>
-<p>You invested $1,650 in an account that pays 5% simple interest.<br>How much more could you have earned over a 20-year period if the interest had compounded annually?</p>
-</blockquote>
+<h2 id="EXERCISE-3-难度系数"><a href="#EXERCISE-3-难度系数" class="headerlink" title="EXERCISE 3 - 难度系数 **"></a>EXERCISE 3 - 难度系数 **</h2><p>You invested $1,650 in an account that pays 5% simple interest.<br>How much more could you have earned over a 20-year period if the interest had compounded annually?</p>
 <p>A. $849.22<br>B. $930.11<br>C. $982.19<br>D. $1,021.15<br><strong><u>E. $1,077.94</u></strong></p>
 <pre><code class="Explanation">Simple interest = $1,650 + ($1,650 x .05 x 20) = $3,300 
 Annual compounding = $1,650 x (1.05)^20 = $4,377.94 
@@ -230,9 +232,7 @@ Excel Calculation:
 FV(rate, nper, pmt, pv) = FV(5%, 20, 0, -1650) = $4,377.94
 </code></pre>
 <p><br><br></p>
-<h2 id="Exercise-4-难度系数"><a href="#Exercise-4-难度系数" class="headerlink" title="Exercise 4 - 难度系数 **"></a>Exercise 4 - 难度系数 **</h2><blockquote>
-<p>At 11% interest rate, how long would it take from today to quadruple your $1,500 if it is invested 3 years later from now?</p>
-</blockquote>
+<h2 id="Exercise-4-难度系数"><a href="#Exercise-4-难度系数" class="headerlink" title="Exercise 4 - 难度系数 **"></a>Exercise 4 - 难度系数 **</h2><p>At 11% interest rate, how long would it take from today to quadruple your $1,500 if it is invested 3 years later from now?</p>
 <p>A. 13.09 years<br>B. 13.28 years<br>C. 13.56 years<br><u><strong>D. 16.28 years</strong></u><br>E. 16.56 years</p>
 <pre><code class="Explanation">$6,000 = $1,500 x (1 + .11)^t
 t = 13.28 years
@@ -242,9 +242,7 @@ Excel Calculation:
 NPER(rate, pmt, pv, fv) = NPER(11%,0,1500,-1500*4) = 13.2832
 </code></pre>
 <p><br><br></p>
-<h2 id="Self-Study-Exercise-1-难度系数"><a href="#Self-Study-Exercise-1-难度系数" class="headerlink" title="Self-Study Exercise 1 - 难度系数 **"></a>Self-Study Exercise 1 - 难度系数 **</h2><blockquote>
-<p>You would like to give your daughter $75,000 towards her college education 17 years from now. How much money must you set aside today for this purpose if you can earn 8% on your investments?</p>
-</blockquote>
+<h2 id="Self-Study-Exercise-1-难度系数"><a href="#Self-Study-Exercise-1-难度系数" class="headerlink" title="Self-Study Exercise 1 - 难度系数 **"></a>Self-Study Exercise 1 - 难度系数 **</h2><p>You would like to give your daughter $75,000 towards her college education 17 years from now. How much money must you set aside today for this purpose if you can earn 8% on your investments?</p>
 <p>A. $18,388.19<br><strong><u>B. $20,270.17</u></strong><br>C. $28,417.67<br>D. $29,311.13<br>E. $32,488.37</p>
 <pre><code class="Explanation">Present value = $75, 000 x [1/(1 + .08)^17 ] = $20,270.17
 
@@ -252,9 +250,7 @@ Excel:
 PV(rate, nper, pmt, fv) = PV(8%,17,0,-75000) = $20,270.17
 </code></pre>
 <p><br><br></p>
-<h2 id="Self-Study-Exercise-2-难度系数"><a href="#Self-Study-Exercise-2-难度系数" class="headerlink" title="Self-Study Exercise 2 - 难度系数**"></a>Self-Study Exercise 2 - 难度系数**</h2><blockquote>
-<p>Fourteen years ago from now, your parents set aside $7,500 to help fund your college education.<br>2 years later from now, that fund is valued at $26,180. What rate of interest is being earned on this account?</p>
-</blockquote>
+<h2 id="Self-Study-Exercise-2-难度系数"><a href="#Self-Study-Exercise-2-难度系数" class="headerlink" title="Self-Study Exercise 2 - 难度系数**"></a>Self-Study Exercise 2 - 难度系数**</h2><p>Fourteen years ago from now, your parents set aside $7,500 to help fund your college education.<br>2 years later from now, that fund is valued at $26,180. What rate of interest is being earned on this account?</p>
 <p>A. 7.99 percent<br><strong><u>B. 8.13 percent</u></strong><br>C. 8.51 percent<br>D. 9.34 percent<br>E. 10.06 percent</p>
 <pre><code class="Explanation">$26,180 = $7,500 x (1 + r)^16 
 r = 8.13%
@@ -263,8 +259,7 @@ Excel:
 RATE(nper, pmt, pv, fv) = RATE(16,0,7500,-26180)
 </code></pre>
 <p><br><br></p>
-<h2 id="Exercise-5-难度系数"><a href="#Exercise-5-难度系数" class="headerlink" title="Exercise 5 - 难度系数***"></a>Exercise 5 - 难度系数***</h2><blockquote>
-<p>Which one of the following statements is correct given the following two sets of project cash flows?</p>
+<h2 id="Exercise-5-难度系数"><a href="#Exercise-5-难度系数" class="headerlink" title="Exercise 5 - 难度系数***"></a>Exercise 5 - 难度系数***</h2><p>Which one of the following statements is correct given the following two sets of project cash flows?</p>
 <table>
 <thead>
 <tr>
@@ -294,7 +289,6 @@ RATE(nper, pmt, pv, fv) = RATE(16,0,7500,-26180)
 <td>$3,000</td>
 </tr>
 </tbody></table>
-</blockquote>
 <p>A. The cash flows for Project B are an annuity, but those of Project A are not.<br>B. Both sets of cash flows have equal present values as of time zero given the same positive discount rate.<br>C. The present value of Project A cannot be computed because the second cash flow is equal to zero.<br><u><strong>D. As long as the discount rate is positive, Project B will always be worth less today than will Project A.</strong></u></p>
 <blockquote>
 <p>Explanation</p>
@@ -338,15 +332,13 @@ RATE(nper, pmt, pv, fv) = RATE(16,0,7500,-26180)
 </ul>
 </blockquote>
 <p>  <br><br>  </p>
-<h2 id="Exercise-6-难度系数"><a href="#Exercise-6-难度系数" class="headerlink" title="Exercise 6 - 难度系数***"></a>Exercise 6 - 难度系数***</h2><blockquote>
-<p>Which of the following statements related to interest rates are correct?<br>I. Annual percentage rates consider the effect of interest earned on reinvested interest payments. 年利率考虑利息收入对再投资利息支付的影响<br>II. When comparing loans, you should compare the effective annual rates. 在比较贷款时，你应该比较有效的年利率<br>III. Lenders are required by law to disclose the effective annual rate of a loan to prospective borrowers. 法律规定放款人须向准借款人披露贷款的有效年利率<br>IV. Annual percentage rates(APR) and effective interest rates(EAR) are equal when interest is compounded annually. 当利息按年复利时，年利率和实际利率相等</p>
-</blockquote>
+<h2 id="Exercise-6-难度系数"><a href="#Exercise-6-难度系数" class="headerlink" title="Exercise 6 - 难度系数***"></a>Exercise 6 - 难度系数***</h2><p>Which of the following statements related to interest rates are correct?<br>I. Annual percentage rates consider the effect of interest earned on reinvested interest payments. 年利率考虑利息收入对再投资利息支付的影响<br>II. When comparing loans, you should compare the effective annual rates. 在比较贷款时，你应该比较有效的年利率<br>III. Lenders are required by law to disclose the effective annual rate of a loan to prospective borrowers. 法律规定放款人须向准借款人披露贷款的有效年利率<br>IV. Annual percentage rates(APR) and effective interest rates(EAR) are equal when interest is compounded annually. 当利息按年复利时，年利率和实际利率相等</p>
 <p>A. I and II only<br>B. II and III only<br><strong><u>C. II and IV only </u></strong><br>D. I, II, and III only<br>E. II, III, and IV only</p>
 <blockquote>
 <p><strong>Explanation</strong><br>Statement I:<br>APR(annual percentage rates) is an annualized interest rate using simple interest.<br>再投资利息这个说的是复利，年利率考虑的是单利</p>
 <p>Statement II:<br>APRs with different compounding frequency are not comparable.<br>We should convert all APRs with different compounding frequency into EARs(effective annual rates) for comparison. </p>
 <p>Statement III:<br>Lenders are required by law to disclose披露 APRs, not EARs. </p>
-<p>Statement IV:<br>Relationship between APR and EAR: (参考自课件)<br>$$1+EAR&#x3D;(1+\frac{APR}{Number\ of\ Periods\ per\ Year})^{Number\ of\ Periods\ per\ Year}$$<br>When compounding frequency is annual, $(1+\frac{APR}{1})^1 &#x3D; 1+EAR$ or $1+APR &#x3D; 1+EAR$.<br>As number of periods per year ↑, EAR ↑ if APR remains the same<br>$1 + EAR &#x3D; eAPR$<br>Number of periods per year → ∞, maximum EAR is achieved</p>
+<p>Statement IV:<br>Relationship between APR and EAR: (参考自课件)<br>$$1+EAR&#x3D;(1+\frac{APR}{Number\ of\ Periods\ per\ Year})^{Number\ of\ Periods\ per\ Year}$$<br>When compounding frequency is annual, $(1+\frac{APR}{1})^1 &#x3D; 1+EAR$ or $1+APR &#x3D; 1+EAR$.<br>As number of periods per year ↑, EAR ↑ if APR remains the same<br>$1 + EAR &#x3D; e^{APR}$<br>Number of periods per year → ∞, maximum EAR is achieved</p>
 </blockquote>
 <p><br><br></p>
 <h2 id="Exercise-7"><a href="#Exercise-7" class="headerlink" title="Exercise 7"></a>Exercise 7</h2><blockquote>
@@ -356,6 +348,61 @@ RATE(nper, pmt, pv, fv) = RATE(16,0,7500,-26180)
 <blockquote>
 <p>Explanation:<br>Option 1 is a $200,000 lump sum payment received today while option 2 is a annuity with monthly payments last for 20 years. We need to compare the PVs of the two options to see which one is more valuable today.<br>$$ APV &#x3D; \$1400 \times \frac{1-(1+\frac{0.06}{12})^{20 \times 12}}{\frac{0.06}{12}} &#x3D; \$195,413 $$</p>
 <p>Excel:<br>$$PV(rate, nper, pmt, fv) &#x3D; PV(0.06 &#x2F; 12, 20*12, -1400, 0)&#x3D;195,413.08$$<br>Since PMT is a monthly payment, NPER has to be in months and RATE has to be monthly rate.</p>
+</blockquote>
+<h2 id="EXERCISE-8"><a href="#EXERCISE-8" class="headerlink" title="EXERCISE 8"></a>EXERCISE 8</h2><p>You are buying a previously owned car today at a price of $3,500.<br>You are paying $300 down in cash and financing the balance for 36 months at 8.5 percent.<br>What is the amount of loan payments in each quarter?</p>
+<p>A. $101.02<br>B. $112.23<br>C. $303.06<br><u><strong>D. $304.92</strong></u><br>E. $336.69</p>
+<blockquote>
+<p><strong>Explanation</strong><br>PV: 3500-300&#x3D;3200 (Since you contribute $300 using your own money, you indeed borrow $3200 today.)<br>NPER: 36 months<br>Rate: 8.5% &#x2F; 12 (8.5% is an APR, usually interest rate given is APR unless otherwise stated.)<br>PMT in months: PMT(rate, nper, pv, fv) &#x3D; PMT(8.5%&#x2F;12, 36, -3200) &#x3D; $101.02<br>Loan payment in each quarter: $303.05</p>
+<p>Note:<br>    1. Since PMT is a monthly payment, NPER has to be in months and RATE has to be monthly rate.<br>    2. when it comes to applying $PVA&#x3D;C \frac{1-\frac{1}{(1+r)^t}}{r}$ formula in excel, either PVA or C has to be a negative value in order for another cash flow variable value to be a positive.</p>
+</blockquote>
+<p><br><br></p>
+<h2 id="EXERCISE-9-难度系数"><a href="#EXERCISE-9-难度系数" class="headerlink" title="EXERCISE 9 - 难度系数**"></a>EXERCISE 9 - 难度系数**</h2><p>Today, you borrowed $6,200 on your credit card to purchase some furniture.<br>The interest rate is 14.9 percent, compounded monthly.<br>How long will it take you to pay off this debt assuming that you are not charged anything else and make regular monthly payments of $120?</p>
+<p>A. 5.87 years<br>B. 6.40 years<br><u><strong>C. 6.93 years</strong></u><br>D. 7.23 years<br>E. 7.31 years</p>
+<blockquote>
+<p>Explanation:<br>$$PVA_0&#x3D;C \frac{1-\frac{1}{(1+r)^t}}{r}$$<br>$$ 6200 &#x3D; 120 \times (\frac{1-1&#x2F;(1+\frac{0.149}{12})^t}{\frac{0.149}{12}})$$<br>$$t&#x3D;83.14months→&#x2F;12→6.93years$$</p>
+<p>Excel:<br>NPER(rate, pmt, pv, fv) &#x3D; NPER(14.9%&#x2F;12,120,-6200)&#x2F;12 &#x3D; 6.93</p>
+</blockquote>
+<h2 id="EXERCISE-10"><a href="#EXERCISE-10" class="headerlink" title="EXERCISE 10"></a>EXERCISE 10</h2><p>Your insurance agent is trying to sell you an annuity that costs $200,000 today.<br>By buying this annuity, your agent promises that you will receive payments of $1,225 a month for the next 30 years.<br>What is the annual rate of return without compounding on this investment?</p>
+<p> A. 0.48 percent<br> B. 0.52 percent<br> C. 5.20 percent<br><strong><u> D. 6.20 percent</u></strong><br> E. 6.38 percent</p>
+<blockquote>
+<p>Explanation:<br>$$200000 &#x3D; 1225 \times (\frac{1-(1&#x2F;(1+\frac{r}{12})^{30\times12}}{\frac{r}{12}})$$<br>RATE(nper, pmt, pv, fv)&#x3D;RATE(30*12,1225,-200000)&#x3D;0.5167%<br>APR(annual percentage rate) &#x3D; 0.5167% * 12 &#x3D; 6.2%</p>
+</blockquote>
+<p><br><br></p>
+<h2 id="EXERCISE-11"><a href="#EXERCISE-11" class="headerlink" title="EXERCISE 11"></a>EXERCISE 11</h2><p>You have $5,600 that you want to use to open a savings account.<br>There are three banks located in your area.<br>The rates paid by banks A through C, respectively, are given below. Which bank should you select for savings?<br>A. 3.27 percent, compounded annually<br><strong><u>B. 3.25 percent, compounded semi-annually</u></strong><br>C. 3.10 percent, compounded continuously</p>
+<blockquote>
+<p>Explanation:<br>Relationship between APR and EAR:<br>    $$1+EAR&#x3D;(1+\frac{APR}{Number\ of\ Periods\ per\ Year})^{Number\ of\ Periods\ per\ Year}$$<br>When compounding frequency is annual, $(1+\frac{APR}{1})^1 &#x3D; 1+EAR$ or $1+APR &#x3D; 1+EAR$.<br>As number of periods per year ↑, EAR ↑ if APR remains the same<br>$$1 + EAR &#x3D; e^{APR}$$<br>Number of periods per year → ∞, maximum EAR is achieved</p>
+<p>Different APRs in option A, B, and C are not comparable, we need to convert different APRs(annual percentage rate) into EAR(effective annual rate) for comparison purpose. </p>
+<ul>
+<li>EAR of A: $(1+3.27\%&#x2F;1)^1 &#x3D; 1 + EAR \rightarrow EAR &#x3D; 3.27\%$</li>
+<li>EAR of B: $(1+3.25\%&#x2F;2)^2 &#x3D; 1 + EAR \rightarrow EAR &#x3D; 3.2764\%$</li>
+<li>EAR of C: $e^{3.10\%} &#x3D; 1+EAR \rightarrow EAR &#x3D; 3.1486\%$<br> 显然，B选项是最大的</li>
+</ul>
+</blockquote>
+<p><br><br></p>
+<h2 id="SELF-STUDY-EXERCISE-3"><a href="#SELF-STUDY-EXERCISE-3" class="headerlink" title="SELF-STUDY EXERCISE 3"></a>SELF-STUDY EXERCISE 3</h2><p>What is the value of $600 paid twice per year for 40 years at 8 percent return after all the payments made immediately?</p>
+<p>A. $301,115<br>B. $306,492<br>C. $310,868<br><u><strong>D. $330,747</strong></u><br>E. $347,267</p>
+<blockquote>
+<p>Explanation:<br>You are asked about the future value of an annuity cash flow stream with all $600 semiannual payments once they are all paid.<br>FV(rate, nper, pmt, pv)&#x3D;FV(8%&#x2F;2,40*2,-600)&#x3D;$330,746.99</p>
+</blockquote>
+<h2 id="SELF-STUDY-EXERCISE-4"><a href="#SELF-STUDY-EXERCISE-4" class="headerlink" title="SELF-STUDY EXERCISE 4"></a>SELF-STUDY EXERCISE 4</h2><p>Your local travel agent is advertising an upscale winter vacation package for travel 3 years from now to Antarctica.<br>The package requires that you pay $25,000 today,<br>$30,000 one year from today,<br>and a final payment of $45,000 on the day you depart three years from today.<br>What is the cost of this vacation in today’s dollars if the discount rate is 9.75 percent?</p>
+<p>A. $89,695<br><u><strong>B. $86,376</strong></u><br>C. $91,219<br>D. $91,407<br>E. $93,478</p>
+<blockquote>
+<p>Explanation:<br>$$ PV &#x3D; \$25,000 + \frac{\$30,000}{(1 + 0.0975)^1} + 0 + \frac{\$45,000}{(1 + 0.0975)^3} &#x3D; \$86,376 $$<br>Excel: PV(rate, nper, pmt, fv)</p>
+</blockquote>
+<h2 id="SELF-STUDY-EXERCISE-5"><a href="#SELF-STUDY-EXERCISE-5" class="headerlink" title="SELF-STUDY EXERCISE 5"></a>SELF-STUDY EXERCISE 5</h2><p> You grandfather won a lottery years ago.<br> The value of his winnings at the time was $50,000.<br> He invested this money such that it will provide annual payments of $2,400 a year to his heirs forever.<br> What is the rate of return?</p>
+<p>A. 4.75 percent<br><strong><u>B. 4.80 percent</u></strong><br>C. 5.00 percent<br>D. 5.10 percent<br>E. 5.15 percent</p>
+<blockquote>
+<p>Explanation:<br>Ordinary Perpetuity: $PVP_0 &#x3D; \frac{C}{r}$<br>The cash flow pattern is a perpetuity as annual payments last forever.<br>$$r &#x3D; \frac{C}{PVP} &#x3D; \frac{\$2,400}{\$50,000} &#x3D; 4.80percent $$</p>
+</blockquote>
+<h2 id="SELF-STUDY-EXERCISE-6"><a href="#SELF-STUDY-EXERCISE-6" class="headerlink" title="SELF-STUDY EXERCISE 6"></a>SELF-STUDY EXERCISE 6</h2><p>Your credit card company charges you 1.65 percent interest per month.<br>What is the quoted interest rate on your account?</p>
+<p>A. 18.95 percent<br><strong><u>B. 19.80 percent</u></strong><br>C. 20.90 percent<br>D. 21.25 percent<br>E. 21.70 percent</p>
+<blockquote>
+<p>Explanation:<br>Quoted interest rate is APR&#x3D;(periodic interest rate) x (number of periods in a year)<br>APR &#x3D; 0.0165 x 12 &#x3D; 19.80 percent.</p>
+</blockquote>
+<h2 id="SELF-STUDY-EXERCISE-7"><a href="#SELF-STUDY-EXERCISE-7" class="headerlink" title="SELF-STUDY EXERCISE 7"></a>SELF-STUDY EXERCISE 7</h2><p>The Pawn Shop loans money at an annual rate of 21% and compounds interest weekly.<br>What is the actual rate being charged on these loans?</p>
+<p>A. 23.16 percent<br><strong><u>B. 23.32 percent</u></strong><br>C. 23.49 percent<br>D. 23.56 percent<br>E. 23.64 percent </p>
+<blockquote>
+<p>Explanation:<br>Actual rate is EAR.<br>$$(1+\frac{APR}{number\ of\ periods\ in\ a\ year})^{number\ of\ periods\ in\ a\ year} &#x3D; 1+EAR $$<br>$$EAR &#x3D; (1 + \frac{0.21}{52})^{52} - 1 &#x3D; 23.32\% $$</p>
 </blockquote>
 
     </div>
